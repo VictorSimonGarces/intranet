@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('register', async ({page}, testInfo) => {
 
-  await page.goto('http://127.0.0.1:5500/registration/register.html');
+  await page.goto('http://127.0.0.1:5501/registration/register.html');
   
     const name = 'Victor'
     const lastName = 'Simon garces'
@@ -65,7 +65,7 @@ test('register', async ({page}, testInfo) => {
 
 test('registration failure', async ({page}, testInfo) => {
 
-  await page.goto('http://127.0.0.1:5500/registration/register.html');
+  await page.goto('http://127.0.0.1:5501/registration/register.html');
   
     const name = 'Victor'
     const lastName = 'Simon garces'

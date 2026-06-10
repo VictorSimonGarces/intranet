@@ -3,7 +3,7 @@ import {faker} from '@faker-js/faker'
 
 test('create transactions', async({page}) => {
 
-    await page.goto('http://127.0.0.1:5500/login/login.html')
+    await page.goto('http://127.0.0.1:5501/login/login.html')
 
     await page.locator('input#username').fill('user')
     await page.locator('input#password').fill('pass')
@@ -26,7 +26,7 @@ test('create transactions', async({page}) => {
 });
 
 test('create transactions codegenarator', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5500/login/login.html');
+  await page.goto('http://127.0.0.1:5501/login/login.html');
 
   await page.getByRole('textbox', { name: 'Nombre de usuario:' }).fill('user');
   await page.getByRole('textbox', { name: 'Contraseña:' }).fill('pass');

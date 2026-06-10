@@ -6,7 +6,7 @@ import { NavigateTo } from '../../pageobjects/navigate/NavigateTo';
 
 test('login', async({page}) => {
 
-    await page.goto('http://127.0.0.1:5500/login/login.html')
+    await page.goto('http://127.0.0.1:5501/login/login.html')
 
     await page.locator('input#username').fill('user')
     await page.locator('input#password').fill('pass')
