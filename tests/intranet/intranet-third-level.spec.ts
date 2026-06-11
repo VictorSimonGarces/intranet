@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 import { NavigateTo } from '../../pageobjects/navigate/NavigateTo'
 import { IntranetPage } from '../../pageobjects/intranet/IntranetPage'
 
-test('searching intranet', async ({ browser }) => {
+test('intranet first level "Quienes somos"', async ({ browser }) => {
     // Crea un nuevo contexto de navegador ("incognito") y obtiene la página nueva resultante
     const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
@@ -11,8 +11,8 @@ test('searching intranet', async ({ browser }) => {
         await navigateTo.intranetPage()
     })
 
-    const username = 'esscdtechqauser1@deloitte.es'
-    const password = 'NT7G()Dil0Eb_zj7skeo'
+    const username = 'vsimongarces@deloitte.es'
+    const password = 'Pradillano180206'
 
     await test.step('Login to the intranet', async () => {
         const intranetPage = new IntranetPage(page)
@@ -22,6 +22,16 @@ test('searching intranet', async ({ browser }) => {
     await test.step('Click on La Firma dropdown', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickLaFirmaDropdown()
+    })
+
+    await test.step('Click on Quienes somos button', async () => {
+        const intranetPage = new IntranetPage(page)
+        await intranetPage.clickQuienesSomosButton()
+    })
+
+    await test.step('Click on Estructura y Gobierno button', async () => {
+        const intranetPage = new IntranetPage(page)
+        await intranetPage.clickEstructuraYGobiernoButton()
     })
 
     // await context.close()
