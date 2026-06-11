@@ -12,4 +12,7 @@ export class NavigateTo{
         await this.page.goto('http://127.0.0.1:5501/login/login.html')
     }
 
+    async intranetPage(){
+        await this.page.goto('https://intranet.es.deloitte.com/')
+    }
 }
