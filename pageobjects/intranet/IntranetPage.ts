@@ -1,4 +1,5 @@
 import { Locator, Page, Browser } from "@playwright/test"
+import { DatabaseService } from '../../services/DatabaseService'
 
 export class IntranetPage{
 
@@ -15,11 +16,13 @@ export class IntranetPage{
     private clicks: string[]
     private readonly page: Page
     private session?: { user?: string, [k: string]: any }
+    private dbService?: DatabaseService
 
-    constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }){
+    constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }, dbService?: DatabaseService){
         this.page = page
         this.clicks = clicks
         this.session = session
+        this.dbService = dbService
         this.userTextBox = page.getByRole('textbox', { name: 'Enter your email, phone, or' })
         this.nextButton = page.getByRole('button', { name: 'Next' })
         this.passwordTextBox = page.getByRole('textbox', { name: 'Enter the password for' })
@@ -124,62 +127,110 @@ export class IntranetPage{
 
     async clickLaFirmaDropdown(){
         await this.laFirmaDropdown.click()
-        this.clicks.push({
-            accion: 'Dropdown La Firma',
-            tracking: await this.getTrackingData()
-        } as any)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Dropdown La Firma'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        let dbRow = null
+        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        const match = {
+            title: !!(dbRow && dbRow.title === tracking.title),
+            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+            url: !!(dbRow && dbRow.url === tracking.url),
+            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+        }
+        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
     }
 
     async clickQuienesSomosButton(){
         await this.quienesSomosButton.click()
-        this.clicks.push({
-            accion: 'Boton Quienes somos',
-            tracking: await this.getTrackingData()
-        } as any)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Quienes somos'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        let dbRow = null
+        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        const match = {
+            title: !!(dbRow && dbRow.title === tracking.title),
+            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+            url: !!(dbRow && dbRow.url === tracking.url),
+            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+        }
+        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
     }
 
     async clickCentroDeRecursosButton(){
         await this.centroDeRecursosButton.click()
-        this.clicks.push({
-            accion: 'Boton Centro de recursos',
-            tracking: await this.getTrackingData()
-        } as any)                   
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Centro de recursos'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        let dbRow = null
+        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        const match = {
+            title: !!(dbRow && dbRow.title === tracking.title),
+            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+            url: !!(dbRow && dbRow.url === tracking.url),
+            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+        }
+        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)                   
     }
 
     async clickTalentoButton(){
         await this.talentoButton.click()
-        this.clicks.push({
-            accion: 'Boton Talento',
-            tracking: await this.getTrackingData()
-        } as any)           
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Talento'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        let dbRow = null
+        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        const match = {
+            title: !!(dbRow && dbRow.title === tracking.title),
+            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+            url: !!(dbRow && dbRow.url === tracking.url),
+            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+        }
+        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)           
     }
 
     async clickComiteEjecutivoButton(){
         await this.comiteEjecutivoButton.click()
-        this.clicks.push({
-            accion: 'Boton Comite Ejecutivo',
-            tracking: await this.getTrackingData()
-        } as any)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Comite Ejecutivo'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        let dbRow = null
+        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        const match = {
+            title: !!(dbRow && dbRow.title === tracking.title),
+            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+            url: !!(dbRow && dbRow.url === tracking.url),
+            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+        }
+        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
     }
 
     async clickConsejosSociosButton(){
         await this.consejosSociosButton.click()
-        this.clicks.push({
-            accion: 'Boton Consejo de Socios',
-            tracking: await this.getTrackingData()
-        } as any)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Consejo de Socios'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        let dbRow = null
+        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        const match = {
+            title: !!(dbRow && dbRow.title === tracking.title),
+            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+            url: !!(dbRow && dbRow.url === tracking.url),
+            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+        }
+        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
     }
 
     async getSessionId(): Promise<string> {

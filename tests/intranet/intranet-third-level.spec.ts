@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { NavigateTo } from '../../pageobjects/navigate/NavigateTo'
 import { IntranetPage } from '../../pageobjects/intranet/IntranetPage'
+import { DatabaseService } from '../../services/DatabaseService'
 
 let sessionSummary: {
     user: string,
@@ -11,6 +12,8 @@ let sessionSummary: {
     sessionId: string
 } = { user: '', startTime: new Date(), clicks: [], sessionId: '' };
 
+let dbService: DatabaseService | undefined
+
 test.beforeEach(async () => {
     sessionSummary = {
         user: '',
@@ -18,6 +21,20 @@ test.beforeEach(async () => {
         clicks: [],
         sessionId: ''
     };
+    // Inicializar conexión a la base de datos (config via env vars)
+    try {
+        const cfg = {
+            server: process.env.DB_SERVER || 'localhost',
+            database: process.env.DB_NAME || 'EstadisticasIntranet',
+            user: process.env.DB_USER || 'sa',
+            password: process.env.DB_PASSWORD || '',
+            port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined
+        }
+        dbService = new DatabaseService(cfg)
+        await dbService.connect()
+    } catch (e) {
+        dbService = undefined
+    }
 });
 
 test.afterEach(async ({}, testInfo) => {
@@ -88,6 +105,10 @@ test.afterEach(async ({}, testInfo) => {
         fs.writeFileSync(path.join(outputDir, fileName), JSON.stringify(summary, null, 2))
         console.log(`Saved report (fallback): ${fileName}`)
     }
+    // Cerrar conexión a BD si existe
+    try {
+        if (dbService) await dbService.disconnect()
+    } catch (e) { /* ignore */ }
 });
 
 test('intranet first level "Quienes somos"', async ({ browser }) => {
@@ -102,7 +123,7 @@ test('intranet first level "Quienes somos"', async ({ browser }) => {
     const password = 'Pradillano180206'
 
     await test.step('Login to the intranet', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary)
+        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
         const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 8000 })
         await intranetPage.doLogin(username, password)
@@ -180,25 +201,25 @@ test('intranet first level "Quienes somos"', async ({ browser }) => {
 
     await page.waitForTimeout(3000)
     await test.step('Click on La Firma dropdown', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary)
+        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickLaFirmaDropdown()
     })
 
     await page.waitForTimeout(3000)
     await test.step('Click on Quienes somos button', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary)
+        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickQuienesSomosButton()
     })
 
     await page.waitForTimeout(3000)
     await test.step('Click on Estructura y Gobierno button', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary)
+        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickComiteEjecutivoButton()
     })
 
     await page.waitForTimeout(3000)
     await test.step('Click on Consejo de Socios button', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary)
+        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickConsejosSociosButton()
     })
 })
