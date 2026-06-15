@@ -3,18 +3,24 @@ const sql = require('mssql')
 
 async function run() {
   const cfg = {
-    user: process.env.DB_USER || undefined,
-    password: process.env.DB_PASSWORD || undefined,
     server: process.env.DB_SERVER || 'localhost',
-    database: process.env.DB_NAME || 'master',
-    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
-    options: {
-      encrypt: false,
-      trustServerCertificate: true
-    }
+    database: process.env.DB_NAME || 'master'
+  }
+  // Support Windows Auth when DB_AUTH=windows or DB_USER is not set
+  const useWindowsAuth = (process.env.DB_AUTH === 'windows') || !process.env.DB_USER
+  if (!useWindowsAuth) {
+    cfg.user = process.env.DB_USER || undefined
+    cfg.password = process.env.DB_PASSWORD || undefined
+    cfg.port = process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined
+    cfg.options = { encrypt: false, trustServerCertificate: true }
+  } else {
+    // msnodesqlv8 config
+    cfg.driver = 'msnodesqlv8'
+    cfg.options = { trustedConnection: true, trustServerCertificate: true }
+    if (process.env.DB_PORT) cfg.port = Number(process.env.DB_PORT)
   }
 
-  console.log('Attempting DB connection to', cfg.server, '/', cfg.database)
+  console.log('Attempting DB connection to', cfg.server, '/', cfg.database, 'useWindowsAuth=', useWindowsAuth)
   try {
     await sql.connect(cfg)
     console.log('Connected ✅')

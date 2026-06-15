@@ -14,17 +14,35 @@ export class DatabaseService {
 
   async connect(): Promise<void> {
     if (this.pool && this.pool.connected) return
-    const cfg: any = {
-      user: this.config.user,
-      password: this.config.password,
-      server: this.config.server,
-      database: this.config.database,
-      options: {
-        encrypt: false,
-        trustServerCertificate: true
+    const useWindowsAuth = (process.env.DB_AUTH === 'windows') || !this.config.user
+    let cfg: any
+    if (useWindowsAuth) {
+      // Use msnodesqlv8 driver with trusted connection (Windows Authentication)
+      cfg = {
+        server: this.config.server,
+        database: this.config.database,
+        driver: 'msnodesqlv8',
+        options: {
+          trustedConnection: true,
+          trustServerCertificate: true
+        }
       }
+      if (this.config.port) cfg.port = this.config.port
+      console.info('[DB] Using Windows Authentication (msnodesqlv8). Ensure msnodesqlv8 is installed and tests run under the correct Windows account.')
+    } else {
+      cfg = {
+        user: this.config.user,
+        password: this.config.password,
+        server: this.config.server,
+        database: this.config.database,
+        options: {
+          encrypt: false,
+          trustServerCertificate: true
+        }
+      }
+      if (this.config.port) cfg.port = this.config.port
     }
-    if (this.config.port) cfg.port = this.config.port
+
     this.pool = await new sql.ConnectionPool(cfg).connect()
   }
 
@@ -52,9 +70,8 @@ export class DatabaseService {
       request.input('urlLike', sql.NVarChar(4000), `%${normalized}%`)
       if (tiempo) request.input('tiempo', sql.NVarChar(100), tiempo)
 
-      const q = `SELECT TOP 1 [id_sesion],[nameplate],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
+      const q = `SELECT TOP 1 [id_sesion],[numEmpleado],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
                  FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-                 WHERE ([url] = @url OR [url] LIKE @urlLike OR @url LIKE '%' + @url + '%')
                  ORDER BY [tiempo] DESC`
 
       // Debug info: log the query parameters (not the full SQL to avoid verbosity)
