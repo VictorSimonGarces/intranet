@@ -4,6 +4,7 @@ import * as path from 'path'
 import { NavigateTo } from '../../pageobjects/navigate/NavigateTo'
 import { IntranetPage } from '../../pageobjects/intranet/IntranetPage'
 import { DatabaseService } from '../../services/DatabaseService'
+require('dotenv').config()
 
 let sessionSummary: {
     user: string,
