@@ -136,7 +136,7 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
         this.pushClickRecord(accion, tracking, dbRow)
     }
 
@@ -149,7 +149,7 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
         this.pushClickRecord(accion, tracking, dbRow)
     }
 
@@ -162,7 +162,7 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
         this.pushClickRecord(accion, tracking, dbRow)                   
     }
 
@@ -175,7 +175,7 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
         this.pushClickRecord(accion, tracking, dbRow)           
     }
 
@@ -188,7 +188,7 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
         this.pushClickRecord(accion, tracking, dbRow)
     }
 
@@ -201,7 +201,7 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
         this.pushClickRecord(accion, tracking, dbRow)
     }
 

@@ -15,9 +15,6 @@ let sessionSummary: {
 
 let dbService: DatabaseService | undefined
 
-// Aumentar timeout por defecto para este archivo de tests (en ms)
-test.setTimeout(120000)
-
 test.beforeEach(async () => {
     sessionSummary = {
         user: '',
@@ -82,7 +79,7 @@ test.afterEach(async ({}, testInfo) => {
             const tracking = detail.tracking
 
             let dbRow: any = null
-            const maxAttempts = 30
+            const maxAttempts = 10
             const intervalMs = 1000
             for (let attempt = 0; attempt < maxAttempts; attempt++) {
                 try {

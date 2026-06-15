@@ -46,41 +46,38 @@ export class DatabaseService {
     this.pool = await new sql.ConnectionPool(cfg).connect()
   }
 
-  async query(url: string, tiempo?: string): Promise<any | null> {
+  async query(titleOrKey: string, tiempo?: string): Promise<any | null> {
     if (!this.pool) throw new Error('Not connected')
     try {
-      // Normalize URL to improve matching (strip query, fragment, trailing slash, lowercase)
-      const normalizeUrl = (u: string) => {
+      // Normalize title/key for matching (trim, lowercase)
+      const normalizeKey = (s: string) => {
         try {
-          const parsed = new URL(u)
-          const normalized = (parsed.origin + parsed.pathname).replace(/\/$/, '')
-          return normalized.toLowerCase()
+          return String(s || '').trim().toLowerCase()
         } catch (e) {
-          // fallback to regex-based stripping
-          return u.replace(/\?.*$/, '').replace(/#.*$/, '').replace(/\/$/, '').toLowerCase()
+          return String(s || '').toLowerCase()
         }
       }
 
-      const normalized = normalizeUrl(url)
+      const normalized = normalizeKey(titleOrKey)
 
-      // Parametrized query; fetch latest matching by normalized url
+      // Parametrized query; fetch latest matching by normalized title
       const request = this.pool.request()
       // Use generous NVARCHAR sizes to avoid truncation
-      request.input('url', sql.NVarChar(4000), normalized)
-      request.input('urlLike', sql.NVarChar(4000), `%${normalized}%`)
+      request.input('key', sql.NVarChar(4000), normalized)
+      request.input('keyLike', sql.NVarChar(4000), `%${normalized}%`)
       if (tiempo) request.input('tiempo', sql.NVarChar(100), tiempo)
 
       const q = `SELECT TOP 1 [id_sesion],[numEmpleado],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
-             FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-             WHERE (LOWER([url]) = @url OR LOWER([url]) LIKE @urlLike OR @url LIKE '%' + LOWER([url]) + '%')
-             ORDER BY [tiempo] DESC`
+                 FROM [EstadisticasIntranet].[dbo].[SesionEvento]
+                 WHERE (LOWER([title]) = @key OR LOWER([title]) LIKE @keyLike OR @key LIKE '%' + LOWER([title]) + '%')
+                 ORDER BY [tiempo] DESC`
 
       // Debug info: log the query parameters (not the full SQL to avoid verbosity)
-      console.debug('[DB] query params', { url: normalized, tiempo: tiempo || null })
+      console.debug('[DB] query params', { key: normalized, tiempo: tiempo || null })
 
       const result = await request.query(q)
       const rows = result && result.recordset ? result.recordset.length : 0
-      console.debug(`[DB] rows=${rows} for url='${normalized}'`)
+      console.debug(`[DB] rows=${rows} for title='${normalized}'`)
       if (rows > 0) return result.recordset[0]
     } catch (e) {
       console.error('[DB] query error', (e as Error).message)
