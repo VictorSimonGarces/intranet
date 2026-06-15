@@ -109,8 +109,9 @@ export class IntranetPage{
 
     private async clickSignInButton(){
         await Promise.all([
-            this.page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
-            this.signInButton.click()
+            this.signInButton.click(),
+            // waitForNavigation may never happen (login could use XHR); swallow timeout
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => null)
         ])
     }
 
@@ -206,11 +207,17 @@ export class IntranetPage{
             numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
         }
 
-        if (Object.values(match).every(v => v)) {
-            console.log(`[MATCH OK] ${accion}: campos comparados son iguales`)
-        }
+        const matchOk = Object.values(match).every(v => v)
+        const matchMessage = matchOk ? `[MATCH OK] ${accion}: campos comparados son iguales` : ''
 
-        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
+        this.clicks.push({
+            accion,
+            playwright: tracking,
+            database: dbRow || {},
+            match,
+            matchOk,
+            matchMessage
+        } as any)
     }
 
     async getSessionId(): Promise<string> {
