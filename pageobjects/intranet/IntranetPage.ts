@@ -208,7 +208,14 @@ export class IntranetPage{
         }
 
         const matchOk = Object.values(match).every(v => v)
-        const matchMessage = matchOk ? `[MATCH OK] ${accion}: campos comparados son iguales` : ''
+        let matchMessage = ''
+        if (!dbRow) {
+            matchMessage = `[NO DB ROW] ${accion}: no se encontró registro en BBDD`
+        } else if (matchOk) {
+            matchMessage = `[MATCH OK] ${accion}: campos comparados son iguales`
+        } else {
+            matchMessage = `[MISMATCH] ${accion}: algunos campos no coinciden`
+        }
 
         this.clicks.push({
             accion,

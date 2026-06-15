@@ -33,13 +33,15 @@ export class DatabaseService {
     try {
       // Parametrized query; fetch latest matching by url
       const request = this.pool.request()
+      // Provide both exact and partial (LIKE) match to tolerate minor differences
       request.input('url', sql.NVarChar, url)
+      request.input('urlLike', sql.NVarChar, `%${url}%`)
       // If tiempo provided, pass it as well
       if (tiempo) request.input('tiempo', sql.NVarChar, tiempo)
 
       const q = `SELECT TOP 1 [id_sesion],[nameplate],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
                  FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-                 WHERE [url] = @url
+                 WHERE ([url] = @url OR [url] LIKE @urlLike OR @url LIKE '%' + [url] + '%')
                  ORDER BY [tiempo] DESC`
 
       const result = await request.query(q)
