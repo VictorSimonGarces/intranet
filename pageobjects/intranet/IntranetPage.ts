@@ -210,7 +210,7 @@ export class IntranetPage{
             title: !!(dbRow && dbRow.title === tracking.title),
             referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
             url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+            numEmpleado: !!(dbRow && ((String(dbRow.numEmpleado || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
         }
 
         const matchOk = Object.values(match).every(v => v)

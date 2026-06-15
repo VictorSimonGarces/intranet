@@ -71,8 +71,9 @@ export class DatabaseService {
       if (tiempo) request.input('tiempo', sql.NVarChar(100), tiempo)
 
       const q = `SELECT TOP 1 [id_sesion],[numEmpleado],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
-                 FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-                 ORDER BY [tiempo] DESC`
+             FROM [EstadisticasIntranet].[dbo].[SesionEvento]
+             WHERE (LOWER([url]) = @url OR LOWER([url]) LIKE @urlLike OR @url LIKE '%' + LOWER([url]) + '%')
+             ORDER BY [tiempo] DESC`
 
       // Debug info: log the query parameters (not the full SQL to avoid verbosity)
       console.debug('[DB] query params', { url: normalized, tiempo: tiempo || null })
