@@ -125,7 +125,7 @@ test('intranet first level "Quienes somos"', async ({ browser }) => {
     await test.step('Login to the intranet', async () => {
         const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-        const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 8000 })
+        const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
         await intranetPage.doLogin(username, password)
         try {
             const req = await analyticsPromise

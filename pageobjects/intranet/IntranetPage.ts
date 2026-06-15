@@ -98,6 +98,7 @@ export class IntranetPage{
     }
 
     private async fillUsername(username: string){
+        await this.userTextBox.waitFor({ state: 'visible', timeout: 10000 })
         await this.userTextBox.fill(username)
         await this.nextButton.click();
     }
