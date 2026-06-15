@@ -128,6 +128,7 @@ export class IntranetPage{
     }
 
     async clickLaFirmaDropdown(){
+        await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
         await this.laFirmaDropdown.click()
         const tracking: any = await this.getTrackingData()
         const accion = 'Dropdown La Firma'
@@ -140,6 +141,7 @@ export class IntranetPage{
     }
 
     async clickQuienesSomosButton(){
+        await this.quienesSomosButton.waitFor({ state: 'visible', timeout: 10000 })
         await this.quienesSomosButton.click()
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Quienes somos'
@@ -152,6 +154,7 @@ export class IntranetPage{
     }
 
     async clickCentroDeRecursosButton(){
+        await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 10000 })
         await this.centroDeRecursosButton.click()
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Centro de recursos'
@@ -164,6 +167,7 @@ export class IntranetPage{
     }
 
     async clickTalentoButton(){
+        await this.talentoButton.waitFor({ state: 'visible', timeout: 10000 })
         await this.talentoButton.click()
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Talento'
@@ -176,6 +180,7 @@ export class IntranetPage{
     }
 
     async clickComiteEjecutivoButton(){
+        await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 10000 })
         await this.comiteEjecutivoButton.click()
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Comite Ejecutivo'
@@ -188,6 +193,7 @@ export class IntranetPage{
     }
 
     async clickConsejosSociosButton(){
+        await this.consejosSociosButton.waitFor({ state: 'visible', timeout: 10000 })
         await this.consejosSociosButton.click()
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Consejo de Socios'

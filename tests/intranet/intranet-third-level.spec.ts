@@ -25,7 +25,7 @@ test.beforeEach(async () => {
     try {
         const cfg = {
             server: process.env.DB_SERVER || 'ESAZUITS00057',
-            database: process.env.DB_NAME || 'SesionEvento',
+            database: process.env.DB_NAME || 'EstadisticasIntranet',
             user: process.env.DB_USER || 'ES\mallueaced',
             password: process.env.DB_PASSWORD || '',
             port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined
