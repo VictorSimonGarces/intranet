@@ -31,23 +31,41 @@ export class DatabaseService {
   async query(url: string, tiempo?: string): Promise<any | null> {
     if (!this.pool) throw new Error('Not connected')
     try {
-      // Parametrized query; fetch latest matching by url
+      // Normalize URL to improve matching (strip query, fragment, trailing slash, lowercase)
+      const normalizeUrl = (u: string) => {
+        try {
+          const parsed = new URL(u)
+          const normalized = (parsed.origin + parsed.pathname).replace(/\/$/, '')
+          return normalized.toLowerCase()
+        } catch (e) {
+          // fallback to regex-based stripping
+          return u.replace(/\?.*$/, '').replace(/#.*$/, '').replace(/\/$/, '').toLowerCase()
+        }
+      }
+
+      const normalized = normalizeUrl(url)
+
+      // Parametrized query; fetch latest matching by normalized url
       const request = this.pool.request()
-      // Provide both exact and partial (LIKE) match to tolerate minor differences
-      request.input('url', sql.NVarChar, url)
-      request.input('urlLike', sql.NVarChar, `%${url}%`)
-      // If tiempo provided, pass it as well
-      if (tiempo) request.input('tiempo', sql.NVarChar, tiempo)
+      // Use generous NVARCHAR sizes to avoid truncation
+      request.input('url', sql.NVarChar(4000), normalized)
+      request.input('urlLike', sql.NVarChar(4000), `%${normalized}%`)
+      if (tiempo) request.input('tiempo', sql.NVarChar(100), tiempo)
 
       const q = `SELECT TOP 1 [id_sesion],[nameplate],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
                  FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-                 WHERE ([url] = @url OR [url] LIKE @urlLike OR @url LIKE '%' + [url] + '%')
+                 WHERE ([url] = @url OR [url] LIKE @urlLike OR @url LIKE '%' + @url + '%')
                  ORDER BY [tiempo] DESC`
 
+      // Debug info: log the query parameters (not the full SQL to avoid verbosity)
+      console.debug('[DB] query params', { url: normalized, tiempo: tiempo || null })
+
       const result = await request.query(q)
-      if (result && result.recordset && result.recordset.length > 0) return result.recordset[0]
+      const rows = result && result.recordset ? result.recordset.length : 0
+      console.debug(`[DB] rows=${rows} for url='${normalized}'`)
+      if (rows > 0) return result.recordset[0]
     } catch (e) {
-      // ignore or rethrow depending on needs
+      console.error('[DB] query error', (e as Error).message)
       return null
     }
     return null
