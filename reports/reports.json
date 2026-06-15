@@ -1,0 +1,142 @@
+[
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "3800ecc9-4470-4753-b05a-3f8e02bfde64",
+    "start": "09:18:11",
+    "duration": "21.92s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "tracking": {
+            "id_sesion": "3800ecc9-4470-4753-b05a-3f8e02bfde64",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-15T07:18:23.741Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "tracking": {
+            "id_sesion": "3800ecc9-4470-4753-b05a-3f8e02bfde64",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-15T07:18:27.071Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Comite Ejecutivo",
+          "tracking": {
+            "id_sesion": "3800ecc9-4470-4753-b05a-3f8e02bfde64",
+            "title": "Comité Ejecutivo",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "tiempo": "2026-06-15T07:18:30.350Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      },
+      {
+        "index": 4,
+        "detail": {
+          "accion": "Boton Consejo de Socios",
+          "tracking": {
+            "id_sesion": "3800ecc9-4470-4753-b05a-3f8e02bfde64",
+            "title": "Consejo de Socios",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/consejo-de-socios.aspx",
+            "tiempo": "2026-06-15T07:18:33.713Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "0e01a227-6afe-41cb-98e1-9c6336f8209b",
+    "start": "09:19:04",
+    "duration": "20.51s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "tracking": {
+            "id_sesion": "0e01a227-6afe-41cb-98e1-9c6336f8209b",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-15T07:19:15.474Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "tracking": {
+            "id_sesion": "0e01a227-6afe-41cb-98e1-9c6336f8209b",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-15T07:19:18.805Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Comite Ejecutivo",
+          "tracking": {
+            "id_sesion": "0e01a227-6afe-41cb-98e1-9c6336f8209b",
+            "title": "Comité Ejecutivo",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "tiempo": "2026-06-15T07:19:22.057Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      },
+      {
+        "index": 4,
+        "detail": {
+          "accion": "Boton Consejo de Socios",
+          "tracking": {
+            "id_sesion": "0e01a227-6afe-41cb-98e1-9c6336f8209b",
+            "title": "Consejo de Socios",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/consejo-de-socios.aspx",
+            "tiempo": "2026-06-15T07:19:25.327Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          }
+        }
+      }
+    ]
+  }
+]

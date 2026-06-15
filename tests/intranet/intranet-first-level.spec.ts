@@ -19,6 +19,7 @@ test('intranet first level "La Firma"', async ({ browser }) => {
         await intranetPage.doLogin(username, password)
     })
 
+    await page.waitForTimeout(3000)
     await test.step('Click on La Firma dropdown', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickLaFirmaDropdown()
@@ -44,6 +45,7 @@ test('intranet first level "Centro de Recursos"', async ({ browser }) => {
         await intranetPage.doLogin(username, password)
     })
 
+    await page.waitForTimeout(3000)
     await test.step('Click on Centro de Recursos dropdown', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickCentroDeRecursosButton()

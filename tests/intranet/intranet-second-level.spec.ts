@@ -19,18 +19,20 @@ test('intranet first level "Quienes somos"', async ({ browser }) => {
         await intranetPage.doLogin(username, password)
     })
 
+    await page.waitForTimeout(3000)
     await test.step('Click on La Firma dropdown', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickLaFirmaDropdown()
     })
 
+    await page.waitForTimeout(3000)
     await test.step('Click on Quienes somos button', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickQuienesSomosButton()
     })
 
     // await context.close()
-}) 
+})
 
 test('intranet first level "Talento"', async ({ browser }) => {
     // Crea un nuevo contexto de navegador ("incognito") y obtiene la página nueva resultante
@@ -49,11 +51,13 @@ test('intranet first level "Talento"', async ({ browser }) => {
         await intranetPage.doLogin(username, password)
     })
 
+    await page.waitForTimeout(3000)
     await test.step('Click on La Firma dropdown', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickLaFirmaDropdown()
     })
 
+    await page.waitForTimeout(3000)
     await test.step('Click on Talento button', async () => {
         const intranetPage = new IntranetPage(page)
         await intranetPage.clickTalentoButton()

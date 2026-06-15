@@ -13,6 +13,10 @@ export class NavigateTo{
     }
 
     async intranetPage(){
-        await this.page.goto('https://intranet.es.deloitte.com/')
+        await this.page.goto('https://intranet_dev.es.deloitte.com/')
+    }
+
+    async youtubePage(){
+        await this.page.goto('https://www.youtube.com/')
     }
 }

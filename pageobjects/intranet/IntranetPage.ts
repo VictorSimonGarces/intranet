@@ -10,18 +10,88 @@ export class IntranetPage{
     private readonly quienesSomosButton: Locator
     private readonly centroDeRecursosButton: Locator
     private readonly talentoButton: Locator
-    private readonly estructuraYGobiernoButton: Locator
+    private readonly comiteEjecutivoButton: Locator
+    private readonly consejosSociosButton: Locator
+    private clicks: string[]
+    private readonly page: Page
+    private session?: { user?: string, [k: string]: any }
 
-    constructor(page: Page){
+    constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }){
+        this.page = page
+        this.clicks = clicks
+        this.session = session
         this.userTextBox = page.getByRole('textbox', { name: 'Enter your email, phone, or' })
         this.nextButton = page.getByRole('button', { name: 'Next' })
         this.passwordTextBox = page.getByRole('textbox', { name: 'Enter the password for' })
         this.signInButton = page.getByRole('button', { name: 'Sign in' })
-        this.laFirmaDropdown = page.locator('//*[@id="menu-intranet-top-1"]/a')
-        this.quienesSomosButton = page.locator('/html/body/form/div[4]/div[1]/main/div[2]/div/div/div/div[1]/div/span/div[3]/div/div/div/div/div[1]/div/article/div[1]/a')
-        this.centroDeRecursosButton = page.locator('//*[@id="menu-intranet-top-3"]/a')
-        this.talentoButton = page.locator('/html/body/form/div[4]/div[1]/main/div[2]/div/div/div/div[1]/div/span/div[3]/div/div/div/div/div[1]/div/article/div[3]/a')
-        this.estructuraYGobiernoButton = page.locator('/html/body/form/div[4]/div[1]/main/div[2]/div/div/div/div[1]/div/span/div[3]/div/div/div/div/div[1]/div/section/div/div[1]/div/div')
+        this.laFirmaDropdown = page.getByRole('link', { name: 'La Firma ' })
+        this.quienesSomosButton = page.getByRole('link', { name: 'Quiénes somos' }).first()
+        this.centroDeRecursosButton = page.getByRole('link', { name: 'Centro de recursos ' }).first()
+        this.talentoButton = page.getByRole('link', { name: 'Talento' }).first()
+        this.comiteEjecutivoButton = page.getByRole('link', { name: 'Comité Ejecutivo ' })
+        this.consejosSociosButton = page.getByRole('link', { name: 'Consejo de Socios' })
+    }
+
+    // Extrae NEmpleado desde document.cookie (por ejemplo dentro de DTT_PerfilUsuario_INTRANET)
+    async extractNEmpleadoFromCookies(): Promise<string> {
+        try {
+            const cookieString = await this.page.evaluate(() => document.cookie || '')
+            if (!cookieString) return ''
+            const parts = cookieString.split('; ').map(p => {
+                const idx = p.indexOf('=')
+                return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+            })
+
+            for (const [, v] of parts) {
+                if (!v) continue
+                const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                if (inner && inner[1]) return decodeURIComponent(inner[1])
+            }
+
+            const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+            if (found && found[1]) return decodeURIComponent(found[1])
+
+            const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+            if (m) return m[1]
+        } catch (e) { /* ignore */ }
+        return ''
+    }
+
+    private async getTrackingData(): Promise<object> {
+    return await this.page.evaluate(() => ({
+        id_sesion: (window as any).uuid ?? 'No disponible',
+        title: document.title,
+        referer: document.referrer || null,
+        url: window.location.href,
+        tiempo: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+    }))
+}
+
+    private async getPageInfo(): Promise<string> {
+        const referrer = await this.page.evaluate(() => document.referrer || 'Acceso directo')
+        const title = await this.page.evaluate(() => document.title)
+        const sessionId = await this.page.evaluate(() => {
+            // Evitar JSON.stringify de window (circular). Iterar claves y manejar errores.
+            try {
+                const keys = Object.keys(window as any)
+                for (const k of keys) {
+                    try {
+                        const v = (window as any)[k]
+                        if (v && typeof v === 'object' && 'id_sesion' in v) return String((v as any).id_sesion)
+                        // intentar convertir valores simples
+                        if (typeof v === 'string' && v.includes('id_sesion')) {
+                            const m = /id_sesion[:=]\s*["']?([^"'\s,}]+)["']?/.exec(v)
+                            if (m) return m[1]
+                        }
+                    } catch (e) {
+                        // ignorar propiedades que lanzan por circularidad
+                    }
+                }
+            } catch (e) { /* fallback */ }
+            return 'No disponible'
+        })
+        return `${referrer.padEnd(50, ' ')} || ${title.padEnd(40, ' ')} || ${sessionId}`
     }
 
     private async fillUsername(username: string){
@@ -34,7 +104,10 @@ export class IntranetPage{
     }
 
     private async clickSignInButton(){
-        await this.signInButton.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+            this.signInButton.click()
+        ])
     }
 
     async doLogin(username: string, password: string){
@@ -51,24 +124,107 @@ export class IntranetPage{
 
     async clickLaFirmaDropdown(){
         await this.laFirmaDropdown.click()
+        this.clicks.push({
+            accion: 'Dropdown La Firma',
+            tracking: await this.getTrackingData()
+        } as any)
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
     }
 
     async clickQuienesSomosButton(){
         await this.quienesSomosButton.click()
+        this.clicks.push({
+            accion: 'Boton Quienes somos',
+            tracking: await this.getTrackingData()
+        } as any)
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
     }
 
     async clickCentroDeRecursosButton(){
         await this.centroDeRecursosButton.click()
+        this.clicks.push({
+            accion: 'Boton Centro de recursos',
+            tracking: await this.getTrackingData()
+        } as any)                   
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
     }
 
     async clickTalentoButton(){
         await this.talentoButton.click()
+        this.clicks.push({
+            accion: 'Boton Talento',
+            tracking: await this.getTrackingData()
+        } as any)           
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
     }
 
-    async clickEstructuraYGobiernoButton(){
-        await this.estructuraYGobiernoButton.click()
+    async clickComiteEjecutivoButton(){
+        await this.comiteEjecutivoButton.click()
+        this.clicks.push({
+            accion: 'Boton Comite Ejecutivo',
+            tracking: await this.getTrackingData()
+        } as any)
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
     }
 
+    async clickConsejosSociosButton(){
+        await this.consejosSociosButton.click()
+        this.clicks.push({
+            accion: 'Boton Consejo de Socios',
+            tracking: await this.getTrackingData()
+        } as any)
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+    }
+
+    async getSessionId(): Promise<string> {
+        return await this.page.evaluate(() => {
+            try {
+                // Comprobar variables globales conocidas
+                if ((window as any).id_sesion) return String((window as any).id_sesion);
+                if ((window as any).sessionId) return String((window as any).sessionId);
+                // LocalStorage
+                const ls = localStorage.getItem('sessionId') || localStorage.getItem('id_sesion');
+                if (ls) return ls;
+                // Cookies
+                const cookie = document.cookie.split('; ').find(c => c.trim().startsWith('sessionId='))?.split('=')[1];
+                if (cookie) return cookie;
+            } catch (e) { /* ignore */ }
+            return 'No disponible';
+        });
+    }
+
+    async getSessionIdFromAnalytics(timeout = 5000): Promise<string> {
+        const analyticsUrl = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+        try {
+            const req = await this.page.waitForRequest(r => r.url().startsWith(analyticsUrl) && r.method() === 'POST', { timeout })
+            const post = req.postData() || ''
+            // intentar JSON
+            try {
+                const obj = JSON.parse(post)
+                if (obj?.id_sesion) return String(obj.id_sesion)
+                if (obj?.idSession) return String(obj.idSession)
+            } catch {}
+            // intentar urlencoded
+            try {
+                const params = new URLSearchParams(post)
+                for (const [k, v] of params) {
+                    if (/id[_-]?(sesion|session|s)/i.test(k) && v) return v
+                }
+            } catch {}
+            // fallback regex
+            const m = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+            if (m) return m[1]
+        } catch (e) {
+            // no llegó la petición dentro del timeout
+        }
+        return 'No disponible'
+    }
 }
 
 
