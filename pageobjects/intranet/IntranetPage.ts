@@ -134,13 +134,7 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
         if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
-        const match = {
-            title: !!(dbRow && dbRow.title === tracking.title),
-            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
-            url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
-        }
-        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
+        this.pushClickRecord(accion, tracking, dbRow)
     }
 
     async clickQuienesSomosButton(){
@@ -152,13 +146,7 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
         if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
-        const match = {
-            title: !!(dbRow && dbRow.title === tracking.title),
-            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
-            url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
-        }
-        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
+        this.pushClickRecord(accion, tracking, dbRow)
     }
 
     async clickCentroDeRecursosButton(){
@@ -170,13 +158,7 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
         if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
-        const match = {
-            title: !!(dbRow && dbRow.title === tracking.title),
-            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
-            url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
-        }
-        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)                   
+        this.pushClickRecord(accion, tracking, dbRow)                   
     }
 
     async clickTalentoButton(){
@@ -188,13 +170,7 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
         if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
-        const match = {
-            title: !!(dbRow && dbRow.title === tracking.title),
-            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
-            url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
-        }
-        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)           
+        this.pushClickRecord(accion, tracking, dbRow)           
     }
 
     async clickComiteEjecutivoButton(){
@@ -206,13 +182,7 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
         if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
-        const match = {
-            title: !!(dbRow && dbRow.title === tracking.title),
-            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
-            url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
-        }
-        this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
+        this.pushClickRecord(accion, tracking, dbRow)
     }
 
     async clickConsejosSociosButton(){
@@ -224,12 +194,21 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         let dbRow = null
         if (this.dbService) dbRow = await this.dbService.query(tracking.url, tracking.tiempo)
+        this.pushClickRecord(accion, tracking, dbRow)
+    }
+
+    private pushClickRecord(accion: string, tracking: any, dbRow: any) {
         const match = {
             title: !!(dbRow && dbRow.title === tracking.title),
             referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
             url: !!(dbRow && dbRow.url === tracking.url),
             numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
         }
+
+        if (Object.values(match).every(v => v)) {
+            console.log(`[MATCH OK] ${accion}: campos comparados son iguales`)
+        }
+
         this.clicks.push({ accion, playwright: tracking, database: dbRow || {}, match } as any)
     }
 
