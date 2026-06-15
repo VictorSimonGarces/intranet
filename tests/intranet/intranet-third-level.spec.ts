@@ -68,6 +68,54 @@ test.afterEach(async ({}, testInfo) => {
         }
     }
 
+    // Si hay servicio de BD, intentar enriquecer cada click consultando la BBDD
+    if (dbService && sessionSummary.clicks.length > 0) {
+        const sleep = (ms: number) => new Promise(res => setTimeout(res, ms))
+        for (let i = 0; i < sessionSummary.clicks.length; i++) {
+            const item: any = sessionSummary.clicks[i]
+            if (!item) continue
+            const detail = item.detail ?? item
+            if (!detail || !detail.tracking || typeof detail.tracking !== 'object') continue
+            const tracking = detail.tracking
+
+            let dbRow: any = null
+            const maxAttempts = 10
+            const intervalMs = 1000
+            for (let attempt = 0; attempt < maxAttempts; attempt++) {
+                try {
+                    dbRow = await dbService.query(tracking.url, tracking.tiempo)
+                } catch (e) {
+                    dbRow = null
+                }
+                if (dbRow) break
+                await sleep(intervalMs)
+            }
+
+            const match = {
+                title: !!(dbRow && dbRow.title === tracking.title),
+                referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+                url: !!(dbRow && dbRow.url === tracking.url),
+                numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+            }
+
+            const matchOk = Object.values(match).every(v => v)
+            let matchMessage = ''
+            if (!dbRow) {
+                matchMessage = `[NO DB ROW] ${detail.accion}: no se encontró registro en BBDD`
+            } else if (matchOk) {
+                matchMessage = `[MATCH OK] ${detail.accion}: campos comparados son iguales`
+            } else {
+                matchMessage = `[MISMATCH] ${detail.accion}: algunos campos no coinciden`
+            }
+
+            detail.database = dbRow || {}
+            detail.match = match
+            detail.matchOk = matchOk
+            detail.matchMessage = matchMessage
+            // el objeto detail ya está en sessionSummary.clicks, así que queda actualizado
+        }
+    }
+
     const summary = {
         test: testInfo.title,
         status: testInfo.status,
