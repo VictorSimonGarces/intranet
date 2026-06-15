@@ -24,14 +24,19 @@ test.beforeEach(async () => {
     };
     // Inicializar conexión a la base de datos (config via env vars)
     try {
-        const cfg = {
-            server: process.env.DB_SERVER || 'ESAZUITS00057',
-            database: process.env.DB_NAME || 'EstadisticasIntranet',
-            user: process.env.DB_USER || 'ES\mallueaced',
-            password: process.env.DB_PASSWORD || '',
-            port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined
-        }
-        dbService = new DatabaseService(cfg)
+        const config = {
+        server: 'ESAZUITS00057',
+        database: 'EstadisticasIntranet',
+        options: {
+            trustedConnection: true,
+            trustServerCertificate: true,
+            encrypt: false,
+            instanceName: ''  // déjalo vacío o pon el nombre de la instancia si la hay
+        },  
+        driver: 'msnodesqlv8',
+    connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=ESAZUITS00057;Database=EstadisticasIntranet;Trusted_Connection=yes;'
+}
+        dbService = new DatabaseService(config)
         await dbService.connect()
     } catch (e) {
         dbService = undefined

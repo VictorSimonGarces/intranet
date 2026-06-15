@@ -17,18 +17,19 @@ export class DatabaseService {
     const useWindowsAuth = (process.env.DB_AUTH === 'windows') || !this.config.user
     let cfg: any
     if (useWindowsAuth) {
-      // Use msnodesqlv8 driver with trusted connection (Windows Authentication)
+      // Use msnodesqlv8 driver with an explicit ODBC connection string that
+      // forces Trusted Connection (use currently logged Windows user)
+      const envConnStr = process.env.DB_CONNECTION_STRING
+      const defaultDriverName = 'ODBC Driver 17 for SQL Server'
+      const connStr = envConnStr || `Driver={${defaultDriverName}};Server=${this.config.server};Database=${this.config.database};Trusted_Connection=yes;`;
       cfg = {
-        server: this.config.server,
-        database: this.config.database,
+        connectionString: connStr,
         driver: 'msnodesqlv8',
         options: {
-          trustedConnection: true,
           trustServerCertificate: true
         }
       }
-      if (this.config.port) cfg.port = this.config.port
-      console.info('[DB] Using Windows Authentication (msnodesqlv8). Ensure msnodesqlv8 is installed and tests run under the correct Windows account.')
+      console.info('[DB] Using Windows Authentication via ODBC connection string with msnodesqlv8.')
     } else {
       cfg = {
         user: this.config.user,
