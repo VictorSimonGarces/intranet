@@ -27,6 +27,8 @@ test.beforeEach(async () => {
         const config = {
         server: 'ESAZUITS00057',
         database: 'EstadisticasIntranet',
+        user: process.env.DB_USER || '',
+        password: process.env.DB_PASSWORD || '',
         options: {
             trustedConnection: true,
             trustServerCertificate: true,
