@@ -123,6 +123,39 @@ test.afterEach(async ({}, testInfo) => {
         }
     }
 
+    // --- Resumen en terminal sobre coincidencias/mismatches ---
+    try {
+        const clicksForCheck: any[] = sessionSummary.clicks || []
+        const mismatches: any[] = []
+        for (let i = 0; i < clicksForCheck.length; i++) {
+            const item: any = clicksForCheck[i]
+            if (!item) continue
+            const detail = item.detail ?? item
+            const matchObj = detail.match ?? item.match ?? null
+            const accion = detail.accion || item.accion || `Click#${i + 1}`
+            const matchOk = detail.matchOk ?? item.matchOk
+            if (matchObj && typeof matchObj === 'object') {
+                const failedFields = Object.keys(matchObj).filter(f => !matchObj[f])
+                if (failedFields.length > 0 || matchOk === false) {
+                    mismatches.push({ index: i + 1, accion, failedFields, matchMessage: detail.matchMessage ?? item.matchMessage ?? '' })
+                }
+            } else if (matchOk === false) {
+                mismatches.push({ index: i + 1, accion, failedFields: ['unknown'], matchMessage: detail.matchMessage ?? item.matchMessage ?? '' })
+            }
+        }
+
+        if (mismatches.length === 0) {
+            console.log(`[MATCH OK] Todos los campos coinciden para ${clicksForCheck.length} click(s).`)
+        } else {
+            console.log(`[MISMATCH] Se encontraron ${mismatches.length} click(s) con discrepancias:`)
+            for (const mm of mismatches) {
+                console.log(` - Click ${mm.index} - ${mm.accion}: campos fallidos -> ${mm.failedFields.join(', ')} ${mm.matchMessage ? `| ${mm.matchMessage}` : ''}`)
+            }
+        }
+    } catch (e) {
+        console.error('[REPORT] Error generando resumen de coincidencias:', (e as Error).message)
+    }
+
     const summary = {
         test: testInfo.title,
         status: testInfo.status,
