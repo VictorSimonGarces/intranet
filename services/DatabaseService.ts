@@ -34,20 +34,30 @@ export class DatabaseService {
       const normalizeKey = (s: string) => String(s || '').trim().toLowerCase()
       const normalized = normalizeKey(titleOrKey)
 
+      // Si se proporciona una URL completa, extraer pathname para buscar coincidencias parciales en la columna url
+      let pathLike: string | null = null
+      try {
+        const u = new URL(titleOrKey)
+        pathLike = `%${u.pathname.toLowerCase()}%`
+      } catch (e) {
+        pathLike = null
+      }
+
       const request = this.pool.request()
       request.input('key', sql.NVarChar(4000), normalized)
       request.input('keyLike', sql.NVarChar(4000), `%${normalized}%`)
       if (tiempo) request.input('tiempo', sql.NVarChar(100), tiempo)
+      if (pathLike) request.input('pathLike', sql.NVarChar(4000), pathLike)
 
       const q = `SELECT TOP 1 [id_sesion],[numEmpleado],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
                  FROM [EstadisticasIntranet].[dbo].[SesionEvento]
                  WHERE (
                    LOWER([title]) = @key OR LOWER([title]) LIKE @keyLike OR @key LIKE '%' + LOWER([title]) + '%'
-                   OR LOWER([url]) = @key OR LOWER([url]) LIKE @keyLike OR @key LIKE '%' + LOWER([url]) + '%'
+                   OR LOWER([url]) = @key OR LOWER([url]) LIKE @keyLike ${pathLike ? 'OR LOWER([url]) LIKE @pathLike' : ''}
                  )
                  ORDER BY [tiempo] DESC`
 
-      console.debug('[DB] query params', { original: titleOrKey, key: normalized, tiempo: tiempo || null })
+      console.debug('[DB] query params', { original: titleOrKey, key: normalized, pathLike: pathLike || null, tiempo: tiempo || null })
 
       const result = await request.query(q)
       const rows = result && result.recordset ? result.recordset.length : 0
