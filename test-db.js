@@ -10,11 +10,16 @@ async function run() {
     await sql.connect({ connectionString: connStr })
     console.log('Connected ✅')
 
-    const result = await sql.query`SELECT TOP 1 * FROM [EstadisticasIntranet].[dbo].[SesionEvento]`
+    const result = await sql.query`SELECT TOP 5 * FROM [EstadisticasIntranet].[dbo].[SesionEvento]`
     
     if (result.recordset.length > 0) {
       console.log('Sample row:')
-      console.dir(result.recordset[0], { depth: 2 })
+      
+      result.recordset.forEach((row, index) => {
+        console.log(`Row ${index + 1}:`)
+        console.dir(row, { depth: 2 })
+      })
+
     } else {
       console.log('Query returned no rows')
     }
