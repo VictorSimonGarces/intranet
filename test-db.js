@@ -10,7 +10,7 @@ async function run() {
     await sql.connect({ connectionString: connStr })
     console.log('Connected ✅')
 
-    const result = await sql.query`SELECT TOP 5 * FROM [EstadisticasIntranet].[dbo].[SesionEvento]`
+    const result = await sql.query`SELECT TOP 5 * FROM [EstadisticasIntranet].[dbo].[SesionEvento] ORDER BY tiempo DESC`
     
     if (result.recordset.length > 0) {
       console.log('Sample row:')
