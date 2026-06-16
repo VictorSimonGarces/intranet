@@ -105,6 +105,29 @@ test.afterEach(async ({}, testInfo) => {
                 numEmpleado: !!(dbRow && ((String(dbRow.nameplate || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
             }
 
+            // Imprimir en consola los datos Playwright y la fila de BD para inspección
+            try {
+                console.log(`\n[CLICK ${i + 1}] ${detail.accion}`)
+                console.log('[PLAYWRIGHT]', JSON.stringify(tracking, null, 2))
+                console.log('[DB ROW]', dbRow ? JSON.stringify(dbRow, null, 2) : '<no row>')
+            } catch (e) {
+                console.log('[REPORT] Error serializing click/db data')
+            }
+
+            // Comparación impresa por consola: campos que no coinciden
+            try {
+                const failed = Object.entries(match).filter(([k, v]) => !v).map(([k]) => k)
+                if (!dbRow) {
+                    console.log(`[MISMATCH] ${detail.accion}: no se encontró registro en BBDD`)
+                } else if (failed.length === 0) {
+                    console.log(`[MATCH OK] ${detail.accion}: todos los campos coinciden`)
+                } else {
+                    console.log(`[MISMATCH] ${detail.accion}: campos fallidos -> ${failed.join(', ')}`)
+                }
+            } catch (e) {
+                console.log('[REPORT] Error creando resumen de comparación')
+            }
+
             const matchOk = Object.values(match).every(v => v)
             let matchMessage = ''
             if (!dbRow) {

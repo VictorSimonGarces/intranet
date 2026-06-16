@@ -41,10 +41,13 @@ export class DatabaseService {
 
       const q = `SELECT TOP 1 [id_sesion],[numEmpleado],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
                  FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-                 WHERE (LOWER([title]) = @key OR LOWER([title]) LIKE @keyLike OR @key LIKE '%' + LOWER([title]) + '%')
+                 WHERE (
+                   LOWER([title]) = @key OR LOWER([title]) LIKE @keyLike OR @key LIKE '%' + LOWER([title]) + '%'
+                   OR LOWER([url]) = @key OR LOWER([url]) LIKE @keyLike OR @key LIKE '%' + LOWER([url]) + '%'
+                 )
                  ORDER BY [tiempo] DESC`
 
-      console.debug('[DB] query params', { key: normalized, tiempo: tiempo || null })
+      console.debug('[DB] query params', { original: titleOrKey, key: normalized, tiempo: tiempo || null })
 
       const result = await request.query(q)
       const rows = result && result.recordset ? result.recordset.length : 0
