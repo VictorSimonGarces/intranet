@@ -87,32 +87,6 @@ export class IntranetPage{
         return {}
 }
 
-    private async getPageInfo(): Promise<string> {
-        // Obtiene referrer, title y trata de extraer id_sesion de variables globales
-        const referrer = await this.page.evaluate(() => document.referrer || 'Acceso directo')
-        const title = await this.page.evaluate(() => document.title)
-        const sessionId = await this.page.evaluate(() => {
-            // Evitar JSON.stringify de window (circular). Iterar claves y manejar errores.
-            try {
-                const keys = Object.keys(window as any)
-                for (const k of keys) {
-                    try {
-                        const v = (window as any)[k]
-                        if (v && typeof v === 'object' && 'id_sesion' in v) return String((v as any).id_sesion)
-                        // intentar convertir valores simples
-                        if (typeof v === 'string' && v.includes('id_sesion')) {
-                            const m = /id_sesion[:=]\s*["']?([^"'\s,}]+)["']?/.exec(v)
-                            if (m) return m[1]
-                        }
-                    } catch (e) {
-                        // ignorar propiedades que lanzan por circularidad
-                    }
-                }
-            } catch (e) { /* fallback */ }
-            return 'No disponible'
-        })
-        return `${referrer.padEnd(50, ' ')} || ${title.padEnd(40, ' ')} || ${sessionId}`
-    }
 
     private async fillUsername(username: string){
         // Rellena el campo de usuario y pulsa el botón 'Next'
