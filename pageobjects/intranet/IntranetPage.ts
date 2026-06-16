@@ -30,8 +30,8 @@ export class IntranetPage{
         this.signInButton = page.getByRole('button', { name: 'Sign in' })
         this.laFirmaDropdown = page.getByRole('link', { name: 'La Firma ' })
         this.quienesSomosButton = page.getByRole('link', { name: 'Quiénes somos' }).first()
-        this.centroDeRecursosButton = page.getByRole('link', { name: 'Centro de recursos ' }).first()
-        this.talentoButton = page.getByRole('link', { name: 'Talento' }).first()
+        this.centroDeRecursosButton = page.getByRole('link', { name: /Centro de recursos/i }).first()
+        this.talentoButton = page.getByRole('link', { name: /Talento/i }).first()
         this.comiteEjecutivoButton = page.getByRole('link', { name: 'Comité Ejecutivo ' })
         this.consejosSociosButton = page.getByRole('link', { name: 'Consejo de Socios' })
     }
@@ -177,7 +177,17 @@ export class IntranetPage{
 
     async clickTalentoButton(){
         // Click en 'Talento' y registra evento de tracking + BD
-        await this.talentoButton.waitFor({ state: 'visible', timeout: 10000 })
+        // Si el enlace no es visible, intentar abrir el dropdown de "Centro de recursos" primero
+        try {
+            await this.talentoButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            // intentar abrir el dropdown y esperar de nuevo
+            try {
+                await this.centroDeRecursosButton.click()
+            } catch (ee) { /* ignore click failure */ }
+            await this.talentoButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.talentoButton.click()

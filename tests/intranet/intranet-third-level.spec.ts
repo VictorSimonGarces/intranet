@@ -227,119 +227,122 @@ test.afterEach(async ({}, testInfo) => {
     } catch (e) { /* ignore */ }
 });
 
-test('intranet first level "Quienes somos"', async ({ browser }) => {
-    const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+const RUNS = 10
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
-    await test.step('Navigation to intranet page', async () => {
-        const navigateTo = new NavigateTo(page)
-        await navigateTo.intranetPage()
-    })
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
 
-    const username = 'vsimongarces@deloitte.es'
-    const password = 'Pradillano180206'
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
 
-    await test.step('Login to the intranet', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-        const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-        const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-        await intranetPage.doLogin(username, password)
-        try {
-            const req = await analyticsPromise
-            const post = req.postData() || ''
-            let id = 'No disponible'
-            let numEmpleado = ''
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
+            await intranetPage.doLogin(username, password)
             try {
-                const obj = JSON.parse(post)
-                id = obj?.id_sesion ?? obj?.idSession ?? id
-                numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-            } catch {
-                const params = new URLSearchParams(String(post || ''))
-                for (const [k, v] of params.entries()) {
-                    if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                    if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                }
-                if (!numEmpleado) {
-                    const mEmp = /([A-Z]?S?\d{6,10})/.exec(post) // captura patrones tipo S90049840 o 90049840
-                    if (mEmp) numEmpleado = mEmp[1]
-                }
-                if ((id === 'No disponible' || !id) && post) {
-                    const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                    if (mId) id = mId[1]
-                }
-            }
-            sessionSummary.sessionId = String(id)
-            // Guardar numEmpleado explícitamente como user (ej: S90049840)
-            sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-        } catch {
-            sessionSummary.sessionId = 'No disponible'
-            // conservar user actual o marcar no disponible
-            sessionSummary.user = sessionSummary.user || 'No disponible'
-        }
-
-        // Extraer `NEmpleado` desde `document.cookie` (incluyendo valores dentro
-        // de cookies como `DTT_PerfilUsuario_INTRANET=...&NEmpleado=S90049840`) y
-        // priorizarlo como `user`.
-        try {
-            const cookieString = await page.evaluate(() => document.cookie || '')
-            if (cookieString) {
-                let nEmpleado = ''
-                const parts = cookieString.split('; ').map(p => {
-                    const idx = p.indexOf('=')
-                    return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                })
-
-                // Buscar dentro de los valores de cada cookie (por ejemplo DTT_PerfilUsuario_INTRANET)
-                for (const [, v] of parts) {
-                    if (!v) continue
-                    const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                    if (inner && inner[1]) {
-                        nEmpleado = decodeURIComponent(inner[1])
-                        break
+                const req = await analyticsPromise
+                const post = req.postData() || ''
+                let id = 'No disponible'
+                let numEmpleado = ''
+                try {
+                    const obj = JSON.parse(post)
+                    id = obj?.id_sesion ?? obj?.idSession ?? id
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''))
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post) // captura patrones tipo S90049840 o 90049840
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+                        if (mId) id = mId[1]
                     }
                 }
-
-                // Si no se encontró dentro de valores, buscar cookie con nombre que indique empleado
-                if (!nEmpleado) {
-                    const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                    if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                }
-
-                // Fallback: buscar patrón tipo S90049840 en toda la cookie string
-                if (!nEmpleado) {
-                    const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                    if (m) nEmpleado = m[1]
-                }
-
-                if (nEmpleado) sessionSummary.user = nEmpleado
+                sessionSummary.sessionId = String(id)
+                // Guardar numEmpleado explícitamente como user (ej: S90049840)
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible'
+                // conservar user actual o marcar no disponible
+                sessionSummary.user = sessionSummary.user || 'No disponible'
             }
-        } catch (e) { /* ignore cookie parsing errors */ }
-    })
 
-    await page.waitForTimeout(3000)
-    await test.step('Click on La Firma dropdown', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-        await intranetPage.clickLaFirmaDropdown()
-        await page.waitForTimeout(1000)
-    })
+            // Extraer `NEmpleado` desde `document.cookie` (incluyendo valores dentro
+            // de cookies como `DTT_PerfilUsuario_INTRANET=...&NEmpleado=S90049840`) y
+            // priorizarlo como `user`.
+            try {
+                const cookieString = await page.evaluate(() => document.cookie || '')
+                if (cookieString) {
+                    let nEmpleado = ''
+                    const parts = cookieString.split('; ').map(p => {
+                        const idx = p.indexOf('=')
+                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+                    })
 
-    await page.waitForTimeout(3000)
-    await test.step('Click on Quienes somos button', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-        await intranetPage.clickQuienesSomosButton()
-        await page.waitForTimeout(1000)
-    })
+                    // Buscar dentro de los valores de cada cookie (por ejemplo DTT_PerfilUsuario_INTRANET)
+                    for (const [, v] of parts) {
+                        if (!v) continue
+                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                        if (inner && inner[1]) {
+                            nEmpleado = decodeURIComponent(inner[1])
+                            break
+                        }
+                    }
 
-    await page.waitForTimeout(3000)
-    await test.step('Click on Estructura y Gobierno button', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-        await intranetPage.clickComiteEjecutivoButton()
-        await page.waitForTimeout(1000)
-    })
+                    // Si no se encontró dentro de valores, buscar cookie con nombre que indique empleado
+                    if (!nEmpleado) {
+                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
+                    }
 
-    await page.waitForTimeout(3000)
-    await test.step('Click on Consejo de Socios button', async () => {
-        const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-        await intranetPage.clickConsejosSociosButton()
-        await page.waitForTimeout(1000)
+                    // Fallback: buscar patrón tipo S90049840 en toda la cookie string
+                    if (!nEmpleado) {
+                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+                        if (m) nEmpleado = m[1]
+                    }
+
+                    if (nEmpleado) sessionSummary.user = nEmpleado
+                }
+            } catch (e) { /* ignore cookie parsing errors */ }
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickLaFirmaDropdown()
+            await page.waitForTimeout(1000)
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Quienes somos button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickQuienesSomosButton()
+            await page.waitForTimeout(1000)
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Estructura y Gobierno button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickComiteEjecutivoButton()
+            await page.waitForTimeout(1000)
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Consejo de Socios button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickConsejosSociosButton()
+            await page.waitForTimeout(1000)
+        })
     })
-})
+}
