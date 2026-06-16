@@ -76,6 +76,9 @@ test.afterEach(async ({}, testInfo) => {
     }
 
     // Si hay servicio de BD, intentar enriquecer cada click consultando la BBDD
+    // Esperar 2 segundos tras finalizar el test antes de realizar las comprobaciones con la BBDD
+    await new Promise(res => setTimeout(res, 2000))
+
     if (dbService && sessionSummary.clicks.length > 0) {
         const sleep = (ms: number) => new Promise(res => setTimeout(res, ms))
         for (let i = 0; i < sessionSummary.clicks.length; i++) {
@@ -90,7 +93,8 @@ test.afterEach(async ({}, testInfo) => {
             const intervalMs = 1000
             for (let attempt = 0; attempt < maxAttempts; attempt++) {
                 try {
-                    dbRow = await dbService.query(tracking.url, tracking.tiempo)
+                        // Buscar en la BBDD por título (la fila más reciente)
+                        dbRow = await dbService.query(tracking.title, tracking.tiempo)
                 } catch (e) {
                     dbRow = null
                 }
@@ -249,8 +253,8 @@ test('intranet first level "Quienes somos"', async ({ browser }) => {
                 id = obj?.id_sesion ?? obj?.idSession ?? id
                 numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
             } catch {
-                const params = new URLSearchParams(post)
-                for (const [k, v] of params) {
+                const params = new URLSearchParams(String(post || ''))
+                for (const [k, v] of params.entries()) {
                     if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
                     if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
                 }

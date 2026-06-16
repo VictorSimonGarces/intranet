@@ -163,9 +163,8 @@ export class IntranetPage{
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
-        let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
-        this.pushClickRecord(accion, tracking, dbRow)
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
     }
 
     async clickQuienesSomosButton(){
@@ -181,9 +180,8 @@ export class IntranetPage{
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
-        let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
-        this.pushClickRecord(accion, tracking, dbRow)
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
     }
 
     async clickCentroDeRecursosButton(){
@@ -199,9 +197,8 @@ export class IntranetPage{
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
-        let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
-        this.pushClickRecord(accion, tracking, dbRow)                   
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)                   
     }
 
     async clickTalentoButton(){
@@ -217,9 +214,8 @@ export class IntranetPage{
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
-        let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
-        this.pushClickRecord(accion, tracking, dbRow)           
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)           
     }
 
     async clickComiteEjecutivoButton(){
@@ -235,9 +231,8 @@ export class IntranetPage{
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
-        let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
-        this.pushClickRecord(accion, tracking, dbRow)
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
     }
 
     async clickConsejosSociosButton(){
@@ -253,38 +248,40 @@ export class IntranetPage{
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
-        let dbRow = null
-        if (this.dbService) dbRow = await this.dbService.query(tracking.title, tracking.tiempo)
-        this.pushClickRecord(accion, tracking, dbRow)
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
     }
 
-    private pushClickRecord(accion: string, tracking: any, dbRow: any) {
-        // Construye objeto match comparando tracking vs fila de BD y añade al array de clicks
-        const match = {
-            title: !!(dbRow && dbRow.title === tracking.title),
-            referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
-            url: !!(dbRow && dbRow.url === tracking.url),
-            numEmpleado: !!(dbRow && ((String(dbRow.numEmpleado || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
-        }
-
-        const matchOk = Object.values(match).every(v => v)
-        let matchMessage = ''
-        if (!dbRow) {
-            matchMessage = `[NO DB ROW] ${accion}: no se encontró registro en BBDD`
-        } else if (matchOk) {
-            matchMessage = `[MATCH OK] ${accion}: campos comparados son iguales`
-        } else {
-            matchMessage = `[MISMATCH] ${accion}: algunos campos no coinciden`
-        }
-
-        this.clicks.push({
+    private pushClickRecord(accion: string, tracking: any, dbRow?: any) {
+        // Añade el registro de click (solo playwright). Si se pasa dbRow, incluye los datos de BD y el resultado del match.
+        const entry: any = {
             accion,
             playwright: tracking,
-            database: dbRow || {},
-            match,
-            matchOk,
-            matchMessage
-        } as any)
+            database: dbRow || {}
+        }
+
+        if (dbRow) {
+            const match = {
+                title: !!(dbRow && dbRow.title === tracking.title),
+                referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
+                url: !!(dbRow && dbRow.url === tracking.url),
+                numEmpleado: !!(dbRow && ((String(dbRow.numEmpleado || '') === String(tracking.numEmpleado || '')) || (typeof dbRow.datos === 'string' && /NEmpleado=([^&;]+)/i.exec(dbRow.datos)?.[1] === tracking.numEmpleado)))
+            }
+            const matchOk = Object.values(match).every(v => v)
+            let matchMessage = ''
+            if (!dbRow) {
+                matchMessage = `[NO DB ROW] ${accion}: no se encontró registro en BBDD`
+            } else if (matchOk) {
+                matchMessage = `[MATCH OK] ${accion}: campos comparados son iguales`
+            } else {
+                matchMessage = `[MISMATCH] ${accion}: algunos campos no coinciden`
+            }
+            entry.match = match
+            entry.matchOk = matchOk
+            entry.matchMessage = matchMessage
+        }
+
+        this.clicks.push(entry as any)
     }
 
     async getSessionId(): Promise<string> {

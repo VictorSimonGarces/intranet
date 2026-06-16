@@ -1388,5 +1388,329 @@
     "start": "12:44:03",
     "duration": "1.96s",
     "clicks": []
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "timedOut",
+    "user": "1781606636",
+    "sessionId": "No disponible",
+    "start": "12:43:44",
+    "duration": "33.52s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "timedOut",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:43:44",
+    "duration": "34.15s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "timedOut",
+    "user": "S90049840",
+    "sessionId": "b92001a5-5310-4dac-bd71-2f34e24c889a",
+    "start": "12:44:22",
+    "duration": "32.58s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "b92001a5-5310-4dac-bd71-2f34e24c889a",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:44:46.958Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Dropdown La Firma: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "b92001a5-5310-4dac-bd71-2f34e24c889a",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:44:52.123Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Quienes somos: no se encontró registro en BBDD"
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "timedOut",
+    "user": "No disponible",
+    "sessionId": "4730471b-2ae7-42e0-af28-f9dae36abc85",
+    "start": "12:44:23",
+    "duration": "32.26s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "4730471b-2ae7-42e0-af28-f9dae36abc85",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:44:52.138Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0.2) Gecko/20100101 Firefox/150.0.2",
+            "numEmpleado": ""
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Dropdown La Firma: no se encontró registro en BBDD"
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "timedOut",
+    "user": "S90049840",
+    "sessionId": "17244373-c5e1-4fa2-8bc1-f0c328f4320c",
+    "start": "12:45:07",
+    "duration": "34.17s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "17244373-c5e1-4fa2-8bc1-f0c328f4320c",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:45:31.785Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Dropdown La Firma: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "17244373-c5e1-4fa2-8bc1-f0c328f4320c",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:45:36.719Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Quienes somos: no se encontró registro en BBDD"
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "timedOut",
+    "user": "S90049840",
+    "sessionId": "d1fa961b-08b3-4ab3-8196-5c56df586689",
+    "start": "12:45:08",
+    "duration": "33.42s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "d1fa961b-08b3-4ab3-8196-5c56df586689",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:45:28.350Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0.2) Gecko/20100101 Firefox/150.0.2",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Dropdown La Firma: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "d1fa961b-08b3-4ab3-8196-5c56df586689",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:45:33.527Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0.2) Gecko/20100101 Firefox/150.0.2",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Quienes somos: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Comite Ejecutivo",
+          "playwright": {
+            "id_sesion": "d1fa961b-08b3-4ab3-8196-5c56df586689",
+            "title": "Comité Ejecutivo",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "tiempo": "2026-06-16T10:45:39.317Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0.2) Gecko/20100101 Firefox/150.0.2",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Comite Ejecutivo: no se encontró registro en BBDD"
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "32fae1f4-40a7-468d-a18d-ebfa547a21c9",
+    "start": "12:52:53",
+    "duration": "28.07s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "32fae1f4-40a7-468d-a18d-ebfa547a21c9",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:53:04.877Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "32fae1f4-40a7-468d-a18d-ebfa547a21c9",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:53:09.765Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Comite Ejecutivo",
+          "playwright": {
+            "id_sesion": "32fae1f4-40a7-468d-a18d-ebfa547a21c9",
+            "title": "Comité Ejecutivo",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "tiempo": "2026-06-16T10:53:14.877Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 4,
+        "detail": {
+          "accion": "Boton Consejo de Socios",
+          "playwright": {
+            "id_sesion": "32fae1f4-40a7-468d-a18d-ebfa547a21c9",
+            "title": "Consejo de Socios",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/consejo-de-socios.aspx",
+            "tiempo": "2026-06-16T10:53:20.185Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]
