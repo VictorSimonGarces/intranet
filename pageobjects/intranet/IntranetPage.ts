@@ -19,6 +19,7 @@ export class IntranetPage{
     private dbService?: DatabaseService
 
     constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }, dbService?: DatabaseService){
+        // Inicializa la página, locators, estado de sesión y servicio de BD
         this.page = page
         this.clicks = clicks
         this.session = session
@@ -37,6 +38,7 @@ export class IntranetPage{
 
     // Extrae NEmpleado desde document.cookie (por ejemplo dentro de DTT_PerfilUsuario_INTRANET)
     async extractNEmpleadoFromCookies(): Promise<string> {
+        // Lee document.cookie y extrae NEmpleado o patrones similares
         try {
             const cookieString = await this.page.evaluate(() => document.cookie || '')
             if (!cookieString) return ''
@@ -61,17 +63,32 @@ export class IntranetPage{
     }
 
     private async getTrackingData(): Promise<object> {
-    return await this.page.evaluate(() => ({
-        id_sesion: (window as any).uuid ?? 'No disponible',
-        title: document.title,
-        referer: document.referrer || null,
-        url: window.location.href,
-        tiempo: new Date().toISOString(),
-        userAgent: navigator.userAgent,
-    }))
+        // Recoge datos de tracking básicos desde la página (id_sesion, title, url, etc.).
+        // Si la evaluación falla por navegación, reintenta una vez.
+        for (let attempt = 0; attempt < 2; attempt++) {
+            try {
+                return await this.page.evaluate(() => ({
+                    id_sesion: (window as any).uuid ?? 'No disponible',
+                    title: document.title,
+                    referer: document.referrer || null,
+                    url: window.location.href,
+                    tiempo: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                }))
+            } catch (e) {
+                if (attempt === 0) {
+                    // pequeña espera antes de reintentar
+                    await this.page.waitForTimeout(300)
+                    continue
+                }
+                throw e
+            }
+        }
+        return {}
 }
 
     private async getPageInfo(): Promise<string> {
+        // Obtiene referrer, title y trata de extraer id_sesion de variables globales
         const referrer = await this.page.evaluate(() => document.referrer || 'Acceso directo')
         const title = await this.page.evaluate(() => document.title)
         const sessionId = await this.page.evaluate(() => {
@@ -98,16 +115,19 @@ export class IntranetPage{
     }
 
     private async fillUsername(username: string){
+        // Rellena el campo de usuario y pulsa el botón 'Next'
         await this.userTextBox.waitFor({ state: 'visible', timeout: 10000 })
         await this.userTextBox.fill(username)
         await this.nextButton.click();
     }
 
     private async fillPassword(password: string){
+        // Rellena el campo de contraseña
         await this.passwordTextBox.fill(password)
     }
 
     private async clickSignInButton(){
+        // Hace clic en 'Sign in' y espera (si procede) la navegación
         await Promise.all([
             this.signInButton.click(),
             // waitForNavigation may never happen (login could use XHR); swallow timeout
@@ -116,20 +136,28 @@ export class IntranetPage{
     }
 
     async doLogin(username: string, password: string){
+        // Orquesta el proceso de login: usuario, contraseña y submit
         await this.fillUsername(username)
         await this.fillPassword(password)
         await this.clickSignInButton()  
     }
 
     static async abrirEnIncognito(browser: Browser) {
+        // Crea y retorna un nuevo contexto/página (modo incógnito)
         const context = await browser.newContext();
         const page = await context.newPage();
         return { context, page };
     }
 
     async clickLaFirmaDropdown(){
+        // Click en el dropdown 'La Firma' y registra evento de tracking + BD
         await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
-        await this.laFirmaDropdown.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.laFirmaDropdown.click()
+        ])
+        // pequeño buffer para estabilidad antes de evaluar
+        await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Dropdown La Firma'
         const n = await this.extractNEmpleadoFromCookies()
@@ -141,8 +169,13 @@ export class IntranetPage{
     }
 
     async clickQuienesSomosButton(){
+        // Click en 'Quiénes somos' y registra evento de tracking + BD
         await this.quienesSomosButton.waitFor({ state: 'visible', timeout: 10000 })
-        await this.quienesSomosButton.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.quienesSomosButton.click()
+        ])
+        await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Quienes somos'
         const n = await this.extractNEmpleadoFromCookies()
@@ -154,8 +187,13 @@ export class IntranetPage{
     }
 
     async clickCentroDeRecursosButton(){
+        // Click en 'Centro de recursos' y registra evento de tracking + BD
         await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 10000 })
-        await this.centroDeRecursosButton.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.centroDeRecursosButton.click()
+        ])
+        await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Centro de recursos'
         const n = await this.extractNEmpleadoFromCookies()
@@ -167,8 +205,13 @@ export class IntranetPage{
     }
 
     async clickTalentoButton(){
+        // Click en 'Talento' y registra evento de tracking + BD
         await this.talentoButton.waitFor({ state: 'visible', timeout: 10000 })
-        await this.talentoButton.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.talentoButton.click()
+        ])
+        await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Talento'
         const n = await this.extractNEmpleadoFromCookies()
@@ -180,8 +223,13 @@ export class IntranetPage{
     }
 
     async clickComiteEjecutivoButton(){
+        // Click en 'Comité Ejecutivo' y registra evento de tracking + BD
         await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 10000 })
-        await this.comiteEjecutivoButton.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.comiteEjecutivoButton.click()
+        ])
+        await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Comite Ejecutivo'
         const n = await this.extractNEmpleadoFromCookies()
@@ -193,8 +241,13 @@ export class IntranetPage{
     }
 
     async clickConsejosSociosButton(){
+        // Click en 'Consejo de Socios' y registra evento de tracking + BD
         await this.consejosSociosButton.waitFor({ state: 'visible', timeout: 10000 })
-        await this.consejosSociosButton.click()
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.consejosSociosButton.click()
+        ])
+        await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Consejo de Socios'
         const n = await this.extractNEmpleadoFromCookies()
@@ -206,6 +259,7 @@ export class IntranetPage{
     }
 
     private pushClickRecord(accion: string, tracking: any, dbRow: any) {
+        // Construye objeto match comparando tracking vs fila de BD y añade al array de clicks
         const match = {
             title: !!(dbRow && dbRow.title === tracking.title),
             referer: !!(dbRow && ((dbRow.referer || null) === (tracking.referer || null))),
@@ -234,6 +288,7 @@ export class IntranetPage{
     }
 
     async getSessionId(): Promise<string> {
+        // Intenta obtener el session id desde variables globales, localStorage o cookies
         return await this.page.evaluate(() => {
             try {
                 // Comprobar variables globales conocidas
@@ -251,6 +306,7 @@ export class IntranetPage{
     }
 
     async getSessionIdFromAnalytics(timeout = 5000): Promise<string> {
+        // Espera una petición de analíticas y extrae id_sesion del postData si existe
         const analyticsUrl = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
         try {
             const req = await this.page.waitForRequest(r => r.url().startsWith(analyticsUrl) && r.method() === 'POST', { timeout })

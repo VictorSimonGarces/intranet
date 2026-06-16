@@ -804,5 +804,244 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:26:18",
+    "duration": "17.78s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "dc5d53b1-8494-44fd-b7d4-21391d64f37d",
+    "start": "12:16:00",
+    "duration": "22.19s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "dc5d53b1-8494-44fd-b7d4-21391d64f37d",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:16:12.452Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Dropdown La Firma: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "dc5d53b1-8494-44fd-b7d4-21391d64f37d",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:16:15.844Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Quienes somos: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Comite Ejecutivo",
+          "playwright": {
+            "id_sesion": "dc5d53b1-8494-44fd-b7d4-21391d64f37d",
+            "title": "Comité Ejecutivo",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "tiempo": "2026-06-16T10:16:19.178Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Comite Ejecutivo: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 4,
+        "detail": {
+          "accion": "Boton Consejo de Socios",
+          "playwright": {
+            "id_sesion": "dc5d53b1-8494-44fd-b7d4-21391d64f37d",
+            "title": "Consejo de Socios",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/consejo-de-socios.aspx",
+            "tiempo": "2026-06-16T10:16:22.439Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Consejo de Socios: no se encontró registro en BBDD"
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "c0b2e3ce-3591-4e2b-9996-252963ac68b3",
+    "start": "12:21:43",
+    "duration": "15.57s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "8a3b2ca5-aa61-49ad-84c7-864885f67d78",
+    "start": "12:22:18",
+    "duration": "13.50s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Quienes somos\"",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "5df3ce49-ed1a-4dc0-8788-5ab4a4ea8153",
+    "start": "12:24:27",
+    "duration": "29.65s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "5df3ce49-ed1a-4dc0-8788-5ab4a4ea8153",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:24:41.256Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Dropdown La Firma: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "5df3ce49-ed1a-4dc0-8788-5ab4a4ea8153",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-16T10:24:46.161Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Quienes somos: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Comite Ejecutivo",
+          "playwright": {
+            "id_sesion": "5df3ce49-ed1a-4dc0-8788-5ab4a4ea8153",
+            "title": "Comité Ejecutivo",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "tiempo": "2026-06-16T10:24:51.287Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Comite Ejecutivo: no se encontró registro en BBDD"
+        }
+      },
+      {
+        "index": 4,
+        "detail": {
+          "accion": "Boton Consejo de Socios",
+          "playwright": {
+            "id_sesion": "5df3ce49-ed1a-4dc0-8788-5ab4a4ea8153",
+            "title": "Consejo de Socios",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/comite-ejecutivo.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/consejo-de-socios.aspx",
+            "tiempo": "2026-06-16T10:24:56.411Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {},
+          "match": {
+            "title": false,
+            "referer": false,
+            "url": false,
+            "numEmpleado": false
+          },
+          "matchOk": false,
+          "matchMessage": "[NO DB ROW] Boton Consejo de Socios: no se encontró registro en BBDD"
+        }
+      }
+    ]
   }
 ]

@@ -292,23 +292,27 @@ test('intranet first level "Quienes somos"', async ({ browser }) => {
     await test.step('Click on La Firma dropdown', async () => {
         const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickLaFirmaDropdown()
+        await page.waitForTimeout(1000)
     })
 
     await page.waitForTimeout(3000)
     await test.step('Click on Quienes somos button', async () => {
         const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickQuienesSomosButton()
+        await page.waitForTimeout(1000)
     })
 
     await page.waitForTimeout(3000)
     await test.step('Click on Estructura y Gobierno button', async () => {
         const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickComiteEjecutivoButton()
+        await page.waitForTimeout(1000)
     })
 
     await page.waitForTimeout(3000)
     await test.step('Click on Consejo de Socios button', async () => {
         const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
         await intranetPage.clickConsejosSociosButton()
+        await page.waitForTimeout(1000)
     })
 })
