@@ -62,3 +62,55 @@ for (let run = 1; run <= RUNS; run++) {
         try { await context.close() } catch { /* ignore */ }
     })
 }
+
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet - definir limite de timeout - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })  
+
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
+
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page)
+            await intranetPage.doLogin(username, password)
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page)
+            await intranetPage.clickLaFirmaDropdown()
+            await page.waitForTimeout(1000)
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Quienes somos button', async () => {
+            const intranetPage = new IntranetPage(page)
+            await intranetPage.clickQuienesSomosButton()
+            await page.waitForTimeout(1000)
+        })
+
+        await page.waitForTimeout(85000)
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Estructura y Gobierno button', async () => {
+            const intranetPage = new IntranetPage(page)
+            await intranetPage.clickComiteEjecutivoButton()
+            await page.waitForTimeout(1000)
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Consejo de Socios button', async () => {
+            const intranetPage = new IntranetPage(page)
+            await intranetPage.clickConsejosSociosButton()
+            await page.waitForTimeout(1000)
+        })
+
+        // cerrar contexto para limpieza
+        try { await context.close() } catch { /* ignore */ }
+    })
+}
