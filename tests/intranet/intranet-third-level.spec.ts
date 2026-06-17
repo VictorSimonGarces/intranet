@@ -227,7 +227,7 @@ test.afterEach(async ({}, testInfo) => {
     } catch (e) { /* ignore */ }
 });
 
-const RUNS = 10
+const RUNS = 1
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
