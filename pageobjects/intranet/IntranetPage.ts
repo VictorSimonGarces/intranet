@@ -16,6 +16,11 @@ export class IntranetPage{
     private readonly negociosButton: Locator
     private readonly strategyCard: Locator
     private readonly taxCard: Locator
+    private readonly politicasYProcedimientosButton: Locator
+    private readonly comunidadesButton: Locator
+    private readonly verTodosLosAplicativosButton: Locator
+    private readonly verTodoLosDashboardsButton: Locator
+    private readonly verTodasLasNoticiasButton: Locator
     private clicks: string[]
     private readonly page: Page
     private session?: { user?: string, [k: string]: any }
@@ -40,6 +45,11 @@ export class IntranetPage{
         this.negociosButton = page.getByRole('link', { name: 'Negocios' })
         this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
         this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
+        this.politicasYProcedimientosButton = page.getByRole('link', { name: 'Políticas y Procedimientos' })
+        this.comunidadesButton = page.getByRole('link', { name: 'Comunidades' })
+        this.verTodosLosAplicativosButton = page.getByRole('link', { name: 'Ver todos los Aplicativos ' })
+        this.verTodoLosDashboardsButton = page.getByRole('link', { name: 'Ver todos los Dashboards &' })
+        this.verTodasLasNoticiasButton = page.getByRole('link', { name: 'Ver todas las noticias ' })
     }
 
     // Extrae NEmpleado desde document.cookie (por ejemplo dentro de DTT_PerfilUsuario_INTRANET)
@@ -286,6 +296,91 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click Tax Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickPoliticasYProcedimientosButton(){
+        // Click en 'Políticas y Procedimientos' y registra evento de tracking + BD
+        await this.politicasYProcedimientosButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.politicasYProcedimientosButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Politicas y Procedimientos'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickComunidadesButton(){
+        // Click en 'Comunidades' y registra evento de tracking + BD
+        await this.comunidadesButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.comunidadesButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Comunidades'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickVerTodosLosAplicativosButton(){
+        // Click en 'Ver todos los Aplicativos' y registra evento de tracking + BD
+        await this.verTodosLosAplicativosButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.verTodosLosAplicativosButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Ver todos los Aplicativos'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickVerTodoLosDashboardsButton(){
+        // Click en 'Ver todos los Dashboards' y registra evento de tracking + BD
+        await this.verTodoLosDashboardsButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.verTodoLosDashboardsButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Ver todos los Dashboards'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickVerTodasLasNoticiasButton(){
+        // Click en 'Ver todas las noticias' y registra evento de tracking + BD
+        await this.verTodasLasNoticiasButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.verTodasLasNoticiasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Ver todas las noticias'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
