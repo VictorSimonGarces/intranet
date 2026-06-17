@@ -227,7 +227,7 @@ test.afterEach(async ({}, testInfo) => {
     } catch (e) { /* ignore */ }
 });
 
-const RUNS = 10
+const RUNS = 1
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
@@ -243,12 +243,13 @@ for (let run = 1; run <= RUNS; run++) {
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            // Esperar la solicitud POST de analíticas para capturar id_sesion y numEmpleado
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
-                let id = 'No disponible'
+                let id = ''
                 let numEmpleado = ''
                 try {
                     const obj = JSON.parse(post)

@@ -50,11 +50,12 @@ export class DatabaseService {
       if (pathLike) request.input('pathLike', sql.NVarChar(4000), pathLike)
 
       const q = `SELECT TOP 1 [id_sesion],[numEmpleado],[tiempo],[url],[title],[referer],[userAgent],[tipo],[datos]
-                 FROM [EstadisticasIntranet].[dbo].[SesionEvento]
-                 WHERE (
+                 FROM [EstadisticasIntranet].[dbo].[SesionEvento]e
+                 WHERE LOWER(e.[id_sesion]) = LOWER(@sessionId)
+                 AND (
                    LOWER([title]) = @key OR LOWER([title]) LIKE @keyLike OR @key LIKE '%' + LOWER([title]) + '%'
                    OR LOWER([url]) = @key OR LOWER([url]) LIKE @keyLike ${pathLike ? 'OR LOWER([url]) LIKE @pathLike' : ''}
-                 )
+                   )
                  ORDER BY [tiempo] DESC`
 
       console.debug('[DB] query params', { original: titleOrKey, key: normalized, pathLike: pathLike || null, tiempo: tiempo || null })
