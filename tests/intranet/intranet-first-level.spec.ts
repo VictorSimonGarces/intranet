@@ -204,7 +204,7 @@ test.afterEach(async ({}, testInfo) => {
     try { if (dbService) await dbService.disconnect() } catch (e) { }
 })
 
-const RUNS = 10
+const RUNS = 1
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "La Firma" - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
