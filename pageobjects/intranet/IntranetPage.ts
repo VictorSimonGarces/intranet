@@ -13,6 +13,9 @@ export class IntranetPage{
     private readonly talentoButton: Locator
     private readonly comiteEjecutivoButton: Locator
     private readonly consejosSociosButton: Locator
+    private readonly negociosButton: Locator
+    private readonly strategyCard: Locator
+    private readonly taxCard: Locator
     private clicks: string[]
     private readonly page: Page
     private session?: { user?: string, [k: string]: any }
@@ -34,6 +37,9 @@ export class IntranetPage{
         this.talentoButton = page.getByRole('link', { name: /Talento/i }).first()
         this.comiteEjecutivoButton = page.getByRole('link', { name: 'Comité Ejecutivo ' })
         this.consejosSociosButton = page.getByRole('link', { name: 'Consejo de Socios' })
+        this.negociosButton = page.getByRole('link', { name: 'Negocios' })
+        this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
+        this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
     }
 
     // Extrae NEmpleado desde document.cookie (por ejemplo dentro de DTT_PerfilUsuario_INTRANET)
@@ -236,6 +242,57 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
+    async clickNegociosButton(){    
+    // Click en 'Negocios' y registra evento de tracking + BD
+        await this.negociosButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.negociosButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Negocios'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickStrategyCard(){
+        // Click en la tarjeta 'Strategy' y registra evento de tracking + BD
+        await this.strategyCard.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.strategyCard.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click Strategy Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickTaxCard(){
+        // Click en la tarjeta 'Tax' y registra evento de tracking + BD
+        await this.taxCard.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.taxCard.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click Tax Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
     private pushClickRecord(accion: string, tracking: any, dbRow?: any) {
         // Añade el registro de click (solo playwright). Si se pasa dbRow, incluye los datos de BD y el resultado del match.
         const entry: any = {
@@ -266,52 +323,6 @@ export class IntranetPage{
         }
 
         this.clicks.push(entry as any)
-    }
-
-    async getSessionId(): Promise<string> {
-        // Intenta obtener el session id desde variables globales, localStorage o cookies
-        return await this.page.evaluate(() => {
-            try {
-                // Comprobar variables globales conocidas
-                if ((window as any).id_sesion) return String((window as any).id_sesion);
-                if ((window as any).sessionId) return String((window as any).sessionId);
-                // LocalStorage
-                const ls = localStorage.getItem('sessionId') || localStorage.getItem('id_sesion');
-                if (ls) return ls;
-                // Cookies
-                const cookie = document.cookie.split('; ').find(c => c.trim().startsWith('sessionId='))?.split('=')[1];
-                if (cookie) return cookie;
-            } catch (e) { /* ignore */ }
-            return 'No disponible';
-        });
-    }
-
-    async getSessionIdFromAnalytics(timeout = 5000): Promise<string> {
-        // Espera una petición de analíticas y extrae id_sesion del postData si existe
-        const analyticsUrl = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-        try {
-            const req = await this.page.waitForRequest(r => r.url().startsWith(analyticsUrl) && r.method() === 'POST', { timeout })
-            const post = req.postData() || ''
-            // intentar JSON
-            try {
-                const obj = JSON.parse(post)
-                if (obj?.id_sesion) return String(obj.id_sesion)
-                if (obj?.idSession) return String(obj.idSession)
-            } catch {}
-            // intentar urlencoded
-            try {
-                const params = new URLSearchParams(post)
-                for (const [k, v] of params) {
-                    if (/id[_-]?(sesion|session|s)/i.test(k) && v) return v
-                }
-            } catch {}
-            // fallback regex
-            const m = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-            if (m) return m[1]
-        } catch (e) {
-            // no llegó la petición dentro del timeout
-        }
-        return 'No disponible'
     }
 }
 
