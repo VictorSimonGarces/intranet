@@ -16,6 +16,9 @@ export class IntranetPage{
     private readonly negociosButton: Locator
     private readonly strategyCard: Locator
     private readonly taxCard: Locator
+    private readonly alianzasCard: Locator
+    private readonly networkingCard: Locator
+    private readonly startmeUpButton: Locator
     private clicks: string[]
     private readonly page: Page
     private session?: { user?: string, [k: string]: any }
@@ -40,6 +43,9 @@ export class IntranetPage{
         this.negociosButton = page.getByRole('link', { name: 'Negocios' })
         this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
         this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
+        this.alianzasCard = page.getByRole('link', { name: 'Alianzas y ecosistemas ' })
+        this.networkingCard = page.getByRole('link', { name: 'Calendario de Networking ' })
+        this.startmeUpButton = page.getByRole('link', { name: 'StartmeUP ' })
     }
 
     // Extrae NEmpleado desde document.cookie (por ejemplo dentro de DTT_PerfilUsuario_INTRANET)
@@ -293,7 +299,56 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    
+        async clickAlianzasCard(){
+        // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
+        await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.alianzasCard.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click Alianzas Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickNetworkingCard(){
+        // Click en la tarjeta 'Networking' y registra evento de tracking + BD
+        await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 }) 
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.networkingCard.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click Networking Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickStartmeUpButton(){
+        // Click en el botón 'StartmeUP' y registra evento de tracking + BD
+        await this.startmeUpButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.startmeUpButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click StartmeUP Button'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
 
     private pushClickRecord(accion: string, tracking: any, dbRow?: any) {
         // Añade el registro de click (solo playwright). Si se pasa dbRow, incluye los datos de BD y el resultado del match.
