@@ -48,7 +48,8 @@ export class IntranetPage{
         this.negociosButton = page.getByRole('link', { name: 'Negocios' })
         this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
         this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
-        this.alianzasCard = page.getByRole('link', { name: 'Alianzas y ecosistemas ' })
+        // Usar un matcher más tolerante a iconos/espacios y cambios de texto
+        this.alianzasCard = page.getByRole('link', { name: /Alianzas/i })
         this.networkingCard = page.getByRole('link', { name: 'Calendario de Networking ' })
         this.startmeUpButton = page.getByRole('link', { name: 'StartmeUP ' })
         this.politicasYProcedimientosButton = page.getByRole('link', { name: 'Políticas y Procedimientos' })
@@ -310,15 +311,31 @@ export class IntranetPage{
     }
 
         async clickAlianzasCard(){
-        // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
-        await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
-        await Promise.all([ 
-            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
-            this.alianzasCard.click()
-        ])
+            // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
+            // Intentar una espera corta y, si no está visible, abrir el menú padre como fallback
+            try {
+                await this.alianzasCard.waitFor({ state: 'visible', timeout: 3000 })
+            } catch (e) {
+                try {
+                    // abrir dropdown principal para exponer el enlace (si aplica)
+                    await this.laFirmaDropdown.click()
+                } catch (_) { /* ignore */ }
+                await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+            }
+            await Promise.all([ 
+                this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+                this.alianzasCard.click()
+            ])
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click Alianzas Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
     async clickPoliticasYProcedimientosButton(){
         // Click en 'Políticas y Procedimientos' y registra evento de tracking + BD
         await this.politicasYProcedimientosButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -346,6 +363,13 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click Networking Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
     async clickComunidadesButton(){
         // Click en 'Comunidades' y registra evento de tracking + BD
         await this.comunidadesButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -373,6 +397,13 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click StartmeUP Button'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+    
     async clickVerTodosLosAplicativosButton(){
         // Click en 'Ver todos los Aplicativos' y registra evento de tracking + BD
         await this.verTodosLosAplicativosButton.waitFor({ state: 'visible', timeout: 10000 })
