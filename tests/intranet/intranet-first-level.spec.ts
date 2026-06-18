@@ -400,3 +400,453 @@ for (let run = 1; run <= RUNS; run++) {
         })
     })
 }
+
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet first level "Políticas y Procedimientos" - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
+
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
+
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
+            await intranetPage.doLogin(username, password)
+            try {
+                const req = await analyticsPromise
+                const post = req.postData() || ''
+                let id = 'No disponible'
+                let numEmpleado = ''
+                try {
+                    const obj = JSON.parse(post)
+                    id = obj?.id_sesion ?? obj?.idSession ?? id
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''))
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+                        if (mId) id = mId[1]
+                    }
+                }
+                sessionSummary.sessionId = String(id)
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible'
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+
+            try {
+                const cookieString = await page.evaluate(() => document.cookie || '')
+                if (cookieString) {
+                    let nEmpleado = ''
+                    const parts = cookieString.split('; ').map(p => {
+                        const idx = p.indexOf('=')
+                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+                    })
+
+                    for (const [, v] of parts) {
+                        if (!v) continue
+                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                        if (inner && inner[1]) {
+                            nEmpleado = decodeURIComponent(inner[1])
+                            break
+                        }
+                    }
+
+                    if (!nEmpleado) {
+                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
+                    }
+
+                    if (!nEmpleado) {
+                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+                        if (m) nEmpleado = m[1]
+                    }
+
+                    if (nEmpleado) sessionSummary.user = nEmpleado
+                }
+            } catch (e) { /* ignore cookie parsing errors */ }
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Políticas y Procedimientos button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickPoliticasYProcedimientosButton()
+            await page.waitForTimeout(1000)
+        })
+    })
+}
+
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet first level "Comunidades" - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
+
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
+
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
+            await intranetPage.doLogin(username, password)
+            try {
+                const req = await analyticsPromise
+                const post = req.postData() || ''
+                let id = 'No disponible'
+                let numEmpleado = ''
+                try {
+                    const obj = JSON.parse(post)
+                    id = obj?.id_sesion ?? obj?.idSession ?? id
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''))
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+                        if (mId) id = mId[1]
+                    }
+                }
+                sessionSummary.sessionId = String(id)
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible'
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+
+            try {
+                const cookieString = await page.evaluate(() => document.cookie || '')
+                if (cookieString) {
+                    let nEmpleado = ''
+                    const parts = cookieString.split('; ').map(p => {
+                        const idx = p.indexOf('=')
+                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+                    })
+
+                    for (const [, v] of parts) {
+                        if (!v) continue
+                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                        if (inner && inner[1]) {
+                            nEmpleado = decodeURIComponent(inner[1])
+                            break
+                        }
+                    }
+
+                    if (!nEmpleado) {
+                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
+                    }
+
+                    if (!nEmpleado) {
+                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+                        if (m) nEmpleado = m[1]
+                    }
+
+                    if (nEmpleado) sessionSummary.user = nEmpleado
+                }
+            } catch (e) { /* ignore cookie parsing errors */ }
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Comunidades button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickComunidadesButton()
+            await page.waitForTimeout(1000)
+        })
+    })
+}
+
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet first level "Ver todos los Aplicativos" - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
+
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
+
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
+            await intranetPage.doLogin(username, password)
+            try {
+                const req = await analyticsPromise
+                const post = req.postData() || ''
+                let id = 'No disponible'
+                let numEmpleado = ''
+                try {
+                    const obj = JSON.parse(post)
+                    id = obj?.id_sesion ?? obj?.idSession ?? id
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''))
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+                        if (mId) id = mId[1]
+                    }
+                }
+                sessionSummary.sessionId = String(id)
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible'
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+
+            try {
+                const cookieString = await page.evaluate(() => document.cookie || '')
+                if (cookieString) {
+                    let nEmpleado = ''
+                    const parts = cookieString.split('; ').map(p => {
+                        const idx = p.indexOf('=')
+                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+                    })
+
+                    for (const [, v] of parts) {
+                        if (!v) continue
+                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                        if (inner && inner[1]) {
+                            nEmpleado = decodeURIComponent(inner[1])
+                            break
+                        }
+                    }
+
+                    if (!nEmpleado) {
+                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
+                    }
+
+                    if (!nEmpleado) {
+                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+                        if (m) nEmpleado = m[1]
+                    }
+
+                    if (nEmpleado) sessionSummary.user = nEmpleado
+                }
+            } catch (e) { /* ignore cookie parsing errors */ }
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Ver todos los Aplicativos button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickVerTodosLosAplicativosButton()
+            await page.waitForTimeout(1000)
+        })
+    })
+}
+
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet first level "Ver todos los Dashboards" - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
+
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
+
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
+            await intranetPage.doLogin(username, password)
+            try {
+                const req = await analyticsPromise
+                const post = req.postData() || ''
+                let id = 'No disponible'
+                let numEmpleado = ''
+                try {
+                    const obj = JSON.parse(post)
+                    id = obj?.id_sesion ?? obj?.idSession ?? id
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''))
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+                        if (mId) id = mId[1]
+                    }
+                }
+                sessionSummary.sessionId = String(id)
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible'
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+
+            try {
+                const cookieString = await page.evaluate(() => document.cookie || '')
+                if (cookieString) {
+                    let nEmpleado = ''
+                    const parts = cookieString.split('; ').map(p => {
+                        const idx = p.indexOf('=')
+                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+                    })
+
+                    for (const [, v] of parts) {
+                        if (!v) continue
+                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                        if (inner && inner[1]) {
+                            nEmpleado = decodeURIComponent(inner[1])
+                            break
+                        }
+                    }
+
+                    if (!nEmpleado) {
+                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
+                    }
+
+                    if (!nEmpleado) {
+                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+                        if (m) nEmpleado = m[1]
+                    }
+
+                    if (nEmpleado) sessionSummary.user = nEmpleado
+                }
+            } catch (e) { /* ignore cookie parsing errors */ }
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Ver todos los Dashboards button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickVerTodoLosDashboardsButton()
+            await page.waitForTimeout(1000)
+        })
+    })
+}
+
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet first level "Ver todas las noticias" - run ${run}`, async ({ browser }) => {
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
+
+        const username = 'vsimongarces@deloitte.es'
+        const password = 'Pradillano180206'
+
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
+            await intranetPage.doLogin(username, password)
+            try {
+                const req = await analyticsPromise
+                const post = req.postData() || ''
+                let id = 'No disponible'
+                let numEmpleado = ''
+                try {
+                    const obj = JSON.parse(post)
+                    id = obj?.id_sesion ?? obj?.idSession ?? id
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''))
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
+                        if (mId) id = mId[1]
+                    }
+                }
+                sessionSummary.sessionId = String(id)
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible'
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+
+            try {
+                const cookieString = await page.evaluate(() => document.cookie || '')
+                if (cookieString) {
+                    let nEmpleado = ''
+                    const parts = cookieString.split('; ').map(p => {
+                        const idx = p.indexOf('=')
+                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
+                    })
+
+                    for (const [, v] of parts) {
+                        if (!v) continue
+                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
+                        if (inner && inner[1]) {
+                            nEmpleado = decodeURIComponent(inner[1])
+                            break
+                        }
+                    }
+
+                    if (!nEmpleado) {
+                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
+                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
+                    }
+
+                    if (!nEmpleado) {
+                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
+                        if (m) nEmpleado = m[1]
+                    }
+
+                    if (nEmpleado) sessionSummary.user = nEmpleado
+                }
+            } catch (e) { /* ignore cookie parsing errors */ }
+        })
+
+        await page.waitForTimeout(3000)
+        await test.step('Click on Ver todas las noticias button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
+            await intranetPage.clickVerTodasLasNoticiasButton()
+            await page.waitForTimeout(1000)
+        })
+    })
+}
