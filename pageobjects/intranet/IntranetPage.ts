@@ -16,6 +16,9 @@ export class IntranetPage{
     private readonly negociosButton: Locator
     private readonly strategyCard: Locator
     private readonly taxCard: Locator
+    private readonly alianzasCard: Locator
+    private readonly networkingCard: Locator
+    private readonly startmeUpButton: Locator
     private readonly politicasYProcedimientosButton: Locator
     private readonly comunidadesButton: Locator
     private readonly verTodosLosAplicativosButton: Locator
@@ -45,6 +48,9 @@ export class IntranetPage{
         this.negociosButton = page.getByRole('link', { name: 'Negocios' })
         this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
         this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
+        this.alianzasCard = page.getByRole('link', { name: 'Alianzas y ecosistemas ' })
+        this.networkingCard = page.getByRole('link', { name: 'Calendario de Networking ' })
+        this.startmeUpButton = page.getByRole('link', { name: 'StartmeUP ' })
         this.politicasYProcedimientosButton = page.getByRole('link', { name: 'Políticas y Procedimientos' })
         this.comunidadesButton = page.getByRole('link', { name: 'Comunidades' })
         this.verTodosLosAplicativosButton = page.getByRole('link', { name: 'Ver todos los Aplicativos ' })
@@ -303,6 +309,16 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
+        async clickAlianzasCard(){
+        // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
+        await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.alianzasCard.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click Alianzas Card'
     async clickPoliticasYProcedimientosButton(){
         // Click en 'Políticas y Procedimientos' y registra evento de tracking + BD
         await this.politicasYProcedimientosButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -320,6 +336,16 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
+    async clickNetworkingCard(){
+        // Click en la tarjeta 'Networking' y registra evento de tracking + BD
+        await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 }) 
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.networkingCard.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click Networking Card'
     async clickComunidadesButton(){
         // Click en 'Comunidades' y registra evento de tracking + BD
         await this.comunidadesButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -337,6 +363,16 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
+    async clickStartmeUpButton(){
+        // Click en el botón 'StartmeUP' y registra evento de tracking + BD
+        await this.startmeUpButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([ 
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.startmeUpButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Click StartmeUP Button'
     async clickVerTodosLosAplicativosButton(){
         // Click en 'Ver todos los Aplicativos' y registra evento de tracking + BD
         await this.verTodosLosAplicativosButton.waitFor({ state: 'visible', timeout: 10000 })

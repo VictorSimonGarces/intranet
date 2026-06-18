@@ -8199,5 +8199,331 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:12:05",
+    "duration": "4.68s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:12:21",
+    "duration": "23.93s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "5c40ff39-d2cf-49b4-ade0-b5819fa7c0f1",
+    "start": "10:12:49",
+    "duration": "11.26s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-18T08:12:59.544Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "2753cecf-c7f3-4212-b526-3abf68db208e",
+    "start": "10:13:02",
+    "duration": "12.59s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Politicas y Procedimientos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Política de Voluntariado",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/politicas-y-procedimientos/Pages/politica-de-voluntariado.aspx",
+            "tiempo": "2026-06-18T08:13:14.210Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Comunidades\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "40c3ddf0-39a9-494d-accc-c32b37915fab",
+    "start": "10:13:17",
+    "duration": "10.85s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Comunidades",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Comunidades",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/comunidades/Pages/default.aspx",
+            "tiempo": "2026-06-18T08:13:27.087Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Ver todos los Aplicativos\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "63857588-94d2-484f-999c-b6600479d72f",
+    "start": "10:13:30",
+    "duration": "12.00s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Ver todos los Aplicativos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Aplicativos, Manuales y FAQs",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/herramientas/aplicativos-manuales-faqs/Pages/default.aspx",
+            "tiempo": "2026-06-18T08:13:41.124Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "aa85bd52-3fab-47c8-abdf-94af4da3c276",
+    "start": "10:13:44",
+    "duration": "11.37s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Ver todos los Dashboards",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Dashboards & Reports",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/herramientas/aplicativos-manuales-faqs/Pages/dashboards-reports.aspx",
+            "tiempo": "2026-06-18T08:13:54.564Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Ver todas las noticias\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "4fd85a58-31a6-4f3c-a396-5f86603c07a1",
+    "start": "10:13:57",
+    "duration": "12.36s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Ver todas las noticias",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Noticias",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/noticias/Pages/default.aspx",
+            "tiempo": "2026-06-18T08:14:08.961Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "b8773b5e-3862-4e4f-a48b-faf779bb8533",
+    "start": "10:14:45",
+    "duration": "12.90s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-18T08:14:57.056Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Alianzas\" - run 1",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "ee69da1c-4b37-47a8-b899-a78a6968ff34",
+    "start": "11:41:54",
+    "duration": "27.21s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-18T09:42:04.070Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Click Alianzas Card",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Alianzas y Ecosistemas",
+            "referer": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/alianzas-y-ecosistemas/Pages/default.aspx",
+            "tiempo": "2026-06-18T09:42:20.396Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Networking\" - run 1",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "3d10473f-9aa4-43cb-94c4-ed1d8221f252",
+    "start": "11:56:22",
+    "duration": "16.14s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-18T09:56:32.940Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Click Networking Card",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Calendario de Networking",
+            "referer": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/calendario-de-networking.aspx",
+            "tiempo": "2026-06-18T09:56:37.780Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"StartmeUP\" - run 1",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "a6d0a35f-2100-4ee9-8c30-2a8e7f8873c8",
+    "start": "11:59:44",
+    "duration": "16.07s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-18T09:59:55.004Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Click StartmeUP Button",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "StartmeUP",
+            "referer": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/startmeup.aspx",
+            "tiempo": "2026-06-18T09:59:59.904Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]
