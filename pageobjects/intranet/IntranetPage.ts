@@ -293,6 +293,8 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
+    
+
     private pushClickRecord(accion: string, tracking: any, dbRow?: any) {
         // Añade el registro de click (solo playwright). Si se pasa dbRow, incluye los datos de BD y el resultado del match.
         const entry: any = {
