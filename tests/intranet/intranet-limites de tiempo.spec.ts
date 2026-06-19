@@ -1,4 +1,5 @@
 import { test } from '@playwright/test'
+test.describe.configure({ mode: 'parallel' });
 import { NavigateTo } from '../../pageobjects/navigate/NavigateTo'
 import { IntranetPage } from '../../pageobjects/intranet/IntranetPage'
 

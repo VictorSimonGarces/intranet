@@ -1,4 +1,5 @@
 import { test } from '@playwright/test'
+test.describe.configure({ mode: 'parallel' });
 import * as fs from 'fs'
 import * as path from 'path'
 import { NavigateTo } from '../../pageobjects/navigate/NavigateTo'
