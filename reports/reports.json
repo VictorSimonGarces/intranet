@@ -11146,5 +11146,47 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet second level \"Estrategia de Negocio\" - run 1",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "a77aac84-f8fa-42e0-b839-34748754f5cb",
+    "start": "9:20:47 AM",
+    "duration": "24.26s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "D.Net",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "tiempo": "2026-06-22T07:21:05.865Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Estrategia de Negocio",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Estrategia de Negocio",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/estrategia-de-negocio/Pages/default.aspx",
+            "tiempo": "2026-06-22T07:21:10.782Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]
