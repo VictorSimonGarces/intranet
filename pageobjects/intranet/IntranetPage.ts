@@ -12,6 +12,7 @@ export class IntranetPage{
     private readonly quienesSomosButton: Locator
     private readonly centroDeRecursosButton: Locator
     private readonly talentoButton: Locator
+    private readonly espacioDeLearningButton: Locator
     private readonly comiteEjecutivoButton: Locator
     private readonly consejosSociosButton: Locator
     private readonly negociosButton: Locator
@@ -49,6 +50,7 @@ export class IntranetPage{
         this.quienesSomosButton = this.laFirmaMenu.getByRole('link', { name: 'Quiénes somos' }).first()
         this.centroDeRecursosButton = page.locator('a:has-text("Centro de recursos"):visible').first()
         this.talentoButton = this.laFirmaMenu.getByRole('link', { name: /Talento/i }).first()
+        this.espacioDeLearningButton = page.getByRole('link', { name: 'Espacio de Learning ' }).first()
         this.comiteEjecutivoButton = page.locator('a:has-text("Comité Ejecutivo"):visible').first()
         this.consejosSociosButton = this.laFirmaMenu.getByRole('link', { name: 'Consejo de Socios' })
         this.negociosButton = page.locator('a:has-text("Negocios"):visible').first()
@@ -244,6 +246,22 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
         this.pushClickRecord(accion, tracking)           
+    }
+
+    async clickEspacioDeLearningButton(){
+        // Click en 'Espacio de Learning' y registra evento de tracking + BD
+        await this.espacioDeLearningButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.espacioDeLearningButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Espacio de Learning'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
     }
 
     async clickComiteEjecutivoButton(){
