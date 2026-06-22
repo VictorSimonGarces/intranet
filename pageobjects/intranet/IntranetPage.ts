@@ -8,12 +8,17 @@ export class IntranetPage{
     private readonly passwordTextBox: Locator
     private readonly signInButton: Locator
     private readonly laFirmaDropdown: Locator
+    private readonly laFirmaMenu: Locator
     private readonly quienesSomosButton: Locator
     private readonly centroDeRecursosButton: Locator
     private readonly talentoButton: Locator
     private readonly comiteEjecutivoButton: Locator
     private readonly consejosSociosButton: Locator
     private readonly negociosButton: Locator
+    private readonly estrategiaDeNegocioButton: Locator
+    private readonly culturaButton: Locator
+    private readonly riskReputationButton: Locator
+    private readonly eticaButton: Locator
     private readonly strategyCard: Locator
     private readonly taxCard: Locator
     private readonly alianzasCard: Locator
@@ -40,17 +45,22 @@ export class IntranetPage{
         this.passwordTextBox = page.getByRole('textbox', { name: 'Enter the password for' })
         this.signInButton = page.getByRole('button', { name: 'Sign in' })
         this.laFirmaDropdown = page.getByRole('link', { name: 'La Firma ' })
-        this.quienesSomosButton = page.getByRole('link', { name: 'Quiénes somos' }).first()
-        this.centroDeRecursosButton = page.getByRole('link', { name: /Centro de recursos/i }).first()
-        this.talentoButton = page.getByRole('link', { name: /Talento/i }).first()
-        this.comiteEjecutivoButton = page.getByRole('link', { name: 'Comité Ejecutivo ' })
-        this.consejosSociosButton = page.getByRole('link', { name: 'Consejo de Socios' })
-        this.negociosButton = page.getByRole('link', { name: 'Negocios' })
+        this.laFirmaMenu = page.locator('#menu-intranet-top-1')
+        this.quienesSomosButton = this.laFirmaMenu.getByRole('link', { name: 'Quiénes somos' }).first()
+        this.centroDeRecursosButton = page.locator('a:has-text("Centro de recursos"):visible').first()
+        this.talentoButton = this.laFirmaMenu.getByRole('link', { name: /Talento/i }).first()
+        this.comiteEjecutivoButton = page.locator('a:has-text("Comité Ejecutivo"):visible').first()
+        this.consejosSociosButton = this.laFirmaMenu.getByRole('link', { name: 'Consejo de Socios' })
+        this.negociosButton = page.locator('a:has-text("Negocios"):visible').first()
+        this.estrategiaDeNegocioButton = this.laFirmaMenu.getByRole('link', { name: 'Estrategia de Negocio' })
+        this.culturaButton = this.laFirmaMenu.getByRole('link', { name: 'Cultura' })
+        this.riskReputationButton = this.laFirmaMenu.getByRole('link', { name: 'Risk & Reputation' })
+        this.eticaButton = this.laFirmaMenu.getByRole('link', { name: 'Ética' })
         this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
         this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
-        // Usar un matcher más tolerante a iconos/espacios y cambios de texto
-        this.alianzasCard = page.getByRole('link', { name: /Alianzas/i })
-        this.networkingCard = page.getByRole('link', { name: 'Calendario de Networking ' })
+        // Usar selectores basados en href/texto visibles para evitar duplicados/ocultos
+        this.alianzasCard = page.locator('a[href*="alianzas"]:visible').first()
+        this.networkingCard = page.locator('a[href*="networking"]:visible').first()
         this.startmeUpButton = page.getByRole('link', { name: 'StartmeUP ' })
         this.politicasYProcedimientosButton = page.getByRole('link', { name: 'Políticas y Procedimientos' })
         this.comunidadesButton = page.getByRole('link', { name: 'Comunidades' })
@@ -183,7 +193,18 @@ export class IntranetPage{
 
     async clickCentroDeRecursosButton(){
         // Click en 'Centro de recursos' y registra evento de tracking + BD
-        await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 10000 })
+        try {
+            await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
+            await Promise.all([
+                this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+                this.laFirmaDropdown.click()
+            ])
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.centroDeRecursosButton.click()
@@ -227,7 +248,16 @@ export class IntranetPage{
 
     async clickComiteEjecutivoButton(){
         // Click en 'Comité Ejecutivo' y registra evento de tracking + BD
-        await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 10000 })
+        try {
+            await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            try {
+                await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
+                await this.laFirmaDropdown.click().catch(() => null)
+            } catch (_) { /* ignore */ }
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.comiteEjecutivoButton.click()
@@ -261,7 +291,16 @@ export class IntranetPage{
 
     async clickNegociosButton(){    
     // Click en 'Negocios' y registra evento de tracking + BD
-        await this.negociosButton.waitFor({ state: 'visible', timeout: 10000 })
+        try {
+            await this.negociosButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            try {
+                await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
+                await this.laFirmaDropdown.click().catch(() => null)
+            } catch (_) { /* ignore */ }
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.negociosButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.negociosButton.click()
@@ -269,6 +308,95 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Negocios'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickEstrategiaDeNegocioButton(){
+        // Click en 'Estrategia de Negocio' y registra evento de tracking + BD
+        try {
+            await this.estrategiaDeNegocioButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.estrategiaDeNegocioButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.estrategiaDeNegocioButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Estrategia de Negocio'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickCulturaButton(){
+        // Click en 'Cultura' y registra evento de tracking + BD
+        try {
+            await this.culturaButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.culturaButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.culturaButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Cultura'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickRiskReputationButton(){
+        // Click en 'Risk & Reputation' y registra evento de tracking + BD
+        try {
+            await this.riskReputationButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.riskReputationButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.riskReputationButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Risk & Reputation'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickEticaButton(){
+        // Click en 'Ética' y registra evento de tracking + BD
+        try {
+            await this.eticaButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.eticaButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.eticaButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Ética'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
@@ -316,11 +444,13 @@ export class IntranetPage{
             try {
                 await this.alianzasCard.waitFor({ state: 'visible', timeout: 3000 })
             } catch (e) {
-                try {
-                    // abrir dropdown principal para exponer el enlace (si aplica)
-                    await this.laFirmaDropdown.click()
-                } catch (_) { /* ignore */ }
-                await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+                    try {
+                        // Preferir abrir el menú 'Centro de recursos' que expone la tarjeta
+                        await this.clickCentroDeRecursosButton()
+                    } catch (_) {
+                        try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+                    }
+                    await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
             }
             await Promise.all([ 
                 this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
@@ -355,7 +485,16 @@ export class IntranetPage{
 
     async clickNetworkingCard(){
         // Click en la tarjeta 'Networking' y registra evento de tracking + BD
-        await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 }) 
+        try {
+            await this.networkingCard.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            try {
+                await this.clickCentroDeRecursosButton()
+            } catch (_) {
+                try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            }
+            await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 })
+        }
         await Promise.all([ 
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.networkingCard.click()
