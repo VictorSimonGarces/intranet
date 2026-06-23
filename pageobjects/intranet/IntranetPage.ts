@@ -13,6 +13,11 @@ export class IntranetPage{
     private readonly centroDeRecursosButton: Locator
     private readonly talentoButton: Locator
     private readonly espacioDeLearningButton: Locator
+    private readonly industriasButton: Locator
+    private readonly geografiasButton: Locator
+    private readonly areasCorporativasButton: Locator
+    private readonly sociedadesButton: Locator
+    private readonly presentacionesFirmaButton: Locator
     private readonly comiteEjecutivoButton: Locator
     private readonly consejosSociosButton: Locator
     private readonly negociosButton: Locator
@@ -51,6 +56,11 @@ export class IntranetPage{
         this.centroDeRecursosButton = page.locator('a:has-text("Centro de recursos"):visible').first()
         this.talentoButton = this.laFirmaMenu.getByRole('link', { name: /Talento/i }).first()
         this.espacioDeLearningButton = page.getByRole('link', { name: 'Espacio de Learning ' }).first()
+        this.industriasButton = page.getByRole('link', { name: 'Industrias ' }).first()
+        this.geografiasButton = page.getByRole('link', { name: 'Geografías ' }).first()
+        this.areasCorporativasButton = page.getByRole('link', { name: 'Áreas corporativas y' }).first()
+        this.sociedadesButton = page.getByRole('link', { name: 'Sociedades ' }).first()
+        this.presentacionesFirmaButton = page.getByRole('link', { name: 'Presentaciones de Firma ' }).first()
         this.comiteEjecutivoButton = page.locator('a:has-text("Comité Ejecutivo"):visible').first()
         this.consejosSociosButton = this.laFirmaMenu.getByRole('link', { name: 'Consejo de Socios' })
         this.negociosButton = page.locator('a:has-text("Negocios"):visible').first()
@@ -174,6 +184,111 @@ export class IntranetPage{
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
         this.pushClickRecord(accion, tracking)
+    }
+
+    async clickIndustriasButton(){
+        // Click en 'Industrias' y registra evento de tracking + BD
+        try {
+            await this.industriasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.industriasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.industriasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingInd: any = await this.getTrackingData()
+        const accionInd = 'Boton Industrias'
+        const nInd = await this.extractNEmpleadoFromCookies()
+        if (nInd && this.session) this.session.user = nInd
+        if (this.session) trackingInd.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionInd, trackingInd)
+    }
+
+    async clickGeografiasButton(){
+        // Click en 'Geografías' y registra evento de tracking + BD
+        try {
+            await this.geografiasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.geografiasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.geografiasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingGeo: any = await this.getTrackingData()
+        const accionGeo = 'Boton Geografias'
+        const nGeo = await this.extractNEmpleadoFromCookies()
+        if (nGeo && this.session) this.session.user = nGeo
+        if (this.session) trackingGeo.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionGeo, trackingGeo)
+    }
+
+    async clickAreasCorporativasButton(){
+        // Click en 'Áreas corporativas y' y registra evento de tracking + BD
+        try {
+            await this.areasCorporativasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.areasCorporativasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.areasCorporativasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingAC: any = await this.getTrackingData()
+        const accionAC = 'Boton Areas Corporativas'
+        const nAC = await this.extractNEmpleadoFromCookies()
+        if (nAC && this.session) this.session.user = nAC
+        if (this.session) trackingAC.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionAC, trackingAC)
+    }
+
+    async clickSociedadesButton(){
+        // Click en 'Sociedades' y registra evento de tracking + BD
+        try {
+            await this.sociedadesButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.sociedadesButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.sociedadesButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingSoc: any = await this.getTrackingData()
+        const accionSoc = 'Boton Sociedades'
+        const nSoc = await this.extractNEmpleadoFromCookies()
+        if (nSoc && this.session) this.session.user = nSoc
+        if (this.session) trackingSoc.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionSoc, trackingSoc)
+    }
+
+    async clickPresentacionesFirmaButton(){
+        // Click en 'Presentaciones de Firma' y registra evento de tracking + BD
+        try {
+            await this.presentacionesFirmaButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.presentacionesFirmaButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.presentacionesFirmaButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingPF: any = await this.getTrackingData()
+        const accionPF = 'Boton Presentaciones de Firma'
+        const nPF = await this.extractNEmpleadoFromCookies()
+        if (nPF && this.session) this.session.user = nPF
+        if (this.session) trackingPF.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionPF, trackingPF)
     }
 
     async clickQuienesSomosButton(){
