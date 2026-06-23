@@ -11304,5 +11304,260 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "5ca038bf-18bc-49c4-9385-f78f46efbc65",
+    "start": "11:38:15 AM",
+    "duration": "18.40s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T09:38:33.013Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Ver todas las noticias\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "c80dfcd2-93ae-4c9e-986a-9313e16e3549",
+    "start": "12:05:42 PM",
+    "duration": "18.12s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Ver todas las noticias",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Noticias",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/noticias/Pages/default.aspx",
+            "tiempo": "2026-06-23T10:05:59.592Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "28eb9c9a-2a48-44a5-846b-6169af01e00d",
+    "start": "12:23:08 PM",
+    "duration": "18.39s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-23T10:23:25.853Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "d3a7620c-e973-41b9-a308-ffded8baee87",
+    "start": "1:03:39 PM",
+    "duration": "18.19s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Politicas y Procedimientos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Política de Voluntariado",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/politicas-y-procedimientos/Pages/politica-de-voluntariado.aspx",
+            "tiempo": "2026-06-23T11:03:57.078Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Áreas corporativas y",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "1ec431eb-560f-40f1-87bc-d42a40d10a3e",
+    "start": "3:11:30 PM",
+    "duration": "27.79s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "1ec431eb-560f-40f1-87bc-d42a40d10a3e",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T13:11:47.266Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "1ec431eb-560f-40f1-87bc-d42a40d10a3e",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-23T13:11:52.299Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Areas Corporativas",
+          "playwright": {
+            "id_sesion": "1ec431eb-560f-40f1-87bc-d42a40d10a3e",
+            "title": "Áreas Corporativas",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/areas-corporativas.aspx",
+            "tiempo": "2026-06-23T13:11:57.495Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Geografías",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "8b05b920-2030-4e69-b5d3-785a2d8d49b8",
+    "start": "3:12:54 PM",
+    "duration": "26.04s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "8b05b920-2030-4e69-b5d3-785a2d8d49b8",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T13:13:08.908Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "8b05b920-2030-4e69-b5d3-785a2d8d49b8",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-23T13:13:14.030Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Geografias",
+          "playwright": {
+            "id_sesion": "8b05b920-2030-4e69-b5d3-785a2d8d49b8",
+            "title": "Geografías",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/geografias.aspx",
+            "tiempo": "2026-06-23T13:13:19.063Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "timedOut",
+    "user": "No disponible",
+    "sessionId": "a71c94aa-0048-45cf-a524-f0565dd3f9c6",
+    "start": "3:35:09 PM",
+    "duration": "36.12s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "472b76e1-684a-4905-bb80-52d7b210db29",
+    "start": "3:35:59 PM",
+    "duration": "15.75s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T13:36:14.345Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]
