@@ -11559,5 +11559,375 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Presentaciones de Firma",
+    "status": "timedOut",
+    "user": "S00000001",
+    "sessionId": "dff2017c-bce7-4007-866d-2de7e93d9048",
+    "start": "4:01:26 PM",
+    "duration": "31.23s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "dff2017c-bce7-4007-866d-2de7e93d9048",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T14:01:48.226Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "dff2017c-bce7-4007-866d-2de7e93d9048",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-23T14:01:53.345Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Presentaciones de Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Presentaciones de Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/presentaciones-de-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T14:01:58.301Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Presentaciones de Firma",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "c5d60ef0-6edf-4804-bc91-741632f1a3a0",
+    "start": "4:02:07 PM",
+    "duration": "25.32s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "c5d60ef0-6edf-4804-bc91-741632f1a3a0",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T14:02:21.659Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "c5d60ef0-6edf-4804-bc91-741632f1a3a0",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-23T14:02:26.529Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Presentaciones de Firma",
+          "playwright": {
+            "id_sesion": "c5d60ef0-6edf-4804-bc91-741632f1a3a0",
+            "title": "Presentaciones de Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/presentaciones-de-firma/Pages/default.aspx",
+            "tiempo": "2026-06-23T14:02:31.908Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "timedOut",
+    "user": "No disponible",
+    "sessionId": "7e0671c2-592c-4685-810f-aff82bf1bcf9",
+    "start": "8:21:42 AM",
+    "duration": "31.66s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "8:22:25 AM",
+    "duration": "12.43s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "8:22:25 AM",
+    "duration": "12.48s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Comunidades\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "8:22:25 AM",
+    "duration": "12.64s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "8:22:25 AM",
+    "duration": "12.65s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "8:23:00 AM",
+    "duration": "31.22s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "passed",
+    "user": "No disponible",
+    "sessionId": "aeb20b2f-acf2-4f8c-8f24-60d76debdb80",
+    "start": "8:24:02 AM",
+    "duration": "17.56s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Politicas y Procedimientos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Política de Voluntariado",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/politicas-y-procedimientos/Pages/politica-de-voluntariado.aspx",
+            "tiempo": "2026-06-24T06:24:19.364Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Talento > Deloitte Talent Connect",
+    "status": "timedOut",
+    "user": "S90049840",
+    "sessionId": "9837bbbd-dcae-4a51-8b6b-a2d98dd78460",
+    "start": "8:34:34 AM",
+    "duration": "31.55s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "9837bbbd-dcae-4a51-8b6b-a2d98dd78460",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:34:54.884Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Talento",
+          "playwright": {
+            "id_sesion": "9837bbbd-dcae-4a51-8b6b-a2d98dd78460",
+            "title": "Talento",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:35:00.100Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Deloitte Talent Connect",
+          "playwright": {
+            "id_sesion": "9837bbbd-dcae-4a51-8b6b-a2d98dd78460",
+            "title": "Deloitte Talent Connect",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/deloitte-talent-connect.aspx",
+            "tiempo": "2026-06-24T06:35:05.262Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Talento > Deloitte Talent Connect",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "f64b7e5c-71d0-4120-8817-d2da9de92c82",
+    "start": "8:35:16 AM",
+    "duration": "27.08s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "f64b7e5c-71d0-4120-8817-d2da9de92c82",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:35:32.294Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Talento",
+          "playwright": {
+            "id_sesion": "f64b7e5c-71d0-4120-8817-d2da9de92c82",
+            "title": "Talento",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:35:37.440Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Deloitte Talent Connect",
+          "playwright": {
+            "id_sesion": "f64b7e5c-71d0-4120-8817-d2da9de92c82",
+            "title": "Deloitte Talent Connect",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/deloitte-talent-connect.aspx",
+            "tiempo": "2026-06-24T06:35:42.731Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Talento > Modelos de Competencias",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "b969dc25-d340-4b76-bc79-80a0bbdf424c",
+    "start": "8:40:16 AM",
+    "duration": "27.05s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "b969dc25-d340-4b76-bc79-80a0bbdf424c",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:40:32.615Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Talento",
+          "playwright": {
+            "id_sesion": "b969dc25-d340-4b76-bc79-80a0bbdf424c",
+            "title": "Talento",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:40:37.831Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Modelos de Competencias",
+          "playwright": {
+            "id_sesion": "b969dc25-d340-4b76-bc79-80a0bbdf424c",
+            "title": "Modelo de Competencias",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/modelo-de-competencias.aspx",
+            "tiempo": "2026-06-24T06:40:42.897Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]
