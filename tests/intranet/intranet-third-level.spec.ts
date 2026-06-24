@@ -26,19 +26,19 @@ test.beforeEach(async () => {
     // Inicializar conexión a la base de datos (config via env vars)
     try {
         const config = {
-        server: 'ESAZUITS00057',
-        database: 'EstadisticasIntranet',
-        user: process.env.DB_USER || '',
-        password: process.env.DB_PASSWORD || '',
-        options: {
-            trustedConnection: true,
-            trustServerCertificate: true,
-            encrypt: false,
-            instanceName: ''  // déjalo vacío o pon el nombre de la instancia si la hay
-        },  
-        driver: 'msnodesqlv8',
-    connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=ESAZUITS00057;Database=EstadisticasIntranet;Trusted_Connection=yes;'
-}
+            server: 'ESAZUITS00057',
+            database: 'EstadisticasIntranet',
+            user: process.env.DB_USER || '',
+            password: process.env.DB_PASSWORD || '',
+            options: {
+                trustedConnection: true,
+                trustServerCertificate: true,
+                encrypt: false,
+                instanceName: ''  // déjalo vacío o pon el nombre de la instancia si la hay
+            },
+            driver: 'msnodesqlv8',
+            connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=ESAZUITS00057;Database=EstadisticasIntranet;Trusted_Connection=yes;'
+        }
         dbService = new DatabaseService(config)
         await dbService.connect()
     } catch (e) {
@@ -46,7 +46,7 @@ test.beforeEach(async () => {
     }
 });
 
-test.afterEach(async ({}, testInfo) => {
+test.afterEach(async ({ }, testInfo) => {
     const duration = ((new Date().getTime() - sessionSummary.startTime.getTime()) / 1000).toFixed(2);
 
     // Asegurar user y sessionId predeterminados
@@ -72,7 +72,7 @@ test.afterEach(async ({}, testInfo) => {
                 if (s.includes('No disponible')) {
                     sessionSummary.clicks[i] = JSON.parse(s.replace(/"No disponible"/g, `"${finalSessionId}"`))
                 }
-            } catch {}
+            } catch { }
         }
     }
 
@@ -94,8 +94,8 @@ test.afterEach(async ({}, testInfo) => {
             const intervalMs = 1000
             for (let attempt = 0; attempt < maxAttempts; attempt++) {
                 try {
-                        // Buscar en la BBDD por título (la fila más reciente)
-                        dbRow = await dbService.query(tracking.title, tracking.tiempo)
+                    // Buscar en la BBDD por título (la fila más reciente)
+                    dbRow = await dbService.query(tracking.title, tracking.tiempo)
                 } catch (e) {
                     dbRow = null
                 }
@@ -238,8 +238,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -356,8 +356,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet03@deloitte.es'
+        const password = '1P7Y5s.h0@W29X'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -458,8 +458,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet01@deloitte.es'
+        const password = 'w.T0@8vbUtiCC6'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -560,8 +560,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -662,8 +662,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet03@deloitte.es'
+        const password = '1P7Y5s.h0@W29X'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -764,15 +764,16 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet01@deloitte.es'
+        const password = 'w.T0@8vbUtiCC6'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -826,7 +827,8 @@ for (let run = 1; run <= RUNS; run++) {
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -872,15 +874,16 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -926,15 +929,16 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet03@deloitte.es'
+        const password = '1P7Y5s.h0@W29X'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || ''; let id = ''; let numEmpleado = ''; try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
+            try {
+                const req = await analyticsPromise; const post = req.postData() || ''; let id = ''; let numEmpleado = ''; try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
                     for (const [k, v] of params.entries()) {
                         if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
@@ -949,69 +953,269 @@ for (let run = 1; run <= RUNS; run++) {
         })
 
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Talento button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickTalentoButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Talento button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickTalentoButton();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Salud, Seguridad y Bienestar link', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickSaludSeguridadBienestarButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Salud, Seguridad y Bienestar link', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickSaludSeguridadBienestarButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Talento > Wellbeing at Deloitte', async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
-        await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
-        await test.step('Login to the intranet', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'; const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 }); await intranetPage.doLogin(username, password); try { const req = await analyticsPromise; const post = req.postData() || ''; let id = ''; let numEmpleado = ''; try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch { const params = new URLSearchParams(String(post || '')); for (const [k, v] of params.entries()) { if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v; if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v } if (!numEmpleado) { const mEmp = /([A-Z]?S?\d{6,10})/.exec(post); if (mEmp) numEmpleado = mEmp[1] } if ((id === 'No disponible' || !id) && post) { const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post); if (mId) id = mId[1] } } sessionSummary.sessionId = String(id); sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || '' } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' } })
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page);
+            await navigateTo.intranetPage()
+        })
+        const username = 't-testintranet01@deloitte.es'
+        const password = 'w.T0@8vbUtiCC6'
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx';
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 });
+            await intranetPage.doLogin(username, password);
+            try {
+                const req = await analyticsPromise;
+                const post = req.postData() || '';
+                let id = '';
+                let numEmpleado = '';
+                try {
+                    const obj = JSON.parse(post);
+                    id = obj?.id_sesion ?? obj?.idSession ?? id;
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''));
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v;
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post);
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post);
+                        if (mId) id = mId[1]
+                    }
+                } sessionSummary.sessionId = String(id);
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible';
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Talento button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickTalentoButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Talento button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickTalentoButton();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Wellbeing at Deloitte link', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickWellbeingButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Wellbeing at Deloitte link', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickWellbeingButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Talento > Programa Being Flexible', async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
-        await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
-        await test.step('Login to the intranet', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'; const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 }); await intranetPage.doLogin(username, password); try { const req = await analyticsPromise; const post = req.postData() || ''; let id = ''; let numEmpleado = ''; try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch { const params = new URLSearchParams(String(post || '')); for (const [k, v] of params.entries()) { if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v; if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v } if (!numEmpleado) { const mEmp = /([A-Z]?S?\d{6,10})/.exec(post); if (mEmp) numEmpleado = mEmp[1] } if ((id === 'No disponible' || !id) && post) { const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post); if (mId) id = mId[1] } } sessionSummary.sessionId = String(id); sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || '' } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' } })
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page);
+            await navigateTo.intranetPage()
+        })
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx';
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 });
+            await intranetPage.doLogin(username, password);
+            try {
+                const req = await analyticsPromise;
+                const post = req.postData() || ''; let id = '';
+                let numEmpleado = '';
+                try {
+                    const obj = JSON.parse(post);
+                    id = obj?.id_sesion ?? obj?.idSession ?? id;
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''));
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v;
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post);
+                        if (mEmp) numEmpleado = mEmp[1]
+                    }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post);
+                        if (mId) id = mId[1]
+                    }
+                } sessionSummary.sessionId = String(id);
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible';
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Talento button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickTalentoButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Talento button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickTalentoButton();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Beneficios y Retribución link', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickBeneficiosRetribucionButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Beneficios y Retribución link', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickBeneficiosRetribucionButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Talento > Acción Social', async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
-        await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
-        await test.step('Login to the intranet', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'; const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 }); await intranetPage.doLogin(username, password); try { const req = await analyticsPromise; const post = req.postData() || ''; let id = ''; let numEmpleado = ''; try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch { const params = new URLSearchParams(String(post || '')); for (const [k, v] of params.entries()) { if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v; if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v } if (!numEmpleado) { const mEmp = /([A-Z]?S?\d{6,10})/.exec(post); if (mEmp) numEmpleado = mEmp[1] } if ((id === 'No disponible' || !id) && post) { const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post); if (mId) id = mId[1] } } sessionSummary.sessionId = String(id); sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || '' } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' } })
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page);
+            await navigateTo.intranetPage()
+        })
+        const username = 't-testintranet03@deloitte.es'
+        const password = '1P7Y5s.h0@W29X'
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx';
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 });
+            await intranetPage.doLogin(username, password);
+            try {
+                const req = await analyticsPromise;
+                const post = req.postData() || '';
+                let id = '';
+                let numEmpleado = ''; try {
+                    const obj = JSON.parse(post);
+                    id = obj?.id_sesion ?? obj?.idSession ?? id;
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''));
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v;
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) {
+                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post);
+                        if (mEmp) numEmpleado = mEmp[1]
+                    } if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post);
+                        if (mId) id = mId[1]
+                    }
+                } sessionSummary.sessionId = String(id);
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            }
+            catch {
+                sessionSummary.sessionId = 'No disponible';
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Talento button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickTalentoButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Talento button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickTalentoButton();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Acción Social link', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickAccionSocialButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Acción Social link', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickAccionSocialButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Talento > Programa Diversidad, Equidad', async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
-        await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
-        await test.step('Login to the intranet', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'; const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 }); await intranetPage.doLogin(username, password); try { const req = await analyticsPromise; const post = req.postData() || ''; let id = ''; let numEmpleado = ''; try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch { const params = new URLSearchParams(String(post || '')); for (const [k, v] of params.entries()) { if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v; if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v } if (!numEmpleado) { const mEmp = /([A-Z]?S?\d{6,10})/.exec(post); if (mEmp) numEmpleado = mEmp[1] } if ((id === 'No disponible' || !id) && post) { const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post); if (mId) id = mId[1] } } sessionSummary.sessionId = String(id); sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || '' } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' } })
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page);
+            await navigateTo.intranetPage()
+        })
+        const username = 't-testintranet01@deloitte.es'
+        const password = 'w.T0@8vbUtiCC6'
+        await test.step('Login to the intranet', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx';
+            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 });
+            await intranetPage.doLogin(username, password);
+            try {
+                const req = await analyticsPromise;
+                const post = req.postData() || ''; let id = ''; let numEmpleado = '';
+                try {
+                    const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id;
+                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
+                } catch {
+                    const params = new URLSearchParams(String(post || ''));
+                    for (const [k, v] of params.entries()) {
+                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v;
+                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
+                    }
+                    if (!numEmpleado) { const mEmp = /([A-Z]?S?\d{6,10})/.exec(post); if (mEmp) numEmpleado = mEmp[1] }
+                    if ((id === 'No disponible' || !id) && post) {
+                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post);
+                        if (mId) id = mId[1]
+                    }
+                } sessionSummary.sessionId = String(id);
+                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
+            } catch {
+                sessionSummary.sessionId = 'No disponible';
+                sessionSummary.user = sessionSummary.user || 'No disponible'
+            }
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Talento button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickTalentoButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Talento button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickTalentoButton();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Programa Diversidad, Equidad link', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickProgramaDiversidadButton(); await page.waitForTimeout(1000) })
+        await test.step('Click on Programa Diversidad, Equidad link', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickProgramaDiversidadButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Quienes somos > Negocios', async ({ browser }) => {
@@ -1022,8 +1226,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -1122,14 +1326,15 @@ for (let run = 1; run <= RUNS; run++) {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
         })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet03@deloitte.es'
+        const password = '1P7Y5s.h0@W29X'
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -1162,7 +1367,8 @@ for (let run = 1; run <= RUNS; run++) {
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -1188,14 +1394,15 @@ for (let run = 1; run <= RUNS; run++) {
     test('intranet third level - La Firma > Quienes somos > Áreas corporativas y', async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet01@deloitte.es'
+        const password = 'w.T0@8vbUtiCC6'
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -1211,33 +1418,37 @@ for (let run = 1; run <= RUNS; run++) {
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { 
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); 
-            await intranetPage.clickLaFirmaDropdown(); 
-            await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Quienes somos button', async () => { 
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); 
-            await intranetPage.clickQuienesSomosButton(); await 
-            page.waitForTimeout(1000) })
+        await test.step('Click on Quienes somos button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickQuienesSomosButton(); await
+                page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Áreas corporativas y button', async () => { 
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); 
-            await intranetPage.clickAreasCorporativasButton(); 
-            await page.waitForTimeout(1000) })
+        await test.step('Click on Áreas corporativas y button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickAreasCorporativasButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Quienes somos > Sociedades', async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
-        const username = 'vsimongarces@deloitte.es'
-        const password = 'Pradillano180206'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
             const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
             await intranetPage.doLogin(username, password)
-            try { const req = await analyticsPromise; const post = req.postData() || '';
+            try {
+                const req = await analyticsPromise; const post = req.postData() || '';
                 let id = ''; let numEmpleado = '';
                 try { const obj = JSON.parse(post); id = obj?.id_sesion ?? obj?.idSession ?? id; numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? '' } catch {
                     const params = new URLSearchParams(String(post || ''))
@@ -1253,20 +1464,23 @@ for (let run = 1; run <= RUNS; run++) {
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
         await page.waitForTimeout(3000)
-        await test.step('Click on La Firma dropdown', async () => { 
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); 
-            await intranetPage.clickLaFirmaDropdown(); 
-            await page.waitForTimeout(1000) })
+        await test.step('Click on La Firma dropdown', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickLaFirmaDropdown();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Quienes somos button', async () => { 
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); 
-            await intranetPage.clickQuienesSomosButton(); 
-            await page.waitForTimeout(1000) })
+        await test.step('Click on Quienes somos button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickQuienesSomosButton();
+            await page.waitForTimeout(1000)
+        })
         await page.waitForTimeout(3000)
-        await test.step('Click on Sociedades button', async () => { 
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); 
-            await intranetPage.clickSociedadesButton(); 
-            await page.waitForTimeout(1000) })
+        await test.step('Click on Sociedades button', async () => {
+            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
+            await intranetPage.clickSociedadesButton();
+            await page.waitForTimeout(1000)
+        })
     })
 
     test('intranet third level - La Firma > Quienes somos > Presentaciones de Firma', async ({ browser }) => {

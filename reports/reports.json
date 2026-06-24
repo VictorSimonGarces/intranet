@@ -11929,5 +11929,63 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet third level - La Firma > Talento > Wellbeing at Deloitte",
+    "status": "passed",
+    "user": "S90049840",
+    "sessionId": "b1da0577-5831-415a-9f87-5a6fb270747a",
+    "start": "8:52:58 AM",
+    "duration": "32.36s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "b1da0577-5831-415a-9f87-5a6fb270747a",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:53:19.669Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": ""
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Talento",
+          "playwright": {
+            "id_sesion": "b1da0577-5831-415a-9f87-5a6fb270747a",
+            "title": "Talento",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "tiempo": "2026-06-24T06:53:24.995Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Wellbeing at Deloitte",
+          "playwright": {
+            "id_sesion": "b1da0577-5831-415a-9f87-5a6fb270747a",
+            "title": "Wellbeing at Deloitte",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/wellbeing-at-deloitte.aspx",
+            "tiempo": "2026-06-24T06:53:30.140Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90049840"
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]
