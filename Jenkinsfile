@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         CI = 'true'
+        PLAYWRIGHT_BROWSERS_PATH = "C:\\Users\\vsimongarces\\AppData\\Local\\ms-playwright"
     }
 
     stages {
@@ -29,19 +30,19 @@ pipeline {
 
                 stage('Shard 1/3') {
                     steps {
-                        bat 'npx playwright test --shard=1/3 --reporter=junit,html'
+                        bat 'npx playwright test --shard=1/3'
                     }
                 }
 
                 stage('Shard 2/3') {
                     steps {
-                        bat 'npx playwright test --shard=2/3 --reporter=junit,html'
+                        bat 'npx playwright test --shard=2/3'
                     }
                 }
 
                 stage('Shard 3/3') {
                     steps {
-                        bat 'npx playwright test --shard=3/3 --reporter=junit,html'
+                        bat 'npx playwright test --shard=3/3'
                     }
                 }
 
@@ -52,22 +53,11 @@ pipeline {
 
     post {
         always {
-            junit 'test-results/*.xml'
-
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'playwright-report',
-                reportFiles: 'index.html',
-                reportName: 'Playwright Report'
-            ])
+            junit allowEmptyResults: true, testResults: 'test-results/*.xml'
         }
-
         success {
             echo 'Todos los tests han pasado'
         }
-
         failure {
             echo 'Hay tests fallidos - revisar reporte'
         }
