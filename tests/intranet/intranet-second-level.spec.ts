@@ -319,8 +319,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet03@deloitte.es'
-        const password = '1P7Y5s.h0@W29X'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -416,8 +416,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -610,8 +610,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet03@deloitte.es'
-        const password = '1P7Y5s.h0@W29X'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -707,8 +707,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -916,8 +916,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet03@deloitte.es'
-        const password = '1P7Y5s.h0@W29X'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
@@ -1021,8 +1021,8 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
+        const username = 't-testintranet02@deloitte.es'
+        const password = '0TGl.NK@r1cecw'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)

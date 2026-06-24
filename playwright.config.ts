@@ -2,39 +2,16 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-
-  /* Run tests in files in parallel */
   fullyParallel: true,
-
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   timeout: 0,
-  
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  //retries: process.env.CI ? 2 : 0,
-  retries: 2,
-  /* Opt out of parallel tests on CI. */
-  workers: 4, // número de tests en paralelo
-  fullyParallel: true, // Reparte tests individuales, no solo archivos
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  globalTeardown: require.resolve('./global-teardown'),
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    //headless: false,
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
 
-  /* Retry on CI only, sin retries en local */
+  // Retries: 2 on CI, 0 locally
   retries: process.env.CI ? 2 : 0,
 
-  /* En CI deja que Jenkins controle el paralelismo via sharding.
-     En local usa 4 workers */
+  // Workers: controlled by CI when running in sharded mode, otherwise 4 locally
   workers: process.env.CI ? 1 : 4,
 
-  /* Reporters: en CI añade junit para Jenkins, siempre html */
   reporter: process.env.CI
     ? [
         ['junit', { outputFile: 'test-results/results.xml' }],
@@ -49,16 +26,12 @@ export default defineConfig({
   globalTeardown: require.resolve('./global-teardown'),
 
   use: {
-    /* Headless en CI, con cabeza en local para depurar */
     headless: !!process.env.CI,
-
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
   },
 
-  /* Solo Chromium en CI para que vaya más rápido.
-     En local los tres browsers */
   projects: process.env.CI
     ? [
         {

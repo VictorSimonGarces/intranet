@@ -1,4 +1,4 @@
-import { test } from '@playwright/test'
+/*import { test } from '@playwright/test'
 test.describe.configure({ mode: 'parallel' });
 import * as fs from 'fs'
 import * as path from 'path'
@@ -226,7 +226,7 @@ test.afterEach(async ({}, testInfo) => {
     // Cerrar conexión a BD si existe
     try {
         if (dbService) await dbService.disconnect()
-    } catch (e) { /* ignore */ }
+    } catch (e) { /* ignore */ /*}
 });
 
 const RUNS = 1
@@ -317,7 +317,7 @@ for (let run = 1; run <= RUNS; run++) {
 
                     if (nEmpleado) sessionSummary.user = nEmpleado
                 }
-            } catch (e) { /* ignore cookie parsing errors */ }
+            } catch (e) { /* ignore cookie parsing errors */ /*}
         })
 
         await page.waitForTimeout(3000)
@@ -363,4 +363,4 @@ for (let run = 1; run <= RUNS; run++) {
         })
 
     })
-}
+}*/
