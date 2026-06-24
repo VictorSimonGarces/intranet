@@ -30,19 +30,19 @@ pipeline {
 
                 stage('Shard 1/3') {
                     steps {
-                        bat 'npx playwright test --shard=1/3'
+                        bat 'npx playwright test --shard=1/3 --reporter=junit,html'
                     }
                 }
 
                 stage('Shard 2/3') {
                     steps {
-                        bat 'npx playwright test --shard=2/3'
+                        bat 'npx playwright test --shard=2/3 --reporter=junit,html'
                     }
                 }
 
                 stage('Shard 3/3') {
                     steps {
-                        bat 'npx playwright test --shard=3/3'
+                        bat 'npx playwright test --shard=3/3 --reporter=junit,html'
                     }
                 }
 
