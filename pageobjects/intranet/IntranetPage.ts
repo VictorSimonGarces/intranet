@@ -8,12 +8,35 @@ export class IntranetPage{
     private readonly passwordTextBox: Locator
     private readonly signInButton: Locator
     private readonly laFirmaDropdown: Locator
+    private readonly laFirmaMenu: Locator
     private readonly quienesSomosButton: Locator
     private readonly centroDeRecursosButton: Locator
     private readonly talentoButton: Locator
+    private readonly espacioDeLearningButton: Locator
+    private readonly industriasButton: Locator
+    private readonly geografiasButton: Locator
+    private readonly areasCorporativasButton: Locator
+    private readonly sociedadesButton: Locator
+    private readonly presentacionesFirmaButton: Locator
     private readonly comiteEjecutivoButton: Locator
+    private readonly deloitteTalentConnectButton: Locator
+    private readonly programasMovilidadButton: Locator
+    private readonly programaAlumniButton: Locator
+    private readonly espacioPerformanceButton: Locator
+    private readonly modelosTalentoButton: Locator
+    private readonly modelosCompetenciasButton: Locator
+    private readonly saludSeguridadBienestarButton: Locator
+    private readonly wellbeingButton: Locator
+    private readonly programaBeingFlexibleButton: Locator
+    private readonly beneficiosRetribucionButton: Locator
+    private readonly accionSocialButton: Locator
+    private readonly programaDiversidadButton: Locator
     private readonly consejosSociosButton: Locator
     private readonly negociosButton: Locator
+    private readonly estrategiaDeNegocioButton: Locator
+    private readonly culturaButton: Locator
+    private readonly riskReputationButton: Locator
+    private readonly eticaButton: Locator
     private readonly strategyCard: Locator
     private readonly taxCard: Locator
     private readonly alianzasCard: Locator
@@ -40,16 +63,40 @@ export class IntranetPage{
         this.passwordTextBox = page.getByRole('textbox', { name: 'Enter the password for' })
         this.signInButton = page.getByRole('button', { name: 'Sign in' })
         this.laFirmaDropdown = page.getByRole('link', { name: 'La Firma ' })
-        this.quienesSomosButton = page.getByRole('link', { name: 'Quiénes somos' }).first()
-        this.centroDeRecursosButton = page.getByRole('link', { name: /Centro de recursos/i }).first()
-        this.talentoButton = page.getByRole('link', { name: /Talento/i }).first()
-        this.comiteEjecutivoButton = page.getByRole('link', { name: 'Comité Ejecutivo ' })
-        this.consejosSociosButton = page.getByRole('link', { name: 'Consejo de Socios' })
-        this.negociosButton = page.getByRole('link', { name: 'Negocios' })
+        this.laFirmaMenu = page.locator('#menu-intranet-top-1')
+        this.quienesSomosButton = this.laFirmaMenu.getByRole('link', { name: 'Quiénes somos' }).first()
+        this.centroDeRecursosButton = page.locator('a:has-text("Centro de recursos"):visible').first()
+        this.talentoButton = this.laFirmaMenu.getByRole('link', { name: /Talento/i }).first()
+        this.espacioDeLearningButton = page.getByRole('link', { name: 'Espacio de Learning ' }).first()
+        this.industriasButton = page.getByRole('link', { name: 'Industrias ' }).first()
+        this.geografiasButton = page.getByRole('link', { name: 'Geografías ' }).first()
+        this.areasCorporativasButton = page.getByRole('link', { name: 'Áreas corporativas y' }).first()
+        this.sociedadesButton = page.getByRole('link', { name: 'Sociedades ' }).first()
+        this.comiteEjecutivoButton = page.locator('a:has-text("Comité Ejecutivo"):visible').first()
+        this.presentacionesFirmaButton = page.getByRole('link', { name: 'Presentaciones de Firma ' }).first()
+        this.deloitteTalentConnectButton = page.getByRole('link', { name: 'Deloitte Talent Connect ' }).first()
+        this.programasMovilidadButton = page.getByRole('link', { name: 'Programas de Movilidad ' }).first()
+        this.programaAlumniButton = page.getByRole('link', { name: 'Programa Alumni ' }).first()
+        this.espacioPerformanceButton = page.getByRole('link', { name: 'Espacio de Performance ' }).first()
+        this.modelosTalentoButton = page.getByRole('link', { name: 'Modelos de Talento ' }).first()
+        this.modelosCompetenciasButton = page.getByRole('link', { name: 'Modelos de Competencias ' }).first()
+        this.saludSeguridadBienestarButton = page.getByRole('link', { name: 'Salud, Seguridad y Bienestar ' }).first()
+        this.wellbeingButton = page.getByRole('link', { name: 'Wellbeing at Deloitte ' }).first()
+        this.programaBeingFlexibleButton = page.getByRole('link', { name: 'Programa Being Flexible ' }).first()
+        this.beneficiosRetribucionButton = page.getByRole('link', { name: 'Beneficios y Retribución' }).first()
+        this.accionSocialButton = page.getByRole('link', { name: 'Acción Social ' }).first()
+        this.programaDiversidadButton = page.getByRole('link', { name: 'Programa Diversidad, Equidad' }).first()
+        this.consejosSociosButton = this.laFirmaMenu.getByRole('link', { name: 'Consejo de Socios' })
+        this.negociosButton = page.locator('a:has-text("Negocios"):visible').first()
+        this.estrategiaDeNegocioButton = this.laFirmaMenu.getByRole('link', { name: 'Estrategia de Negocio' })
+        this.culturaButton = this.laFirmaMenu.getByRole('link', { name: 'Cultura' })
+        this.riskReputationButton = this.laFirmaMenu.getByRole('link', { name: 'Risk & Reputation' })
+        this.eticaButton = this.laFirmaMenu.getByRole('link', { name: 'Ética' })
         this.strategyCard = page.locator('div:nth-child(2) > .intranetDTT-card > .intranetDTT-card-content')
         this.taxCard = page.locator('div:nth-child(3) > .intranetDTT-card > .intranetDTT-card-content')
-        this.alianzasCard = page.getByRole('link', { name: 'Alianzas y ecosistemas ' })
-        this.networkingCard = page.getByRole('link', { name: 'Calendario de Networking ' })
+        // Usar selectores basados en href/texto visibles para evitar duplicados/ocultos
+        this.alianzasCard = page.locator('a[href*="alianzas"]:visible').first()
+        this.networkingCard = page.locator('a[href*="networking"]:visible').first()
         this.startmeUpButton = page.getByRole('link', { name: 'StartmeUP ' })
         this.politicasYProcedimientosButton = page.getByRole('link', { name: 'Políticas y Procedimientos' })
         this.comunidadesButton = page.getByRole('link', { name: 'Comunidades' })
@@ -163,6 +210,357 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
+    async clickIndustriasButton(){
+        // Click en 'Industrias' y registra evento de tracking + BD
+        try {
+            await this.industriasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.industriasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.industriasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingInd: any = await this.getTrackingData()
+        const accionInd = 'Boton Industrias'
+        const nInd = await this.extractNEmpleadoFromCookies()
+        if (nInd && this.session) this.session.user = nInd
+        if (this.session) trackingInd.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionInd, trackingInd)
+    }
+
+    async clickGeografiasButton(){
+        // Click en 'Geografías' y registra evento de tracking + BD
+        try {
+            await this.geografiasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.geografiasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.geografiasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingGeo: any = await this.getTrackingData()
+        const accionGeo = 'Boton Geografias'
+        const nGeo = await this.extractNEmpleadoFromCookies()
+        if (nGeo && this.session) this.session.user = nGeo
+        if (this.session) trackingGeo.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionGeo, trackingGeo)
+    }
+
+    async clickAreasCorporativasButton(){
+        // Click en 'Áreas corporativas y' y registra evento de tracking + BD
+        try {
+            await this.areasCorporativasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.areasCorporativasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.areasCorporativasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingAC: any = await this.getTrackingData()
+        const accionAC = 'Boton Areas Corporativas'
+        const nAC = await this.extractNEmpleadoFromCookies()
+        if (nAC && this.session) this.session.user = nAC
+        if (this.session) trackingAC.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionAC, trackingAC)
+    }
+
+    async clickSociedadesButton(){
+        // Click en 'Sociedades' y registra evento de tracking + BD
+        try {
+            await this.sociedadesButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.sociedadesButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.sociedadesButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingSoc: any = await this.getTrackingData()
+        const accionSoc = 'Boton Sociedades'
+        const nSoc = await this.extractNEmpleadoFromCookies()
+        if (nSoc && this.session) this.session.user = nSoc
+        if (this.session) trackingSoc.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionSoc, trackingSoc)
+    }
+
+    async clickPresentacionesFirmaButton(){
+        // Click en 'Presentaciones de Firma' y registra evento de tracking + BD
+        try {
+            await this.presentacionesFirmaButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            await this.presentacionesFirmaButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.presentacionesFirmaButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingPF: any = await this.getTrackingData()
+        const accionPF = 'Boton Presentaciones de Firma'
+        const nPF = await this.extractNEmpleadoFromCookies()
+        if (nPF && this.session) this.session.user = nPF
+        if (this.session) trackingPF.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionPF, trackingPF)
+    }
+
+    async clickDeloitteTalentConnectButton(){
+        // Click en 'Deloitte Talent Connect' y registra evento de tracking + BD
+        try {
+            await this.deloitteTalentConnectButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { /* ignore */ }
+            await this.deloitteTalentConnectButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.deloitteTalentConnectButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingDTC: any = await this.getTrackingData()
+        const accionDTC = 'Boton Deloitte Talent Connect'
+        const nDTC = await this.extractNEmpleadoFromCookies()
+        if (nDTC && this.session) this.session.user = nDTC
+        if (this.session) trackingDTC.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionDTC, trackingDTC)
+    }
+
+    async clickProgramasMovilidadButton(){
+        // Click en 'Programas de Movilidad' y registra evento de tracking + BD
+        try {
+            await this.programasMovilidadButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { /* ignore */ }
+            await this.programasMovilidadButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.programasMovilidadButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingPM: any = await this.getTrackingData()
+        const accionPM = 'Boton Programas de Movilidad'
+        const nPM = await this.extractNEmpleadoFromCookies()
+        if (nPM && this.session) this.session.user = nPM
+        if (this.session) trackingPM.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionPM, trackingPM)
+    }
+
+    async clickProgramaAlumniButton(){
+        // Click en 'Programa Alumni' y registra evento de tracking + BD
+        try {
+            await this.programaAlumniButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { /* ignore */ }
+            await this.programaAlumniButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.programaAlumniButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingPA: any = await this.getTrackingData()
+        const accionPA = 'Boton Programa Alumni'
+        const nPA = await this.extractNEmpleadoFromCookies()
+        if (nPA && this.session) this.session.user = nPA
+        if (this.session) trackingPA.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionPA, trackingPA)
+    }
+
+    async clickEspacioPerformanceButton(){
+        // Click en 'Espacio de Performance' y registra evento de tracking + BD
+        try {
+            await this.espacioPerformanceButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { /* ignore */ }
+            await this.espacioPerformanceButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.espacioPerformanceButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingEP: any = await this.getTrackingData()
+        const accionEP = 'Boton Espacio de Performance'
+        const nEP = await this.extractNEmpleadoFromCookies()
+        if (nEP && this.session) this.session.user = nEP
+        if (this.session) trackingEP.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionEP, trackingEP)
+    }
+
+    async clickModelosTalentoButton(){
+        // Click en 'Modelos de Talento' y registra evento de tracking + BD
+        try {
+            await this.modelosTalentoButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { /* ignore */ }
+            await this.modelosTalentoButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.modelosTalentoButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingMT: any = await this.getTrackingData()
+        const accionMT = 'Boton Modelos de Talento'
+        const nMT = await this.extractNEmpleadoFromCookies()
+        if (nMT && this.session) this.session.user = nMT
+        if (this.session) trackingMT.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionMT, trackingMT)
+    }
+
+    async clickModelosCompetenciasButton(){
+        // Click en 'Modelos de Competencias' y registra evento de tracking + BD
+        try {
+            await this.modelosCompetenciasButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { /* ignore */ }
+            await this.modelosCompetenciasButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.modelosCompetenciasButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const trackingMC: any = await this.getTrackingData()
+        const accionMC = 'Boton Modelos de Competencias'
+        const nMC = await this.extractNEmpleadoFromCookies()
+        if (nMC && this.session) this.session.user = nMC
+        if (this.session) trackingMC.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accionMC, trackingMC)
+    }
+
+    async clickSaludSeguridadBienestarButton(){
+        try {
+            await this.saludSeguridadBienestarButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { }
+            await this.saludSeguridadBienestarButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.saludSeguridadBienestarButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Salud Seguridad Bienestar'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickWellbeingButton(){
+        try {
+            await this.wellbeingButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { }
+            await this.wellbeingButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.wellbeingButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Wellbeing at Deloitte'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickProgramaBeingFlexibleButton(){
+        try {
+            await this.programaBeingFlexibleButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { }
+            await this.programaBeingFlexibleButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.programaBeingFlexibleButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Programa Being Flexible'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickBeneficiosRetribucionButton(){
+        try {
+            await this.beneficiosRetribucionButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { }
+            await this.beneficiosRetribucionButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.beneficiosRetribucionButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Beneficios y Retribucion'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickAccionSocialButton(){
+        try {
+            await this.accionSocialButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { }
+            await this.accionSocialButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.accionSocialButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Acción Social'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickProgramaDiversidadButton(){
+        try {
+            await this.programaDiversidadButton.waitFor({ state: 'visible', timeout: 10000 })
+        } catch (e) {
+            try { await this.talentoButton.click() } catch (_) { }
+            await this.programaDiversidadButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.programaDiversidadButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Programa Diversidad'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
     async clickQuienesSomosButton(){
         // Click en 'Quiénes somos' y registra evento de tracking + BD
         await this.quienesSomosButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -182,7 +580,18 @@ export class IntranetPage{
 
     async clickCentroDeRecursosButton(){
         // Click en 'Centro de recursos' y registra evento de tracking + BD
-        await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 10000 })
+        try {
+            await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
+            await Promise.all([
+                this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+                this.laFirmaDropdown.click()
+            ])
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.centroDeRecursosButton.click()
@@ -224,9 +633,34 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)           
     }
 
+    async clickEspacioDeLearningButton(){
+        // Click en 'Espacio de Learning' y registra evento de tracking + BD
+        await this.espacioDeLearningButton.waitFor({ state: 'visible', timeout: 10000 })
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.espacioDeLearningButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Espacio de Learning'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        this.pushClickRecord(accion, tracking)
+    }
+
     async clickComiteEjecutivoButton(){
         // Click en 'Comité Ejecutivo' y registra evento de tracking + BD
-        await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 10000 })
+        try {
+            await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            try {
+                await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
+                await this.laFirmaDropdown.click().catch(() => null)
+            } catch (_) { /* ignore */ }
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.comiteEjecutivoButton.click()
@@ -260,7 +694,16 @@ export class IntranetPage{
 
     async clickNegociosButton(){    
     // Click en 'Negocios' y registra evento de tracking + BD
-        await this.negociosButton.waitFor({ state: 'visible', timeout: 10000 })
+        try {
+            await this.negociosButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            try {
+                await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
+                await this.laFirmaDropdown.click().catch(() => null)
+            } catch (_) { /* ignore */ }
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.negociosButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
         await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.negociosButton.click()
@@ -268,6 +711,95 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Boton Negocios'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickEstrategiaDeNegocioButton(){
+        // Click en 'Estrategia de Negocio' y registra evento de tracking + BD
+        try {
+            await this.estrategiaDeNegocioButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.laFirmaMenu.waitFor({ state: 'visible', timeout: 10000 })
+            await this.estrategiaDeNegocioButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.estrategiaDeNegocioButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Estrategia de Negocio'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickCulturaButton(){
+        // Click en 'Cultura' y registra evento de tracking + BD
+        try {
+            await this.culturaButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.culturaButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.culturaButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Cultura'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickRiskReputationButton(){
+        // Click en 'Risk & Reputation' y registra evento de tracking + BD
+        try {
+            await this.riskReputationButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.riskReputationButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.riskReputationButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Risk & Reputation'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
+    async clickEticaButton(){
+        // Click en 'Ética' y registra evento de tracking + BD
+        try {
+            await this.eticaButton.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            await this.laFirmaDropdown.click().catch(() => null)
+            await this.eticaButton.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.eticaButton.click()
+        ])
+        await this.page.waitForTimeout(200)
+        const tracking: any = await this.getTrackingData()
+        const accion = 'Boton Ética'
         const n = await this.extractNEmpleadoFromCookies()
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
@@ -310,15 +842,33 @@ export class IntranetPage{
     }
 
         async clickAlianzasCard(){
-        // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
-        await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
-        await Promise.all([ 
-            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
-            this.alianzasCard.click()
-        ])
+            // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
+            // Intentar una espera corta y, si no está visible, abrir el menú padre como fallback
+            try {
+                await this.alianzasCard.waitFor({ state: 'visible', timeout: 3000 })
+            } catch (e) {
+                    try {
+                        // Preferir abrir el menú 'Centro de recursos' que expone la tarjeta
+                        await this.clickCentroDeRecursosButton()
+                    } catch (_) {
+                        try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+                    }
+                    await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+            }
+            await Promise.all([ 
+                this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+                this.alianzasCard.click()
+            ])
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click Alianzas Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
     async clickPoliticasYProcedimientosButton(){
         // Click en 'Políticas y Procedimientos' y registra evento de tracking + BD
         await this.politicasYProcedimientosButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -338,7 +888,16 @@ export class IntranetPage{
 
     async clickNetworkingCard(){
         // Click en la tarjeta 'Networking' y registra evento de tracking + BD
-        await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 }) 
+        try {
+            await this.networkingCard.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
+            try {
+                await this.clickCentroDeRecursosButton()
+            } catch (_) {
+                try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
+            }
+            await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 })
+        }
         await Promise.all([ 
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.networkingCard.click()
@@ -346,6 +905,13 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click Networking Card'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+
     async clickComunidadesButton(){
         // Click en 'Comunidades' y registra evento de tracking + BD
         await this.comunidadesButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -373,6 +939,13 @@ export class IntranetPage{
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click StartmeUP Button'
+        const n = await this.extractNEmpleadoFromCookies()
+        if (n && this.session) this.session.user = n
+        if (this.session) tracking.numEmpleado = this.session.user ?? ''
+        // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
+        this.pushClickRecord(accion, tracking)
+    }
+    
     async clickVerTodosLosAplicativosButton(){
         // Click en 'Ver todos los Aplicativos' y registra evento de tracking + BD
         await this.verTodosLosAplicativosButton.waitFor({ state: 'visible', timeout: 10000 })
