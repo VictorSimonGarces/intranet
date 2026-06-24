@@ -11987,5 +11987,40 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Presentaciones de Firma",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:10:00",
+    "duration": "28.44s",
+    "clicks": []
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Presentaciones de Firma",
+    "status": "failed",
+    "user": "S00000001",
+    "sessionId": "824b1666-12e2-4a34-9bf2-8cd68d56cb49",
+    "start": "10:10:44",
+    "duration": "26.73s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "824b1666-12e2-4a34-9bf2-8cd68d56cb49",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-24T08:10:57.075Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
   }
 ]

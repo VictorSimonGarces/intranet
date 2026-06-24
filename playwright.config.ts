@@ -8,33 +8,15 @@ export default defineConfig({
 
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+
+  /* Global timeout for each test (ms). 0 = disabled */
   timeout: 0,
-  
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  //retries: process.env.CI ? 2 : 0,
-  retries: 2,
-  /* Opt out of parallel tests on CI. */
-  workers: 4, // número de tests en paralelo
-  fullyParallel: true, // Reparte tests individuales, no solo archivos
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  globalTeardown: require.resolve('./global-teardown'),
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    //headless: false,
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
 
-  /* Retry on CI only, sin retries en local */
+  /* Retries and workers depend on CI */
   retries: process.env.CI ? 2 : 0,
-
-  /* En CI deja que Jenkins controle el paralelismo via sharding.
-     En local usa 4 workers */
   workers: process.env.CI ? 1 : 4,
 
-  /* Reporters: en CI añade junit para Jenkins, siempre html */
+  /* Reporter configuration */
   reporter: process.env.CI
     ? [
         ['junit', { outputFile: 'test-results/results.xml' }],
@@ -48,17 +30,14 @@ export default defineConfig({
 
   globalTeardown: require.resolve('./global-teardown'),
 
+  /* Shared settings for all projects */
   use: {
-    /* Headless en CI, con cabeza en local para depurar */
     headless: !!process.env.CI,
-
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
   },
 
-  /* Solo Chromium en CI para que vaya más rápido.
-     En local los tres browsers */
   projects: process.env.CI
     ? [
         {
