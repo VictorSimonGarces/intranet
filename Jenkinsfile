@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node-20'
+        nodejs 'node-20'
     }
 
     environment {
         CI = 'true'
+        PLAYWRIGHT_BROWSERS_PATH = "C:\\Users\\vsimongarces\\AppData\\Local\\ms-playwright"
     }
 
     stages {
@@ -20,7 +21,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 bat 'npm ci'
-                bat 'npx playwright install --with-deps'
+                bat 'npx playwright install chromium'
             }
         }
 
@@ -52,22 +53,11 @@ pipeline {
 
     post {
         always {
-            junit 'test-results/*.xml'
-
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'playwright-report',
-                reportFiles: 'index.html',
-                reportName: 'Playwright Report'
-            ])
+            junit allowEmptyResults: true, testResults: 'test-results/*.xml'
         }
-
         success {
             echo 'Todos los tests han pasado'
         }
-
         failure {
             echo 'Hay tests fallidos - revisar reporte'
         }

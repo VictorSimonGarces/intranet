@@ -4,13 +4,9 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
+
+  /* Global timeout for each test (ms). 0 = disabled */
   timeout: 0,
-
-  // Retries: 2 on CI, 0 locally
-  retries: process.env.CI ? 2 : 0,
-
-  // Workers: controlled by CI when running in sharded mode, otherwise 4 locally
-  workers: process.env.CI ? 1 : 4,
 
   reporter: process.env.CI
     ? [
@@ -25,6 +21,7 @@ export default defineConfig({
 
   globalTeardown: require.resolve('./global-teardown'),
 
+  /* Shared settings for all projects */
   use: {
     headless: !!process.env.CI,
     trace: 'on-first-retry',
