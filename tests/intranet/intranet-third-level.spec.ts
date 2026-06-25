@@ -228,7 +228,7 @@ test.afterEach(async ({ }, testInfo) => {
     } catch (e) { /* ignore */ }
 });
 
-const RUNS = 1
+const RUNS = 5 //100 sesiones
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - run ${run}`, async ({ browser }) => {
 
@@ -349,8 +349,10 @@ for (let run = 1; run <= RUNS; run++) {
 
         })
     })
+}
 
-    test('intranet third level - La Firma > Talento > Espacio de Learning', async ({ browser }) => {
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Espacio de Learning - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -451,8 +453,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Deloitte Talent Connect', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Deloitte Talent Connect - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -553,8 +556,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Programas de Movilidad', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Programas de movilidad - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -655,8 +659,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Programa Alumni', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Programa alumni - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -757,8 +762,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Espacio de Performance', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Espacio de Performance - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -812,8 +818,10 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
+}
 
-    test('intranet third level - La Firma > Talento > Modelos de Talento', async ({ browser }) => {
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Modelos de talento - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -867,8 +875,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Modelos de Competencias', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Modelos de competencia - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -922,8 +931,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Salud, Seguridad y Bienestar', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Salud, seguridad y bienestar - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -973,8 +983,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Wellbeing at Deloitte', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Wellbeing at Deloitte - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1037,8 +1048,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Programa Being Flexible', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Programa Being flexible - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page);
@@ -1099,8 +1111,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Acción Social', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Acción social - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1162,8 +1175,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Talento > Programa Diversidad, Equidad', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Talento > Programa Diversidad, Equidad - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page);
@@ -1219,8 +1233,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Quienes somos > Negocios', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Quienes somos > Negocios - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1320,8 +1335,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Quienes somos > Industrias', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Quienes somos > Industrias - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
@@ -1357,8 +1373,9 @@ for (let run = 1; run <= RUNS; run++) {
         await page.waitForTimeout(3000)
         await test.step('Click on Industrias button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickIndustriasButton(); await page.waitForTimeout(1000) })
     })
-
-    test('intranet third level - La Firma > Quienes somos > Geografías', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Quienes somos > Geografías - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
         const username = 't-testintranet03@deloitte.es'
@@ -1391,8 +1408,9 @@ for (let run = 1; run <= RUNS; run++) {
         await page.waitForTimeout(3000)
         await test.step('Click on Geografías button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickGeografiasButton(); await page.waitForTimeout(1000) })
     })
-
-    test('intranet third level - La Firma > Quienes somos > Áreas corporativas y', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Quienes somos > Areas corporativas - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
         const username = 't-testintranet03@deloitte.es'
@@ -1437,8 +1455,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Quienes somos > Sociedades', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Quienes somos > Sociedades - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
         const username = 't-testintranet03@deloitte.es'
@@ -1483,8 +1502,9 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    test('intranet third level - La Firma > Quienes somos > Presentaciones de Firma', async ({ browser }) => {
+}
+for (let run = 1; run <= RUNS; run++) {
+    test(`intranet third level - La Firma > Quienes somos > Presentaciones de Firma - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1553,7 +1573,8 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-    
+}
+for (let run = 1; run <= RUNS; run++) {
     test(`intranet create page_Clicks - run ${run}`, async ({ browser }) => {
             const { context, page } = await IntranetPage.abrirEnIncognito(browser)
     

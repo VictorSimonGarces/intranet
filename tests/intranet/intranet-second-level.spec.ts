@@ -205,7 +205,7 @@ test.afterEach(async ({}, testInfo) => {
     try { if (dbService) await dbService.disconnect() } catch (e) { }
 })
 
-const RUNS = 1
+const RUNS = 12 //108 sesiones
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet second level "Quienes somos" - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
@@ -801,8 +801,8 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-
-    for (let run = 1; run <= RUNS; run++) {
+}
+for (let run = 1; run <= RUNS; run++) {
     test(`intranet second level "Alianzas" - run ${run}`, async ({ browser }) => {
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
@@ -1115,5 +1115,4 @@ for (let run = 1; run <= RUNS; run++) {
             await page.waitForTimeout(1000)
         })
     })
-}
 }
