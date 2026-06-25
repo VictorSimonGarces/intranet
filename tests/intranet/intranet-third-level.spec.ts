@@ -231,7 +231,7 @@ test.afterEach(async ({ }, testInfo) => {
 const RUNS = 5 //100 sesiones
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - run ${run}`, async ({ browser }) => {
-
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -320,28 +320,28 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickQuienesSomosButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Estructura y Gobierno button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickComiteEjecutivoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Consejo de Socios button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickConsejosSociosButton()
@@ -353,6 +353,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Espacio de Learning - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -432,21 +433,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Espacio de Learning link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickEspacioDeLearningButton()
@@ -456,6 +457,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Deloitte Talent Connect - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -535,21 +537,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Deloitte Talent Connect link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickDeloitteTalentConnectButton()
@@ -559,6 +561,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Programas de movilidad - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -638,21 +641,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Programas de Movilidad link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickProgramasMovilidadButton()
@@ -662,6 +665,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Programa alumni - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -741,21 +745,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Programa Alumni link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickProgramaAlumniButton()
@@ -765,6 +769,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Espacio de Performance - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -797,21 +802,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Espacio de Performance link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickEspacioPerformanceButton()
@@ -822,6 +827,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Modelos de talento - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -854,21 +860,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Modelos de Talento link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickModelosTalentoButton()
@@ -878,6 +884,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Modelos de competencia - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -910,21 +917,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickTalentoButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Modelos de Competencias link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickModelosCompetenciasButton()
@@ -934,6 +941,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Salud, seguridad y bienestar - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -964,19 +972,19 @@ for (let run = 1; run <= RUNS; run++) {
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickTalentoButton();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Salud, Seguridad y Bienestar link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickSaludSeguridadBienestarButton();
@@ -986,6 +994,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Wellbeing at Deloitte - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1029,19 +1038,19 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = sessionSummary.user || 'No disponible'
             }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickTalentoButton();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Wellbeing at Deloitte link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickWellbeingButton();
@@ -1051,6 +1060,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Programa Being flexible - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page);
@@ -1092,19 +1102,19 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = sessionSummary.user || 'No disponible'
             }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickTalentoButton();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Beneficios y Retribución link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickBeneficiosRetribucionButton();
@@ -1114,6 +1124,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Acción social - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1156,19 +1167,19 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = sessionSummary.user || 'No disponible'
             }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickTalentoButton();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Acción Social link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickAccionSocialButton();
@@ -1178,6 +1189,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Talento > Programa Diversidad, Equidad - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page);
@@ -1214,19 +1226,19 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = sessionSummary.user || 'No disponible'
             }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Talento button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickTalentoButton();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Programa Diversidad, Equidad link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickProgramaDiversidadButton();
@@ -1236,6 +1248,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Quienes somos > Negocios - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1314,21 +1327,21 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickQuienesSomosButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Negocios button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickNegociosButton()
@@ -1338,6 +1351,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Quienes somos > Industrias - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
@@ -1366,16 +1380,17 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickQuienesSomosButton(); await page.waitForTimeout(1000) })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Industrias button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickIndustriasButton(); await page.waitForTimeout(1000) })
     })
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Quienes somos > Geografías - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
         const username = 't-testintranet03@deloitte.es'
@@ -1401,16 +1416,17 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickLaFirmaDropdown(); await page.waitForTimeout(1000) })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickQuienesSomosButton(); await page.waitForTimeout(1000) })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Geografías button', async () => { const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService); await intranetPage.clickGeografiasButton(); await page.waitForTimeout(1000) })
     })
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Quienes somos > Areas corporativas - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
         const username = 't-testintranet03@deloitte.es'
@@ -1436,19 +1452,19 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickQuienesSomosButton(); await
                 page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Áreas corporativas y button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickAreasCorporativasButton();
@@ -1458,6 +1474,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Quienes somos > Sociedades - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
         await test.step('Navigation to intranet page', async () => { const navigateTo = new NavigateTo(page); await navigateTo.intranetPage() })
         const username = 't-testintranet03@deloitte.es'
@@ -1483,19 +1500,19 @@ for (let run = 1; run <= RUNS; run++) {
                 sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
             } catch { sessionSummary.sessionId = 'No disponible'; sessionSummary.user = sessionSummary.user || 'No disponible' }
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickLaFirmaDropdown();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickQuienesSomosButton();
             await page.waitForTimeout(1000)
         })
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Sociedades button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService);
             await intranetPage.clickSociedadesButton();
@@ -1505,6 +1522,7 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet third level - La Firma > Quienes somos > Presentaciones de Firma - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -1552,21 +1570,21 @@ for (let run = 1; run <= RUNS; run++) {
             }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Quienes somos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickQuienesSomosButton()
             await page.waitForTimeout(1000)
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Presentaciones de Firma link', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickPresentacionesFirmaButton()
@@ -1576,14 +1594,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet create page_Clicks - run ${run}`, async ({ browser }) => {
-            const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
+        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
     
-            await test.step('Navigation to intranet page', async () => {
-                const navigateTo = new NavigateTo(page)
-                await navigateTo.intranetPage()
-            })
+        await test.step('Navigation to intranet page', async () => {
+            const navigateTo = new NavigateTo(page)
+            await navigateTo.intranetPage()
+        })
     
-            const username = 't-testintranet03@deloitte.es'
+        const username = 't-testintranet03@deloitte.es'
         const password = '1P7Y5s.h0@W29X'
     
             await test.step('Login to the intranet', async () => {
@@ -1664,42 +1683,42 @@ for (let run = 1; run <= RUNS; run++) {
                 } catch (e) { /* ignore cookie parsing errors */ }
             })
     
-            await page.waitForTimeout(3000)
+            await page.waitForTimeout(randomDelay)
             await test.step('Click on La Firma dropdown', async () => {
                 const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
                 await intranetPage.clickLaFirmaDropdown()
                 await page.waitForTimeout(1000)
             })
     
-            await page.waitForTimeout(3000)
+            await page.waitForTimeout(randomDelay)
             await test.step('Click on Quienes somos button', async () => {
                 const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
                 await intranetPage.clickQuienesSomosButton()
                 await page.waitForTimeout(1000)
             })
     
-            await page.waitForTimeout(3000)
+            await page.waitForTimeout(randomDelay)
             await test.step('Click on Estructura y Gobierno button', async () => {
                 const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
                 await intranetPage.clickComiteEjecutivoButton()
                 await page.waitForTimeout(1000)
             })
     
-            await page.waitForTimeout(3000)
+            await page.waitForTimeout(randomDelay)
             await test.step('Click on Negocios button', async () => {
                 const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
                 await intranetPage.clickNegociosButton()
                 await page.waitForTimeout(1000)
             })
     
-            await page.waitForTimeout(3000)
+            await page.waitForTimeout(randomDelay)
             await test.step('Click on Strategy Card', async () => {
                 const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
                 await intranetPage.clickStrategyCard()
                 await page.waitForTimeout(1000)
             })
     
-            await page.waitForTimeout(3000)
+            await page.waitForTimeout(randomDelay)
             await test.step('Click on Tax Card', async () => {
                 const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
                 await intranetPage.clickTaxCard()
