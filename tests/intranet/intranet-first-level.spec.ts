@@ -208,6 +208,7 @@ test.afterEach(async ({}, testInfo) => {
 const RUNS = 15 //105 sesiones
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "La Firma" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -295,7 +296,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on La Firma dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickLaFirmaDropdown()
@@ -306,6 +307,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Recursos" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -393,7 +395,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Centro de Recursos dropdown', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickCentroDeRecursosButton()
@@ -404,6 +406,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Políticas y Procedimientos" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -483,7 +486,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Políticas y Procedimientos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickPoliticasYProcedimientosButton()
@@ -494,6 +497,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Comunidades" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -573,7 +577,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Comunidades button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickComunidadesButton()
@@ -584,6 +588,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Ver todos los Aplicativos" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -663,7 +668,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Ver todos los Aplicativos button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickVerTodosLosAplicativosButton()
@@ -674,6 +679,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Ver todos los Dashboards" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -753,7 +759,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Ver todos los Dashboards button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickVerTodoLosDashboardsButton()
@@ -764,6 +770,7 @@ for (let run = 1; run <= RUNS; run++) {
 
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Ver todas las noticias" - run ${run}`, async ({ browser }) => {
+        const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
         const { context, page } = await IntranetPage.abrirEnIncognito(browser)
 
         await test.step('Navigation to intranet page', async () => {
@@ -843,7 +850,7 @@ for (let run = 1; run <= RUNS; run++) {
             } catch (e) { /* ignore cookie parsing errors */ }
         })
 
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(randomDelay)
         await test.step('Click on Ver todas las noticias button', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             await intranetPage.clickVerTodasLasNoticiasButton()
