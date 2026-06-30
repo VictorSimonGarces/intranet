@@ -242,6 +242,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickQuienesSomosButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
