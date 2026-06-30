@@ -24,24 +24,24 @@ test.beforeEach(async () => {
         sessionId: ''
     };
     // Exponer arreglo global para que los pageobjects lo recojan si no se pasa explícitamente
-    ;(globalThis as any).__SESSION_CLICKS = sessionSummary.clicks
-    ;(globalThis as any).__SESSION = sessionSummary
+    ; (globalThis as any).__SESSION_CLICKS = sessionSummary.clicks
+        ; (globalThis as any).__SESSION = sessionSummary
     // Inicializar conexión a la base de datos (config via env vars)
     try {
         const config = {
-        server: 'ESAZUITS00057',
-        database: 'EstadisticasIntranet',
-        user: process.env.DB_USER || '',
-        password: process.env.DB_PASSWORD || '',
-        options: {
-            trustedConnection: true,
-            trustServerCertificate: true,
-            encrypt: false,
-            instanceName: ''
-        },
-        driver: 'msnodesqlv8',
-    connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=ESAZUITS00057;Database=EstadisticasIntranet;Trusted_Connection=yes;'
-}
+            server: 'ESAZUITS00057',
+            database: 'EstadisticasIntranet',
+            user: process.env.DB_USER || '',
+            password: process.env.DB_PASSWORD || '',
+            options: {
+                trustedConnection: true,
+                trustServerCertificate: true,
+                encrypt: false,
+                instanceName: ''
+            },
+            driver: 'msnodesqlv8',
+            connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=ESAZUITS00057;Database=EstadisticasIntranet;Trusted_Connection=yes;'
+        }
         dbService = new DatabaseService(config)
         await dbService.connect()
     } catch (e) {
@@ -49,7 +49,7 @@ test.beforeEach(async () => {
     }
 })
 
-test.afterEach(async ({}, testInfo) => {
+test.afterEach(async ({ }, testInfo) => {
     const duration = ((new Date().getTime() - sessionSummary.startTime.getTime()) / 1000).toFixed(2);
 
     const finalUser = sessionSummary.user && sessionSummary.user !== '' ? sessionSummary.user : 'No disponible'
@@ -209,7 +209,7 @@ const RUNS = 15 //105 sesiones
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "La Firma" - run ${run}`, async ({ browser }) => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const page = await IntranetPage.abrirNormal(browser)
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
@@ -222,8 +222,41 @@ for (let run = 1; run <= RUNS; run++) {
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+            await page.goto('https://intranet_dev.es.deloitte.com');
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            // Stay signed in
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
+                await page.click('input[type="submit"]');
+            } catch { }
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+
+            // pequeña estabilización
+            await page.waitForTimeout(1000);
+
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
@@ -308,21 +341,58 @@ for (let run = 1; run <= RUNS; run++) {
 for (let run = 1; run <= RUNS; run++) {
     test(`intranet first level "Recursos" - run ${run}`, async ({ browser }) => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const page = await IntranetPage.abrirNormal(browser)
 
-        await test.step('Navigation to intranet page', async () => {
+        /*await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
+        })*/
 
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
+        const username = 'mallueaced@deloitte.es'
+        const password = 'Incidencia150'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+
+            await page.goto('https://login.microsoftonline.com')
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 5000 })
+                await page.click('input[type="submit"]')
+            } catch { }
+
+            await page.goto('https://people.deloitte/DPN')
+ 
+            await page.waitForTimeout(5000);
+
+            await page.goto('https://intranet_dev.es.deloitte.com')
+
+            await page.waitForTimeout(5000);
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
+
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
@@ -414,14 +484,46 @@ for (let run = 1; run <= RUNS; run++) {
             await navigateTo.intranetPage()
         })
 
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
+        const username = 'mallueaced@deloitte.es'
+        const password = 'Incidencia150'
 
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+            await page.goto('https://intranet_dev.es.deloitte.com');
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            // Stay signed in
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
+                await page.click('input[type="submit"]');
+            } catch { }
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+            // pequeña estabilización
+            await page.waitForTimeout(1000);
+
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
@@ -511,8 +613,41 @@ for (let run = 1; run <= RUNS; run++) {
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+            await page.goto('https://intranet_dev.es.deloitte.com');
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            // Stay signed in
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
+                await page.click('input[type="submit"]');
+            } catch { }
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+
+            // pequeña estabilización
+            await page.waitForTimeout(1000);
+
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
@@ -602,8 +737,41 @@ for (let run = 1; run <= RUNS; run++) {
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+            await page.goto('https://intranet_dev.es.deloitte.com');
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            // Stay signed in
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
+                await page.click('input[type="submit"]');
+            } catch { }
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+
+            // pequeña estabilización
+            await page.waitForTimeout(1000);
+
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
@@ -693,8 +861,41 @@ for (let run = 1; run <= RUNS; run++) {
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+            await page.goto('https://intranet_dev.es.deloitte.com');
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            // Stay signed in
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
+                await page.click('input[type="submit"]');
+            } catch { }
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+
+            // pequeña estabilización
+            await page.waitForTimeout(1000);
+
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''
@@ -784,8 +985,41 @@ for (let run = 1; run <= RUNS; run++) {
         await test.step('Login to the intranet', async () => {
             const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
             const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            const analyticsPromise = page.waitForRequest(r => r.url().startsWith(analyticsUrlBase) && r.method() === 'POST', { timeout: 20000 })
-            await intranetPage.doLogin(username, password)
+            await page.goto('https://intranet_dev.es.deloitte.com');
+
+            // Email
+            await page.fill('input[type="email"]', username);
+            await page.click('input[type="submit"]');
+
+            // Password
+            await page.fill('input[type="password"]', password);
+            await page.click('input[type="submit"]');
+
+            // Stay signed in
+            try {
+                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
+                await page.click('input[type="submit"]');
+            } catch { }
+
+            await page.waitForFunction(() =>
+                document.cookie.includes('NEmpleado') &&
+                document.cookie.match(/S\d{6,}/),
+                { timeout: 15000 });
+
+
+            // pequeña estabilización
+            await page.waitForTimeout(1000);
+
+
+            const analyticsPromise = page.waitForRequest(r => {
+                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
+                    return false
+                }
+
+                const post = r.postData() || ''
+
+                return /S\d{6,}/.test(post)
+            }, { timeout: 20000 })
             try {
                 const req = await analyticsPromise
                 const post = req.postData() || ''

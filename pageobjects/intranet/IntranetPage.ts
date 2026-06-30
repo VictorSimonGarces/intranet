@@ -1,7 +1,7 @@
 import { Locator, Page, Browser } from "@playwright/test"
 import { DatabaseService } from '../../services/DatabaseService'
 
-export class IntranetPage{
+export class IntranetPage {
 
     private readonly userTextBox: Locator
     private readonly nextButton: Locator
@@ -52,7 +52,7 @@ export class IntranetPage{
     private session?: { user?: string, [k: string]: any }
     private dbService?: DatabaseService
 
-    constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }, dbService?: DatabaseService){
+    constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }, dbService?: DatabaseService) {
         // Inicializa la página, locators, estado de sesión y servicio de BD
         this.page = page
         this.clicks = clicks
@@ -64,7 +64,7 @@ export class IntranetPage{
         this.signInButton = page.getByRole('button', { name: 'Sign in' })
         this.laFirmaDropdown = page.getByRole('link', { name: 'La Firma ' })
         this.laFirmaMenu = page.locator('#menu-intranet-top-1')
-        this.quienesSomosButton = this.laFirmaMenu.getByRole('link', { name: 'Quiénes somos' }).first()
+        this.quienesSomosButton = this.page.getByRole('link', { name: 'Quiénes somos' });
         this.centroDeRecursosButton = page.locator('a:has-text("Centro de recursos"):visible').first()
         this.talentoButton = this.laFirmaMenu.getByRole('link', { name: /Talento/i }).first()
         this.espacioDeLearningButton = page.getByRole('link', { name: 'Espacio de Learning ' }).first()
@@ -154,22 +154,22 @@ export class IntranetPage{
             }
         }
         return {}
-}
+    }
 
 
-    private async fillUsername(username: string){
+    private async fillUsername(username: string) {
         // Rellena el campo de usuario y pulsa el botón 'Next'
         await this.userTextBox.waitFor({ state: 'visible', timeout: 10000 })
         await this.userTextBox.fill(username)
         await this.nextButton.click();
     }
 
-    private async fillPassword(password: string){
+    private async fillPassword(password: string) {
         // Rellena el campo de contraseña
         await this.passwordTextBox.fill(password)
     }
 
-    private async clickSignInButton(){
+    private async clickSignInButton() {
         // Hace clic en 'Sign in' y espera (si procede) la navegación
         await Promise.all([
             this.signInButton.click(),
@@ -178,11 +178,11 @@ export class IntranetPage{
         ])
     }
 
-    async doLogin(username: string, password: string){
+    async doLogin(username: string, password: string) {
         // Orquesta el proceso de login: usuario, contraseña y submit
         await this.fillUsername(username)
         await this.fillPassword(password)
-        await this.clickSignInButton()  
+        await this.clickSignInButton()
     }
 
     static async abrirEnIncognito(browser: Browser) {
@@ -192,7 +192,14 @@ export class IntranetPage{
         return { context, page };
     }
 
-    async clickLaFirmaDropdown(){
+
+    static async abrirNormal(browser: Browser) {
+        // Abre una nueva pestaña en el contexto por defecto (NO incógnito)
+        const page = await browser.newPage();
+        return page;
+    }
+
+    async clickLaFirmaDropdown() {
         // Click en el dropdown 'La Firma' y registra evento de tracking + BD
         await this.laFirmaDropdown.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -210,7 +217,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickIndustriasButton(){
+    async clickIndustriasButton() {
         // Click en 'Industrias' y registra evento de tracking + BD
         try {
             await this.industriasButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -231,7 +238,7 @@ export class IntranetPage{
         this.pushClickRecord(accionInd, trackingInd)
     }
 
-    async clickGeografiasButton(){
+    async clickGeografiasButton() {
         // Click en 'Geografías' y registra evento de tracking + BD
         try {
             await this.geografiasButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -252,7 +259,7 @@ export class IntranetPage{
         this.pushClickRecord(accionGeo, trackingGeo)
     }
 
-    async clickAreasCorporativasButton(){
+    async clickAreasCorporativasButton() {
         // Click en 'Áreas corporativas y' y registra evento de tracking + BD
         try {
             await this.areasCorporativasButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -273,7 +280,7 @@ export class IntranetPage{
         this.pushClickRecord(accionAC, trackingAC)
     }
 
-    async clickSociedadesButton(){
+    async clickSociedadesButton() {
         // Click en 'Sociedades' y registra evento de tracking + BD
         try {
             await this.sociedadesButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -294,7 +301,7 @@ export class IntranetPage{
         this.pushClickRecord(accionSoc, trackingSoc)
     }
 
-    async clickPresentacionesFirmaButton(){
+    async clickPresentacionesFirmaButton() {
         // Click en 'Presentaciones de Firma' y registra evento de tracking + BD
         try {
             await this.presentacionesFirmaButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -315,7 +322,7 @@ export class IntranetPage{
         this.pushClickRecord(accionPF, trackingPF)
     }
 
-    async clickDeloitteTalentConnectButton(){
+    async clickDeloitteTalentConnectButton() {
         // Click en 'Deloitte Talent Connect' y registra evento de tracking + BD
         try {
             await this.deloitteTalentConnectButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -336,7 +343,7 @@ export class IntranetPage{
         this.pushClickRecord(accionDTC, trackingDTC)
     }
 
-    async clickProgramasMovilidadButton(){
+    async clickProgramasMovilidadButton() {
         // Click en 'Programas de Movilidad' y registra evento de tracking + BD
         try {
             await this.programasMovilidadButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -357,7 +364,7 @@ export class IntranetPage{
         this.pushClickRecord(accionPM, trackingPM)
     }
 
-    async clickProgramaAlumniButton(){
+    async clickProgramaAlumniButton() {
         // Click en 'Programa Alumni' y registra evento de tracking + BD
         try {
             await this.programaAlumniButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -378,7 +385,7 @@ export class IntranetPage{
         this.pushClickRecord(accionPA, trackingPA)
     }
 
-    async clickEspacioPerformanceButton(){
+    async clickEspacioPerformanceButton() {
         // Click en 'Espacio de Performance' y registra evento de tracking + BD
         try {
             await this.espacioPerformanceButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -399,7 +406,7 @@ export class IntranetPage{
         this.pushClickRecord(accionEP, trackingEP)
     }
 
-    async clickModelosTalentoButton(){
+    async clickModelosTalentoButton() {
         // Click en 'Modelos de Talento' y registra evento de tracking + BD
         try {
             await this.modelosTalentoButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -420,7 +427,7 @@ export class IntranetPage{
         this.pushClickRecord(accionMT, trackingMT)
     }
 
-    async clickModelosCompetenciasButton(){
+    async clickModelosCompetenciasButton() {
         // Click en 'Modelos de Competencias' y registra evento de tracking + BD
         try {
             await this.modelosCompetenciasButton.waitFor({ state: 'visible', timeout: 10000 })
@@ -441,7 +448,7 @@ export class IntranetPage{
         this.pushClickRecord(accionMC, trackingMC)
     }
 
-    async clickSaludSeguridadBienestarButton(){
+    async clickSaludSeguridadBienestarButton() {
         try {
             await this.saludSeguridadBienestarButton.waitFor({ state: 'visible', timeout: 10000 })
         } catch (e) {
@@ -461,7 +468,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickWellbeingButton(){
+    async clickWellbeingButton() {
         try {
             await this.wellbeingButton.waitFor({ state: 'visible', timeout: 10000 })
         } catch (e) {
@@ -481,7 +488,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickProgramaBeingFlexibleButton(){
+    async clickProgramaBeingFlexibleButton() {
         try {
             await this.programaBeingFlexibleButton.waitFor({ state: 'visible', timeout: 10000 })
         } catch (e) {
@@ -501,7 +508,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickBeneficiosRetribucionButton(){
+    async clickBeneficiosRetribucionButton() {
         try {
             await this.beneficiosRetribucionButton.waitFor({ state: 'visible', timeout: 10000 })
         } catch (e) {
@@ -521,7 +528,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickAccionSocialButton(){
+    async clickAccionSocialButton() {
         try {
             await this.accionSocialButton.waitFor({ state: 'visible', timeout: 10000 })
         } catch (e) {
@@ -541,7 +548,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickProgramaDiversidadButton(){
+    async clickProgramaDiversidadButton() {
         try {
             await this.programaDiversidadButton.waitFor({ state: 'visible', timeout: 10000 })
         } catch (e) {
@@ -561,7 +568,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickQuienesSomosButton(){
+    async clickQuienesSomosButton() {
         // Click en 'Quiénes somos' y registra evento de tracking + BD
         await this.quienesSomosButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -578,7 +585,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickCentroDeRecursosButton(){
+    async clickCentroDeRecursosButton() {
         // Click en 'Centro de recursos' y registra evento de tracking + BD
         try {
             await this.centroDeRecursosButton.waitFor({ state: 'visible', timeout: 3000 })
@@ -603,10 +610,10 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
-        this.pushClickRecord(accion, tracking)                   
+        this.pushClickRecord(accion, tracking)
     }
 
-    async clickTalentoButton(){
+    async clickTalentoButton() {
         // Click en 'Talento' y registra evento de tracking + BD
         // Si el enlace no es visible, intentar abrir el dropdown de "Centro de recursos" primero
         try {
@@ -630,10 +637,10 @@ export class IntranetPage{
         if (n && this.session) this.session.user = n
         if (this.session) tracking.numEmpleado = this.session.user ?? ''
         // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
-        this.pushClickRecord(accion, tracking)           
+        this.pushClickRecord(accion, tracking)
     }
 
-    async clickEspacioDeLearningButton(){
+    async clickEspacioDeLearningButton() {
         // Click en 'Espacio de Learning' y registra evento de tracking + BD
         await this.espacioDeLearningButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -649,7 +656,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickComiteEjecutivoButton(){
+    async clickComiteEjecutivoButton() {
         // Click en 'Comité Ejecutivo' y registra evento de tracking + BD
         try {
             await this.comiteEjecutivoButton.waitFor({ state: 'visible', timeout: 3000 })
@@ -675,7 +682,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickConsejosSociosButton(){
+    async clickConsejosSociosButton() {
         // Click en 'Consejo de Socios' y registra evento de tracking + BD
         await this.consejosSociosButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -692,8 +699,8 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickNegociosButton(){    
-    // Click en 'Negocios' y registra evento de tracking + BD
+    async clickNegociosButton() {
+        // Click en 'Negocios' y registra evento de tracking + BD
         try {
             await this.negociosButton.waitFor({ state: 'visible', timeout: 3000 })
         } catch (e) {
@@ -718,7 +725,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickEstrategiaDeNegocioButton(){
+    async clickEstrategiaDeNegocioButton() {
         // Click en 'Estrategia de Negocio' y registra evento de tracking + BD
         try {
             await this.estrategiaDeNegocioButton.waitFor({ state: 'visible', timeout: 3000 })
@@ -741,7 +748,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickCulturaButton(){
+    async clickCulturaButton() {
         // Click en 'Cultura' y registra evento de tracking + BD
         try {
             await this.culturaButton.waitFor({ state: 'visible', timeout: 3000 })
@@ -763,7 +770,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickRiskReputationButton(){
+    async clickRiskReputationButton() {
         // Click en 'Risk & Reputation' y registra evento de tracking + BD
         try {
             await this.riskReputationButton.waitFor({ state: 'visible', timeout: 3000 })
@@ -785,7 +792,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickEticaButton(){
+    async clickEticaButton() {
         // Click en 'Ética' y registra evento de tracking + BD
         try {
             await this.eticaButton.waitFor({ state: 'visible', timeout: 3000 })
@@ -807,10 +814,10 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickStrategyCard(){
+    async clickStrategyCard() {
         // Click en la tarjeta 'Strategy' y registra evento de tracking + BD
         await this.strategyCard.waitFor({ state: 'visible', timeout: 10000 })
-        await Promise.all([ 
+        await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.strategyCard.click()
         ])
@@ -824,10 +831,10 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickTaxCard(){
+    async clickTaxCard() {
         // Click en la tarjeta 'Tax' y registra evento de tracking + BD
         await this.taxCard.waitFor({ state: 'visible', timeout: 10000 })
-        await Promise.all([ 
+        await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.taxCard.click()
         ])
@@ -841,24 +848,24 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-        async clickAlianzasCard(){
-            // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
-            // Intentar una espera corta y, si no está visible, abrir el menú padre como fallback
+    async clickAlianzasCard() {
+        // Click en la tarjeta 'Alianzas' y registra evento de tracking + BD
+        // Intentar una espera corta y, si no está visible, abrir el menú padre como fallback
+        try {
+            await this.alianzasCard.waitFor({ state: 'visible', timeout: 3000 })
+        } catch (e) {
             try {
-                await this.alianzasCard.waitFor({ state: 'visible', timeout: 3000 })
-            } catch (e) {
-                    try {
-                        // Preferir abrir el menú 'Centro de recursos' que expone la tarjeta
-                        await this.clickCentroDeRecursosButton()
-                    } catch (_) {
-                        try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
-                    }
-                    await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+                // Preferir abrir el menú 'Centro de recursos' que expone la tarjeta
+                await this.clickCentroDeRecursosButton()
+            } catch (_) {
+                try { await this.laFirmaDropdown.click() } catch (_) { /* ignore */ }
             }
-            await Promise.all([ 
-                this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
-                this.alianzasCard.click()
-            ])
+            await this.alianzasCard.waitFor({ state: 'visible', timeout: 10000 })
+        }
+        await Promise.all([
+            this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
+            this.alianzasCard.click()
+        ])
         await this.page.waitForTimeout(200)
         const tracking: any = await this.getTrackingData()
         const accion = 'Click Alianzas Card'
@@ -869,7 +876,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickPoliticasYProcedimientosButton(){
+    async clickPoliticasYProcedimientosButton() {
         // Click en 'Políticas y Procedimientos' y registra evento de tracking + BD
         await this.politicasYProcedimientosButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -886,7 +893,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickNetworkingCard(){
+    async clickNetworkingCard() {
         // Click en la tarjeta 'Networking' y registra evento de tracking + BD
         try {
             await this.networkingCard.waitFor({ state: 'visible', timeout: 3000 })
@@ -898,7 +905,7 @@ export class IntranetPage{
             }
             await this.networkingCard.waitFor({ state: 'visible', timeout: 10000 })
         }
-        await Promise.all([ 
+        await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.networkingCard.click()
         ])
@@ -912,7 +919,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickComunidadesButton(){
+    async clickComunidadesButton() {
         // Click en 'Comunidades' y registra evento de tracking + BD
         await this.comunidadesButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -929,10 +936,10 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickStartmeUpButton(){
+    async clickStartmeUpButton() {
         // Click en el botón 'StartmeUP' y registra evento de tracking + BD
         await this.startmeUpButton.waitFor({ state: 'visible', timeout: 10000 })
-        await Promise.all([ 
+        await Promise.all([
             this.page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => null),
             this.startmeUpButton.click()
         ])
@@ -945,8 +952,8 @@ export class IntranetPage{
         // No consultar BD aquí; almacenar solo los datos de tracking para comprobación al final del test
         this.pushClickRecord(accion, tracking)
     }
-    
-    async clickVerTodosLosAplicativosButton(){
+
+    async clickVerTodosLosAplicativosButton() {
         // Click en 'Ver todos los Aplicativos' y registra evento de tracking + BD
         await this.verTodosLosAplicativosButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -963,7 +970,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickVerTodoLosDashboardsButton(){
+    async clickVerTodoLosDashboardsButton() {
         // Click en 'Ver todos los Dashboards' y registra evento de tracking + BD
         await this.verTodoLosDashboardsButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([
@@ -980,7 +987,7 @@ export class IntranetPage{
         this.pushClickRecord(accion, tracking)
     }
 
-    async clickVerTodasLasNoticiasButton(){
+    async clickVerTodasLasNoticiasButton() {
         // Click en 'Ver todas las noticias' y registra evento de tracking + BD
         await this.verTodasLasNoticiasButton.waitFor({ state: 'visible', timeout: 10000 })
         await Promise.all([

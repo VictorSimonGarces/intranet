@@ -14434,5 +14434,2978 @@
         }
       }
     ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "1698b686-bc80-45ed-8a5f-4d431356d8a3",
+    "start": "8:30:29 AM",
+    "duration": "15.93s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T06:30:44.287Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "9:16:34 AM",
+    "duration": "18.32s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "9:17:51 AM",
+    "duration": "10.25s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "9:18:17 AM",
+    "duration": "21.06s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 2",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "cc86efba-578f-4a5a-8b80-b00aa0135b7f",
+    "start": "9:27:06 AM",
+    "duration": "15.18s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T07:27:20.290Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "d2b22cbb-6d0d-42fc-a5de-c3916bf14c76",
+    "start": "9:27:06 AM",
+    "duration": "15.02s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T07:27:20.341Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 3",
+    "status": "interrupted",
+    "user": "NoExisteUsuario",
+    "sessionId": "1af63f4d-9f1f-4626-8761-7d5dd0be96df",
+    "start": "9:27:06 AM",
+    "duration": "15.80s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T07:27:21.007Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 4",
+    "status": "interrupted",
+    "user": "NoExisteUsuario",
+    "sessionId": "0ac74454-0247-490c-85f4-6d86587b557c",
+    "start": "9:27:06 AM",
+    "duration": "16.31s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T07:27:22.027Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 6",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "9:27:23 AM",
+    "duration": "0.78s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "3d8ecdfa-975b-4475-948c-e0487cb23c91",
+    "start": "9:30:37 AM",
+    "duration": "10.70s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T07:30:46.931Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Talento > Deloitte Talent Connect - run 4",
+    "status": "passed",
+    "user": "S00000003",
+    "sessionId": "97d9d04d-fb7a-4e30-95be-898ea6504b36",
+    "start": "10:57:33 AM",
+    "duration": "33.56s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "97d9d04d-fb7a-4e30-95be-898ea6504b36",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T08:57:56.937Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Talento",
+          "playwright": {
+            "id_sesion": "97d9d04d-fb7a-4e30-95be-898ea6504b36",
+            "title": "Talento",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "tiempo": "2026-06-26T08:58:01.595Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000003"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Deloitte Talent Connect",
+          "playwright": {
+            "id_sesion": "97d9d04d-fb7a-4e30-95be-898ea6504b36",
+            "title": "Deloitte Talent Connect",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/talento/Pages/deloitte-talent-connect.aspx",
+            "tiempo": "2026-06-26T08:58:06.251Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000003"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Talento > Deloitte Talent Connect - run 4",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:58:38 AM",
+    "duration": "2.75s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "1d7e44f8-7d10-4ba8-afe4-6b68ff7bb711",
+    "start": "10:58:48 AM",
+    "duration": "14.29s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T08:59:01.331Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "58c563ba-b7da-48b0-aa21-e18ff0c14876",
+    "start": "10:59:44 AM",
+    "duration": "11.64s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T08:59:55.344Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "2f4cf83b-d08d-42f0-8729-8aad42b071cd",
+    "start": "11:00:21 AM",
+    "duration": "11.20s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T09:00:31.524Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "0866c914-0441-4565-9dfa-1884ee328557",
+    "start": "11:01:09 AM",
+    "duration": "14.54s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T09:01:23.506Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "failed",
+    "user": "NoExisteUsuario",
+    "sessionId": "3acfa71f-e6be-4849-9c53-c1825334c268",
+    "start": "11:01:37 AM",
+    "duration": "7.54s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "fb3b1a12-8b08-4961-a645-a7fd95aca8f6",
+    "start": "11:03:04 AM",
+    "duration": "11.43s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-26T09:03:14.552Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:03:21 AM",
+    "duration": "23.12s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:03:59 AM",
+    "duration": "16.30s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:05:21 AM",
+    "duration": "28.73s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:06:27 AM",
+    "duration": "30.69s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:48:55 AM",
+    "duration": "30.86s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:50:29 AM",
+    "duration": "31.61s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:53:16 AM",
+    "duration": "33.46s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "0a2052e0-c5f7-48d4-a730-9b4a971e4ffa",
+    "start": "11:55:01 AM",
+    "duration": "17.59s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T09:55:17.665Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "f71c3bca-5f2f-4e28-9280-48f6b630e096",
+    "start": "11:55:46 AM",
+    "duration": "17.87s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T09:56:02.954Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "739482c5-af32-4ded-ab46-eae923b81f02",
+    "start": "11:56:50 AM",
+    "duration": "17.48s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T09:57:07.151Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "ae424879-ef4b-494e-a210-44774f45230f",
+    "start": "12:02:36 PM",
+    "duration": "25.51s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T10:03:01.425Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "35cfdf85-76e8-4bdf-8f6c-25967680dc95",
+    "start": "1:19:30 PM",
+    "duration": "35.21s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T11:20:04.550Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "df7836b7-9c9c-425c-8750-efe23d5bae5d",
+    "start": "1:51:09 PM",
+    "duration": "41.51s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T11:51:49.985Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "e6878952-b155-4b01-bd51-6bde905002cf",
+    "start": "1:53:00 PM",
+    "duration": "29.89s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T11:53:29.623Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "1:56:45 PM",
+    "duration": "37.76s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T11:57:21.946Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "0352b4c2-3176-416b-9af3-3a9c476bd497",
+    "start": "1:58:51 PM",
+    "duration": "17.96s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T11:59:08.039Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "1eccb734-d79b-475e-90b2-ad69fcf6dce6",
+    "start": "2:02:06 PM",
+    "duration": "20.90s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:02:25.917Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "2:02:58 PM",
+    "duration": "37.45s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:03:34.832Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "54b97205-3d0b-419f-b79d-2d3f2d6b53aa",
+    "start": "2:05:53 PM",
+    "duration": "34.27s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:06:27.242Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "2:28:45 PM",
+    "duration": "38.66s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:29:23.155Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "ce16cd31-3430-4162-b65d-2f0609d04d66",
+    "start": "2:34:48 PM",
+    "duration": "26.75s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:35:14.363Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "2803fe33-013f-44c2-8b58-a39f495b5d6e",
+    "start": "2:41:42 PM",
+    "duration": "52.59s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:42:34.468Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "2:44:18 PM",
+    "duration": "37.28s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:44:54.613Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "2:54:26 PM",
+    "duration": "37.76s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-26T12:55:02.819Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "419025b2-3fc6-48d8-86fb-58cde88b0518",
+    "start": "9:17:19 AM",
+    "duration": "43.59s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:18:02.207Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "87cc79e8-186b-4ab0-b1b4-9693f1fe34c8",
+    "start": "9:18:26 AM",
+    "duration": "21.95s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:18:47.029Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 2",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "ef208a25-7d85-4e3e-9ea3-35911d100e1e",
+    "start": "9:19:39 AM",
+    "duration": "22.21s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:20:00.667Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Ver todos los Aplicativos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "73752317-9486-41d8-ab9f-e76c73d12876",
+    "start": "9:22:04 AM",
+    "duration": "18.95s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Ver todos los Aplicativos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Aplicativos, Manuales y FAQs",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/herramientas/aplicativos-manuales-faqs/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:22:22.670Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "ff976558-edeb-4acc-8219-d2442678cfa2",
+    "start": "9:25:09 AM",
+    "duration": "25.78s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:25:34.566Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "bd0bf644-f78a-4811-a828-20565aa54ab3",
+    "start": "9:29:46 AM",
+    "duration": "18.39s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:30:03.462Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "3003ea1d-a88e-48ad-9368-aac96f4771b5",
+    "start": "9:38:14 AM",
+    "duration": "32.61s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:38:45.896Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "72e9ee42-6cac-40bd-8a0a-33fcb4f65cab",
+    "start": "9:49:13 AM",
+    "duration": "25.73s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:49:38.406Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "0cf15bac-3b65-4050-a5c4-e0fc40aab393",
+    "start": "9:50:52 AM",
+    "duration": "21.31s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:51:12.821Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "90a305cf-649d-41fd-a813-a9afc00e8e3d",
+    "start": "9:51:29 AM",
+    "duration": "25.51s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T07:51:53.465Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:12:45 AM",
+    "duration": "6.93s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:13:11 AM",
+    "duration": "5.47s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "b9c5c7b8-521c-4acb-9ce2-49a71ee8c4f7",
+    "start": "10:13:32 AM",
+    "duration": "24.17s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T08:13:55.504Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:29:29 AM",
+    "duration": "62.63s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:57 AM",
+    "duration": "35.07s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:34:49 AM",
+    "duration": "29.23s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:35:59 AM",
+    "duration": "58.25s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:37:42 AM",
+    "duration": "16.87s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:40:58 AM",
+    "duration": "32.50s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "af35714c-4bc9-4067-a8cb-c347e1b5ac48",
+    "start": "10:45:26 AM",
+    "duration": "39.00s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T08:46:04.330Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "69450dea-d1ee-4d6e-a9d5-fda21ab68344",
+    "start": "10:51:44 AM",
+    "duration": "25.08s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T08:52:08.853Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:54:24 AM",
+    "duration": "7.27s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "interrupted",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:54:46 AM",
+    "duration": "1.39s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:56:48 AM",
+    "duration": "48.64s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "10:58:17 AM",
+    "duration": "47.63s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T08:59:03.943Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S00000001",
+    "sessionId": "No disponible",
+    "start": "11:00:34 AM",
+    "duration": "50.82s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T09:01:23.860Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000001"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S90052030",
+    "sessionId": "No disponible",
+    "start": "11:18:48 AM",
+    "duration": "46.62s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T09:19:33.623Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90052030"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Políticas y Procedimientos\" - run 1",
+    "status": "passed",
+    "user": "S90052030",
+    "sessionId": "5fd3472a-0838-4e35-8f4f-e5da0367e3f4",
+    "start": "11:21:31 AM",
+    "duration": "17.00s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Politicas y Procedimientos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Política de Voluntariado",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/politicas-y-procedimientos/Pages/politica-de-voluntariado.aspx",
+            "tiempo": "2026-06-29T09:21:47.617Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90052030"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Recursos\" - run 1",
+    "status": "passed",
+    "user": "S90052030",
+    "sessionId": "No disponible",
+    "start": "11:30:23 AM",
+    "duration": "51.87s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Boton Centro de recursos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Centro de recursos",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/centro-de-recursos/Pages/default.aspx",
+            "tiempo": "2026-06-29T09:31:14.675Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S90052030"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "passed",
+    "user": "NoExisteUsuario",
+    "sessionId": "6ec934fb-0306-4ae6-9086-73169f858bb0",
+    "start": "11:34:55 AM",
+    "duration": "12.96s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T09:35:07.769Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet third level - La Firma > Quienes somos > Negocios - run 1",
+    "status": "passed",
+    "user": "S00000003",
+    "sessionId": "e7c6c8a4-4c30-4822-ad2a-b5bfd6786f8f",
+    "start": "11:36:15 AM",
+    "duration": "19.70s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "e7c6c8a4-4c30-4822-ad2a-b5bfd6786f8f",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T09:36:26.714Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "NoExisteUsuario"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "e7c6c8a4-4c30-4822-ad2a-b5bfd6786f8f",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T09:36:30.516Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000003"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 3,
+        "detail": {
+          "accion": "Boton Negocios",
+          "playwright": {
+            "id_sesion": "e7c6c8a4-4c30-4822-ad2a-b5bfd6786f8f",
+            "title": "Negocios",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/estructura-y-gobierno-de-la-firma/Pages/negocios.aspx",
+            "tiempo": "2026-06-29T09:36:34.525Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36",
+            "numEmpleado": "S00000003"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:54:51 AM",
+    "duration": "1.13s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:57:19 AM",
+    "duration": "106.36s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "11:59:36 AM",
+    "duration": "32.77s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:03:11 PM",
+    "duration": "229.43s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:10:54 PM",
+    "duration": "81.24s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:14:05 PM",
+    "duration": "354.14s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:21:20 PM",
+    "duration": "15.53s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:23:20 PM",
+    "duration": "10.58s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"Ver todos los Dashboards\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:27:15 PM",
+    "duration": "15.56s",
+    "clicks": []
+  },
+  {
+    "test": "intranet first level \"La Firma\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:35:50 PM",
+    "duration": "55.26s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "S90052030",
+    "sessionId": "No disponible",
+    "start": "12:49:40 PM",
+    "duration": "17.29s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T10:49:46.550Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S90052030"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:51:00 PM",
+    "duration": "0.32s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "12:56:16 PM",
+    "duration": "0.34s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "1:05:54 PM",
+    "duration": "14.41s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:07:06 PM",
+    "duration": "18.10s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:07:11.862Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:07:48 PM",
+    "duration": "21.13s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:07:53.256Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Home",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:08:08.824Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:09:49 PM",
+    "duration": "19.16s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:09:54.646Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:13:19 PM",
+    "duration": "11.66s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:13:25.254Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:13:29.696Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:16:11 PM",
+    "duration": "11.38s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:16:16.731Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:16:21.532Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 4",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:11 PM",
+    "duration": "13.32s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:20.092Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:23.915Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:11 PM",
+    "duration": "15.27s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:22.009Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:26.101Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 3",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:11 PM",
+    "duration": "16.64s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:21.535Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:27.136Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 2",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:11 PM",
+    "duration": "18.55s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:22.134Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:29.019Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 8",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:32 PM",
+    "duration": "10.78s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:38.221Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:41.866Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 5",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:27 PM",
+    "duration": "16.69s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:36.721Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:42.687Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 6",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:29 PM",
+    "duration": "15.56s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:37.774Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:43.768Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 7",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:30 PM",
+    "duration": "15.64s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:39.168Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:45.082Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 12",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:48 PM",
+    "duration": "12.44s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:55.889Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:59.600Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 11",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:46 PM",
+    "duration": "14.73s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:54.602Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:39:00.620Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 9",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:44 PM",
+    "duration": "18.34s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:55.137Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:39:02.219Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 10",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "1:38:45 PM",
+    "duration": "19.93s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:38:58.456Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T11:39:04.647Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 4",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:30 PM",
+    "duration": "13.87s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:38.813Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:43.624Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:30 PM",
+    "duration": "15.28s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:40.019Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:44.345Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 2",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:30 PM",
+    "duration": "17.74s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:40.527Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:46.900Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 3",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:30 PM",
+    "duration": "20.65s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:43.852Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:49.792Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 6",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:47 PM",
+    "duration": "17.65s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:56.489Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:04.063Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 8",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:52 PM",
+    "duration": "12.83s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:00.240Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:04.712Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 5",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:46 PM",
+    "duration": "19.40s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:57.864Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:05.118Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 7",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:09:49 PM",
+    "duration": "16.31s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:09:59.021Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:05.262Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 10",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:10:07 PM",
+    "duration": "15.04s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:17.176Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:21.808Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 12",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:10:08 PM",
+    "duration": "14.47s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:15.984Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:21.793Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 9",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:10:07 PM",
+    "duration": "18.19s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:17.807Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:24.286Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 11",
+    "status": "passed",
+    "user": "S00000002",
+    "sessionId": "No disponible",
+    "start": "3:10:08 PM",
+    "duration": "18.16s",
+    "clicks": [
+      {
+        "index": 1,
+        "detail": {
+          "accion": "Dropdown La Firma",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "La Firma",
+            "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:18.627Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      },
+      {
+        "index": 2,
+        "detail": {
+          "accion": "Boton Quienes somos",
+          "playwright": {
+            "id_sesion": "No disponible",
+            "title": "Quiénes somos",
+            "referer": "https://intranet_dev.es.deloitte.com/la-firma/Pages/default.aspx",
+            "url": "https://intranet_dev.es.deloitte.com/la-firma/quienes-somos/Pages/default.aspx",
+            "tiempo": "2026-06-29T13:10:25.332Z",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+            "numEmpleado": "S00000002"
+          },
+          "database": {}
+        }
+      }
+    ]
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 4",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:29:55 AM",
+    "duration": "15.01s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 3",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:29:55 AM",
+    "duration": "15.39s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 1",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:29:57 AM",
+    "duration": "14.65s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 2",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:29:56 AM",
+    "duration": "16.19s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 8",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:22 AM",
+    "duration": "21.65s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 6",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:17 AM",
+    "duration": "26.60s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 7",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:21 AM",
+    "duration": "22.78s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 9",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:51 AM",
+    "duration": "27.19s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 12",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:56 AM",
+    "duration": "23.48s",
+    "clicks": []
+  },
+  {
+    "test": "intranet second level \"Quienes somos\" - run 11",
+    "status": "failed",
+    "user": "No disponible",
+    "sessionId": "No disponible",
+    "start": "10:30:56 AM",
+    "duration": "24.16s",
+    "clicks": []
   }
 ]
