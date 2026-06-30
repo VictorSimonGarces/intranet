@@ -235,6 +235,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickLaFirmaDropdown()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
@@ -256,6 +258,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickCentroDeRecursosButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
@@ -277,6 +281,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickPoliticasYProcedimientosButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
@@ -298,6 +304,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickComunidadesButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
@@ -319,6 +327,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickVerTodosLosAplicativosButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
@@ -340,6 +350,8 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickVerTodoLosDashboardsButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
 
@@ -361,5 +373,7 @@ for (let run = 1; run <= RUNS; run++) {
             await intranetPage.clickVerTodasLasNoticiasButton()
             await page.waitForTimeout(1000)
         })
+
+        await page.close();
     })
 }
