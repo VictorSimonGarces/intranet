@@ -1,0 +1,26 @@
+{
+  "test": "intranet first level \"Ver todos los Aplicativos\" - run 15",
+  "status": "passed",
+  "user": "S00000001",
+  "sessionId": "No disponible",
+  "start": "4:02:43 PM",
+  "duration": "14.16s",
+  "clicks": [
+    {
+      "index": 1,
+      "detail": {
+        "accion": "Boton Ver todos los Aplicativos",
+        "playwright": {
+          "id_sesion": "No disponible",
+          "title": "Aplicativos, Manuales y FAQs",
+          "referer": "https://intranet_dev.es.deloitte.com/Pages/default_old_1.aspx",
+          "url": "https://intranet_dev.es.deloitte.com/herramientas/aplicativos-manuales-faqs/Pages/default.aspx",
+          "tiempo": "2026-06-30T14:02:56.665Z",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+          "numEmpleado": "S00000001"
+        },
+        "database": {}
+      }
+    }
+  ]
+}
