@@ -7,6 +7,8 @@ import { IntranetPage } from '../../pageobjects/intranet/IntranetPage'
 import { DatabaseService } from '../../services/DatabaseService'
 require('dotenv').config()
 
+let testDurations: number[] = []
+
 let sessionSummary: {
     user: string,
     startTime: Date,
@@ -48,6 +50,9 @@ test.beforeEach(async () => {
 
 test.afterEach(async ({ }, testInfo) => {
     const duration = ((new Date().getTime() - sessionSummary.startTime.getTime()) / 1000).toFixed(2);
+    
+    const durationNum = Number(duration)
+    testDurations.push(durationNum)
 
     // Asegurar user y sessionId predeterminados
     const finalUser = sessionSummary.user && sessionSummary.user !== '' ? sessionSummary.user : 'No disponible'
@@ -226,6 +231,13 @@ test.afterEach(async ({ }, testInfo) => {
     try {
         if (dbService) await dbService.disconnect()
     } catch (e) { /* ignore */ }
+
+    
+    const average =
+        testDurations.reduce((acc, curr) => acc + curr, 0) / testDurations.length
+
+    console.log(`\n📊 Tiempo medio del test: ${average.toFixed(2)} segundos`)
+
 });
 
 const RUNS = 5 //100 sesiones
