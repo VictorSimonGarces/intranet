@@ -1,4 +1,4 @@
-import { test } from '@playwright/test'
+import { test, chromium } from '@playwright/test'
 test.describe.configure({ mode: 'parallel' });
 import * as fs from 'fs'
 import * as path from 'path'
@@ -208,7 +208,7 @@ test.afterEach(async ({ }, testInfo) => {
     }
 
     try { if (dbService) await dbService.disconnect() } catch (e) { }
-    
+
     const average =
         testDurations.reduce((acc, curr) => acc + curr, 0) / testDurations.length
 
@@ -218,126 +218,15 @@ test.afterEach(async ({ }, testInfo) => {
 
 const RUNS = 15 //105 sesiones
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "La Firma" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "La Firma" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const page = await IntranetPage.abrirNormal(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
-
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            await page.goto('https://intranet_dev.es.deloitte.com');
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            // Stay signed in
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
-                await page.click('input[type="submit"]');
-            } catch { }
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-
-            // pequeña estabilización
-            await page.waitForTimeout(1000);
-
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post) // captura patrones tipo S90049840 o 90049840
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                // Guardar numEmpleado explícitamente como user (ej: S90049840)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                // conservar user actual o marcar no disponible
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            // Extraer `NEmpleado` desde `document.cookie` (incluyendo valores dentro
-            // de cookies como `DTT_PerfilUsuario_INTRANET=...&NEmpleado=S90049840`) y
-            // priorizarlo como `user`.
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    // Buscar dentro de los valores de cada cookie (por ejemplo DTT_PerfilUsuario_INTRANET)
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    // Si no se encontró dentro de valores, buscar cookie con nombre que indique empleado
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    // Fallback: buscar patrón tipo S90049840 en toda la cookie string
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
@@ -350,130 +239,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "Recursos" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "Recursos" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const page = await IntranetPage.abrirNormal(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
-        /*await test.step('Navigation to intranet page', async () => {
+        await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })*/
-
-        const username = 'mallueaced@deloitte.es'
-        const password = 'Incidencia150'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-
-            await page.goto('https://login.microsoftonline.com')
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 5000 })
-                await page.click('input[type="submit"]')
-            } catch { }
-
-            await page.goto('https://people.deloitte/DPN')
- 
-            await page.waitForTimeout(5000);
-
-            await page.goto('https://intranet_dev.es.deloitte.com')
-
-            await page.waitForTimeout(5000);
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post) // captura patrones tipo S90049840 o 90049840
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                // Guardar numEmpleado explícitamente como user (ej: S90049840)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                // conservar user actual o marcar no disponible
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            // Extraer `NEmpleado` desde `document.cookie` (incluyendo valores dentro
-            // de cookies como `DTT_PerfilUsuario_INTRANET=...&NEmpleado=S90049840`) y
-            // priorizarlo como `user`.
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    // Buscar dentro de los valores de cada cookie (por ejemplo DTT_PerfilUsuario_INTRANET)
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    // Si no se encontró dentro de valores, buscar cookie con nombre que indique empleado
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    // Fallback: buscar patrón tipo S90049840 en toda la cookie string
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
@@ -486,117 +260,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "Políticas y Procedimientos" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "Políticas y Procedimientos" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
-
-        const username = 'mallueaced@deloitte.es'
-        const password = 'Incidencia150'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            await page.goto('https://intranet_dev.es.deloitte.com');
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            // Stay signed in
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
-                await page.click('input[type="submit"]');
-            } catch { }
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-            // pequeña estabilización
-            await page.waitForTimeout(1000);
-
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
@@ -609,118 +281,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "Comunidades" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "Comunidades" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
-
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            await page.goto('https://intranet_dev.es.deloitte.com');
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            // Stay signed in
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
-                await page.click('input[type="submit"]');
-            } catch { }
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-
-            // pequeña estabilización
-            await page.waitForTimeout(1000);
-
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
@@ -733,118 +302,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "Ver todos los Aplicativos" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "Ver todos los Aplicativos" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
-
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            await page.goto('https://intranet_dev.es.deloitte.com');
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            // Stay signed in
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
-                await page.click('input[type="submit"]');
-            } catch { }
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-
-            // pequeña estabilización
-            await page.waitForTimeout(1000);
-
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
@@ -857,118 +323,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "Ver todos los Dashboards" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "Ver todos los Dashboards" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
-
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            await page.goto('https://intranet_dev.es.deloitte.com');
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            // Stay signed in
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
-                await page.click('input[type="submit"]');
-            } catch { }
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-
-            // pequeña estabilización
-            await page.waitForTimeout(1000);
-
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
@@ -981,118 +344,15 @@ for (let run = 1; run <= RUNS; run++) {
 }
 
 for (let run = 1; run <= RUNS; run++) {
-    test(`intranet first level "Ver todas las noticias" - run ${run}`, async ({ browser }) => {
+    test(`intranet first level "Ver todas las noticias" - run ${run}`, async () => {
         const randomDelay = Math.random() * (3000 - 1000) + 1000; // ms entre 1000 y 3000
-        const { context, page } = await IntranetPage.abrirEnIncognito(browser)
+        const browser = await chromium.connectOverCDP('http://localhost:9222');
+        const context = browser.contexts()[0];
+        const page = await context.newPage();
 
         await test.step('Navigation to intranet page', async () => {
             const navigateTo = new NavigateTo(page)
             await navigateTo.intranetPage()
-        })
-
-        const username = 't-testintranet01@deloitte.es'
-        const password = 'w.T0@8vbUtiCC6'
-
-        await test.step('Login to the intranet', async () => {
-            const intranetPage = new IntranetPage(page, sessionSummary.clicks, sessionSummary, dbService)
-            const analyticsUrlBase = 'https://intranet_dev.es.deloitte.com/_layouts/15/PMS_CustomPages/IISHandler_analiticasdnet.ashx'
-            await page.goto('https://intranet_dev.es.deloitte.com');
-
-            // Email
-            await page.fill('input[type="email"]', username);
-            await page.click('input[type="submit"]');
-
-            // Password
-            await page.fill('input[type="password"]', password);
-            await page.click('input[type="submit"]');
-
-            // Stay signed in
-            try {
-                await page.waitForSelector('input[type="submit"]', { timeout: 3000 });
-                await page.click('input[type="submit"]');
-            } catch { }
-
-            await page.waitForFunction(() =>
-                document.cookie.includes('NEmpleado') &&
-                document.cookie.match(/S\d{6,}/),
-                { timeout: 15000 });
-
-
-            // pequeña estabilización
-            await page.waitForTimeout(1000);
-
-
-            const analyticsPromise = page.waitForRequest(r => {
-                if (!r.url().startsWith(analyticsUrlBase) || r.method() !== 'POST') {
-                    return false
-                }
-
-                const post = r.postData() || ''
-
-                return /S\d{6,}/.test(post)
-            }, { timeout: 20000 })
-            try {
-                const req = await analyticsPromise
-                const post = req.postData() || ''
-                let id = 'No disponible'
-                let numEmpleado = ''
-                try {
-                    const obj = JSON.parse(post)
-                    id = obj?.id_sesion ?? obj?.idSession ?? id
-                    numEmpleado = obj?.numEmpleado ?? obj?.num_empleado ?? obj?.employeeNumber ?? obj?.usuario ?? ''
-                } catch {
-                    const params = new URLSearchParams(String(post || ''))
-                    for (const [k, v] of params.entries()) {
-                        if ((!id || id === 'No disponible') && /id[_-]?(sesion|session|s)/i.test(k) && v) id = v
-                        if (!numEmpleado && /num(_|-)?emplead|employeeNumber|numEmpleado|usuario/i.test(k) && v) numEmpleado = v
-                    }
-                    if (!numEmpleado) {
-                        const mEmp = /([A-Z]?S?\d{6,10})/.exec(post)
-                        if (mEmp) numEmpleado = mEmp[1]
-                    }
-                    if ((id === 'No disponible' || !id) && post) {
-                        const mId = /id[_-]?sesi[oó]n[:=]"?([a-zA-Z0-9_\-]+)"?/i.exec(post) || /"id_sesion"\s*:\s*"([^"]+)"/i.exec(post)
-                        if (mId) id = mId[1]
-                    }
-                }
-                sessionSummary.sessionId = String(id)
-                sessionSummary.user = numEmpleado && numEmpleado !== '' ? String(numEmpleado) : sessionSummary.user || ''
-            } catch {
-                sessionSummary.sessionId = 'No disponible'
-                sessionSummary.user = sessionSummary.user || 'No disponible'
-            }
-
-            try {
-                const cookieString = await page.evaluate(() => document.cookie || '')
-                if (cookieString) {
-                    let nEmpleado = ''
-                    const parts = cookieString.split('; ').map(p => {
-                        const idx = p.indexOf('=')
-                        return idx >= 0 ? [p.slice(0, idx).trim(), p.slice(idx + 1)] : [p.trim(), '']
-                    })
-
-                    for (const [, v] of parts) {
-                        if (!v) continue
-                        const inner = /NEmpleado=([^&;]+)/i.exec(v)
-                        if (inner && inner[1]) {
-                            nEmpleado = decodeURIComponent(inner[1])
-                            break
-                        }
-                    }
-
-                    if (!nEmpleado) {
-                        const found = parts.find(([k]) => /^(NEmpleado|N_Empleado|N-Empleado|numEmpleado|numeroEmpleado|employeeNumber|empleado|usuario)$/i.test(k))
-                        if (found && found[1]) nEmpleado = decodeURIComponent(found[1])
-                    }
-
-                    if (!nEmpleado) {
-                        const m = /([A-Z]?S?\d{6,10})/.exec(cookieString)
-                        if (m) nEmpleado = m[1]
-                    }
-
-                    if (nEmpleado) sessionSummary.user = nEmpleado
-                }
-            } catch (e) { /* ignore cookie parsing errors */ }
         })
 
         await page.waitForTimeout(randomDelay)
