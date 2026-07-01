@@ -50,14 +50,12 @@ export class IntranetPage {
     private clicks: string[]
     private readonly page: Page
     private session?: { user?: string, [k: string]: any }
-    private dbService?: DatabaseService
 
     constructor(page: Page, clicks: string[] = [], session?: { user?: string, [k: string]: any }, dbService?: DatabaseService) {
         // Inicializa la página, locators, estado de sesión y servicio de BD
         this.page = page
         this.clicks = clicks
         this.session = session
-        this.dbService = dbService
         this.userTextBox = page.getByRole('textbox', { name: 'Enter your email, phone, or' })
         this.nextButton = page.getByRole('button', { name: 'Next' })
         this.passwordTextBox = page.getByRole('textbox', { name: 'Enter the password for' })

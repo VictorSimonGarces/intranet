@@ -17,6 +17,7 @@ let sessionSummary: {
 } = { user: '', startTime: new Date(), clicks: [], sessionId: '' };
 
 let dbService: DatabaseService | undefined
+let dbValidationEnabled = false
 
 test.beforeEach(async () => {
     sessionSummary = {
@@ -27,27 +28,23 @@ test.beforeEach(async () => {
     };
     // Exponer arreglo global para que los pageobjects lo recojan si no se pasa explícitamente
     ; (globalThis as any).__SESSION_CLICKS = sessionSummary.clicks
-        ; (globalThis as any).__SESSION = sessionSummary
+    ; (globalThis as any).__SESSION = sessionSummary
     // Inicializar conexión a la base de datos (config via env vars)
     try {
+        const dbUser = process.env.DB_USER?.trim()
+        const dbPassword = process.env.DB_PASSWORD?.trim()
         const config = {
-            server: 'ESAZUITS00057',
-            database: 'EstadisticasIntranet',
-            user: process.env.DB_USER || '',
-            password: process.env.DB_PASSWORD || '',
-            options: {
-                trustedConnection: true,
-                trustServerCertificate: true,
-                encrypt: false,
-                instanceName: ''
-            },
-            driver: 'msnodesqlv8',
-            connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=ESAZUITS00057;Database=EstadisticasIntranet;Trusted_Connection=yes;'
+            server: process.env.DB_SERVER || 'ESAZUITS00057',
+            database: process.env.DB_NAME || 'EstadisticasIntranet',
+            ...(dbUser && dbPassword ? { user: dbUser, password: dbPassword } : {})
         }
         dbService = new DatabaseService(config)
         await dbService.connect()
+        dbValidationEnabled = true
     } catch (e) {
         dbService = undefined
+        dbValidationEnabled = false
+        console.warn('[DB] No se pudo conectar a la base de datos; se omitirá la validación de analytics.', e)
     }
 })
 
@@ -71,6 +68,12 @@ test.afterEach(async ({ }, testInfo) => {
     }
 
     await new Promise(res => setTimeout(res, 2000))
+    
+    if (!dbService || !dbValidationEnabled) {
+        console.warn('[DB] Validación de base de datos omitida porque no hay conexión disponible.')
+        try { if (dbService) await dbService.disconnect() } catch (e) { }
+        return
+    }
 
     if (dbService && sessionSummary.clicks.length > 0) {
         const sleep = (ms: number) => new Promise(res => setTimeout(res, ms))
@@ -87,6 +90,11 @@ test.afterEach(async ({ }, testInfo) => {
             for (let attempt = 0; attempt < maxAttempts; attempt++) {
                 try {
                     dbRow = await dbService.query(tracking.title, tracking.tiempo)
+                    
+                    if (!dbRow) {
+                        throw new Error(`❌ No se encontró fila en DB para ${detail.accion}`)
+                    }
+
                 } catch (e) {
                     dbRow = null
                 }

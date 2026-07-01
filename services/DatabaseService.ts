@@ -15,14 +15,35 @@ export class DatabaseService {
   async connect(): Promise<void> {
     if (this.pool && this.pool.connected) return
 
-    const connStr = `Driver={ODBC Driver 18 for SQL Server};Server=${this.config.server};Database=${this.config.database};Trusted_Connection=yes;TrustServerCertificate=yes;`
-    
-    console.info('[DB] Using Windows Authentication via ODBC Driver 18')
+    const hasSqlAuth = Boolean(this.config.user && this.config.password)
+    const authMode = hasSqlAuth ? 'SQL Server authentication' : 'Windows/NTLM authentication'
+    const domain = (process.env.DB_DOMAIN || process.env.USERDOMAIN || process.env.COMPUTERNAME || 'WORKGROUP').trim()
+
+    console.info(`[DB] Using ${authMode} via mssql`)
     console.info(`[DB] Connecting to ${this.config.server} / ${this.config.database}`)
 
     const cfg: any = {
-      connectionString: connStr,
-      driver: 'msnodesqlv8'
+      server: this.config.server,
+      database: this.config.database,
+      options: {
+        encrypt: false,
+        trustServerCertificate: true,
+        instanceName: ''
+      }
+    }
+
+    if (hasSqlAuth) {
+      cfg.user = this.config.user
+      cfg.password = this.config.password
+    } else {
+      cfg.authentication = {
+        type: 'ntlm',
+        options: {
+          domain,
+          userName: process.env.DB_USER || '',
+          password: process.env.DB_PASSWORD || ''
+        }
+      }
     }
 
     this.pool = await new sql.ConnectionPool(cfg).connect()
